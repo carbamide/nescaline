@@ -16,8 +16,8 @@
 
 */
 
-byte  Map19_Chr_Ram[ 0x2000 ];
-byte  Map19_Regs[ 3 ];
+byte  Map19_Chr_Ram[0x2000];
+byte  Map19_Regs[3];
 
 byte  Map19_IRQ_Enable;
 dword Map19_IRQ_Cnt;
@@ -49,21 +49,21 @@ void Map19_Init()
   if ( S.NesHeader.VROMSize > 0 )
   {
     dword dwLastPage = (dword) S.NesHeader.VROMSize << 3;
-    W.PPUBANK[ 0 ] = VROMPAGE(dwLastPage - 8);
-    W.PPUBANK[ 1 ] = VROMPAGE(dwLastPage - 7);
-    W.PPUBANK[ 2 ] = VROMPAGE(dwLastPage - 6);
-    W.PPUBANK[ 3 ] = VROMPAGE(dwLastPage - 5);
-    W.PPUBANK[ 4 ] = VROMPAGE(dwLastPage - 4);
-    W.PPUBANK[ 5 ] = VROMPAGE(dwLastPage - 3);
-    W.PPUBANK[ 6 ] = VROMPAGE(dwLastPage - 2);
-    W.PPUBANK[ 7 ] = VROMPAGE(dwLastPage - 1);
+    W.PPUBANK[0] = VROMPAGE(dwLastPage - 8);
+    W.PPUBANK[1] = VROMPAGE(dwLastPage - 7);
+    W.PPUBANK[2] = VROMPAGE(dwLastPage - 6);
+    W.PPUBANK[3] = VROMPAGE(dwLastPage - 5);
+    W.PPUBANK[4] = VROMPAGE(dwLastPage - 4);
+    W.PPUBANK[5] = VROMPAGE(dwLastPage - 3);
+    W.PPUBANK[6] = VROMPAGE(dwLastPage - 2);
+    W.PPUBANK[7] = VROMPAGE(dwLastPage - 1);
     NESCore_Develop_Character_Data();
   }
 
   /* Initialize State Register */
-  Map19_Regs[ 0 ] = 0x00;
-  Map19_Regs[ 1 ] = 0x00;
-  Map19_Regs[ 2 ] = 0x00;
+  Map19_Regs[0] = 0x00;
+  Map19_Regs[1] = 0x00;
+  Map19_Regs[2] = 0x00;
 }
 
 void Map19_Write( word wAddr, byte byData )
@@ -72,130 +72,130 @@ void Map19_Write( word wAddr, byte byData )
   switch ( wAddr & 0xf800 )
   {
     case 0x8000:  /* $8000-87ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 0 ] = VROMPAGE( byData );
+        W.PPUBANK[0] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 0 ] = Map19_VROMPAGE( 0 );
+        W.PPUBANK[0] = Map19_VROMPAGE( 0 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0x8800:  /* $8800-8fff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 1 ] = VROMPAGE( byData );
+        W.PPUBANK[1] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 1 ] = Map19_VROMPAGE( 1 );
+        W.PPUBANK[1] = Map19_VROMPAGE( 1 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0x9000:  /* $9000-97ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 2 ] = VROMPAGE( byData );
+        W.PPUBANK[2] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 2 ] = Map19_VROMPAGE( 2 );
+        W.PPUBANK[2] = Map19_VROMPAGE( 2 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0x9800:  /* $9800-9fff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 3 ] = VROMPAGE( byData );
+        W.PPUBANK[3] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 3 ] = Map19_VROMPAGE( 3 );
+        W.PPUBANK[3] = Map19_VROMPAGE( 3 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa000:  /* $a000-a7ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 4 ] = VROMPAGE( byData );
+        W.PPUBANK[4] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 4 ] = Map19_VROMPAGE( 4 );
+        W.PPUBANK[4] = Map19_VROMPAGE( 4 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa800:  /* $a800-afff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 5 ] = VROMPAGE( byData );
+        W.PPUBANK[5] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 5 ] = Map19_VROMPAGE( 5 );
+        W.PPUBANK[5] = Map19_VROMPAGE( 5 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb000:  /* $b000-b7ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 6 ] = VROMPAGE( byData );
+        W.PPUBANK[6] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 6 ] = Map19_VROMPAGE( 6 );
+        W.PPUBANK[6] = Map19_VROMPAGE( 6 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb800:  /* $b800-bfff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ 7 ] = VROMPAGE( byData );
+        W.PPUBANK[7] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 7 ] = Map19_VROMPAGE( 7 );
+        W.PPUBANK[7] = Map19_VROMPAGE( 7 );
       }
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc000:  /* $c000-c7ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ NAME_TABLE0 ] = VROMPAGE( byData );
+        W.PPUBANK[NAME_TABLE0] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ NAME_TABLE0 ] = VRAMPAGE( byData & 0x01 );
+        W.PPUBANK[NAME_TABLE0] = VRAMPAGE( byData & 0x01 );
       }
       break;
 
     case 0xc800:  /* $c800-cfff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ NAME_TABLE1 ] = VROMPAGE( byData );
+        W.PPUBANK[NAME_TABLE1] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ NAME_TABLE1 ] = VRAMPAGE( byData & 0x01 );
+        W.PPUBANK[NAME_TABLE1] = VRAMPAGE( byData & 0x01 );
       }
       break;
 
     case 0xd000:  /* $d000-d7ff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ NAME_TABLE2 ] = VROMPAGE( byData );
+        W.PPUBANK[NAME_TABLE2] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ NAME_TABLE2 ] = VRAMPAGE( byData & 0x01 );
+        W.PPUBANK[NAME_TABLE2] = VRAMPAGE( byData & 0x01 );
       }
       break;
 
     case 0xd800:  /* $d800-dfff */
-      if ( byData < 0xe0 || Map19_Regs[ 0 ] == 1 )
+      if ( byData < 0xe0 || Map19_Regs[0] == 1 )
       {
         byData %= ( S.NesHeader.VROMSize << 3 );
-        W.PPUBANK[ NAME_TABLE3 ] = VROMPAGE( byData );
+        W.PPUBANK[NAME_TABLE3] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ NAME_TABLE3 ] = VRAMPAGE( byData & 0x01 );
+        W.PPUBANK[NAME_TABLE3] = VRAMPAGE( byData & 0x01 );
       }
       break;
 
@@ -206,8 +206,8 @@ void Map19_Write( word wAddr, byte byData )
       break;
 
     case 0xe800:  /* $e800-efff */
-      Map19_Regs[ 0 ] = ( byData & 0x40 ) >> 6;
-      Map19_Regs[ 1 ] = ( byData & 0x80 ) >> 7;
+      Map19_Regs[0] = ( byData & 0x40 ) >> 6;
+      Map19_Regs[1] = ( byData & 0x80 ) >> 7;
 
       byData &= 0x3f;
       byData %= ( S.NesHeader.ROMSize << 1 );

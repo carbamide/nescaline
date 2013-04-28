@@ -82,16 +82,16 @@ struct NES_State {
     int ClockCycles;
 
     /* NES Resources */
-    byte RAM[ RAM_SIZE ];
-    byte SRAM[ SRAM_SIZE ];
-    byte DRAM[ DRAM_SIZE ];
+    byte RAM[RAM_SIZE];
+    byte SRAM[SRAM_SIZE];
+    byte DRAM[DRAM_SIZE];
     int Clock;
     int ClockFrame;
 
     /* PPU Resources */
     int SpriteJustHit;          /* Sprite #0 Scanline */
-    byte PPURAM[ PPURAM_SIZE ];
-    byte SPRRAM[ SPRRAM_SIZE ];
+    byte PPURAM[PPURAM_SIZE];
+    byte SPRRAM[SPRRAM_SIZE];
     word PPU_SP_Height;
     word PPU_Scanline;
     word vAddr; /* PPU VRAM Address Pointer */
@@ -99,7 +99,7 @@ struct NES_State {
 
     /* APU Resources */
     byte APU_Mute;
-    byte APU_Reg[ 0x18 ];
+    byte APU_Reg[0x18];
     int cur_event;
     byte ApuCtrl;
     byte ApuCtrlNew;
@@ -130,11 +130,11 @@ struct NES_State {
 
     /* Display Buffer */
 #ifdef DOUBLE_BUFFERING
-    word DoubleFrame[ 2 ][ NES_DISP_WIDTH * NES_DISP_HEIGHT ];
+    word DoubleFrame[2][NES_DISP_WIDTH * NES_DISP_HEIGHT];
     word *WorkFrame;
     word WorkFrameIdx;
 #else
-    word WorkFrame[ NES_DISP_WIDTH * NES_DISP_HEIGHT ];
+    word WorkFrame[NES_DISP_WIDTH * NES_DISP_HEIGHT];
 #endif
 
     /* Controller Pad Resources */
@@ -176,10 +176,10 @@ struct NES_Wiring {
     byte *ROMBANK1;
     byte *ROMBANK2;
     byte *ROMBANK3;
-    byte *pbyPrevBank[ 8 ];
+    byte *pbyPrevBank[8];
 
     byte *VROM;
-    byte *PPUBANK[ 16 ]; /* 1K PPU Banks */
+    byte *PPUBANK[16]; /* 1K PPU Banks */
     byte *PPU_BG;   /* Background Memory */
     byte *PPU_SP;   /* Sprite Memory */
 

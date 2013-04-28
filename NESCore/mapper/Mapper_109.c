@@ -121,14 +121,14 @@ void Map109_Apu( word wAddr, byte byData )
 void Map109_Set_PPU_Banks()
 {
   if ( S.NesHeader.VROMSize > 0 ) {
-    W.PPUBANK[ 0 ] = VROMPAGE((Map109_Chr0) % (S.NesHeader.VROMSize<<3) );
-    W.PPUBANK[ 1 ] = VROMPAGE((Map109_Chr1|((Map109_Chrmode1<<3)&0x8)) % (S.NesHeader.VROMSize<<3));
-    W.PPUBANK[ 2 ] = VROMPAGE((Map109_Chr2|((Map109_Chrmode1<<2)&0x8)) % (S.NesHeader.VROMSize<<3));
-    W.PPUBANK[ 3 ] = VROMPAGE((Map109_Chr3|((Map109_Chrmode1<<1)&0x8)|(Map109_Chrmode0*0x10)) % (S.NesHeader.VROMSize<<3));
-    W.PPUBANK[ 4 ] = VROMPAGE((S.NesHeader.VROMSize<<3)-4);
-    W.PPUBANK[ 5 ] = VROMPAGE((S.NesHeader.VROMSize<<3)-3);
-    W.PPUBANK[ 6 ] = VROMPAGE((S.NesHeader.VROMSize<<3)-2);
-    W.PPUBANK[ 7 ] = VROMPAGE((S.NesHeader.VROMSize<<3)-1);
+    W.PPUBANK[0] = VROMPAGE((Map109_Chr0) % (S.NesHeader.VROMSize<<3) );
+    W.PPUBANK[1] = VROMPAGE((Map109_Chr1|((Map109_Chrmode1<<3)&0x8)) % (S.NesHeader.VROMSize<<3));
+    W.PPUBANK[2] = VROMPAGE((Map109_Chr2|((Map109_Chrmode1<<2)&0x8)) % (S.NesHeader.VROMSize<<3));
+    W.PPUBANK[3] = VROMPAGE((Map109_Chr3|((Map109_Chrmode1<<1)&0x8)|(Map109_Chrmode0*0x10)) % (S.NesHeader.VROMSize<<3));
+    W.PPUBANK[4] = VROMPAGE((S.NesHeader.VROMSize<<3)-4);
+    W.PPUBANK[5] = VROMPAGE((S.NesHeader.VROMSize<<3)-3);
+    W.PPUBANK[6] = VROMPAGE((S.NesHeader.VROMSize<<3)-2);
+    W.PPUBANK[7] = VROMPAGE((S.NesHeader.VROMSize<<3)-1);
     NESCore_Develop_Character_Data();
   }
 }

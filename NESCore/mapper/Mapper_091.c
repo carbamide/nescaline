@@ -50,7 +50,7 @@ void Map91_Init()
   {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -70,26 +70,26 @@ void Map91_Sram( word wAddr, byte byData )
   {
     /* Set PPU Banks */
     case 0x6000:
-      W.PPUBANK[ 0 ] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x6001:
-      W.PPUBANK[ 2 ] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x6002:
-      W.PPUBANK[ 4 ] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x6003:
-      W.PPUBANK[ 6 ] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( (byData*2+0) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( (byData*2+1) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 

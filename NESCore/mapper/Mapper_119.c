@@ -181,72 +181,72 @@ void Map119_Set_PPU_Banks()
 {
   if (Map119_Reg[0]&0x80) {
     if (Map119_Chr4 & 0x40)
-         W.PPUBANK[ 0 ] = CRAMPAGE(Map119_Chr4&0x07);
+         W.PPUBANK[0] = CRAMPAGE(Map119_Chr4&0x07);
     else
-         W.PPUBANK[ 0 ] = VROMPAGE(Map119_Chr4 % (S.NesHeader.ROMSize<<1));
+         W.PPUBANK[0] = VROMPAGE(Map119_Chr4 % (S.NesHeader.ROMSize<<1));
     if (Map119_Chr5 & 0x40)
-         W.PPUBANK[ 1 ] = CRAMPAGE(Map119_Chr5&0x07);
+         W.PPUBANK[1] = CRAMPAGE(Map119_Chr5&0x07);
     else
-         W.PPUBANK[ 1 ] = VROMPAGE(Map119_Chr5 % (S.NesHeader.ROMSize<<1));
+         W.PPUBANK[1] = VROMPAGE(Map119_Chr5 % (S.NesHeader.ROMSize<<1));
     if (Map119_Chr6 & 0x40)
-         W.PPUBANK[ 2 ] = CRAMPAGE(Map119_Chr6&0x07);
+         W.PPUBANK[2] = CRAMPAGE(Map119_Chr6&0x07);
     else
-         W.PPUBANK[ 2 ] = VROMPAGE(Map119_Chr6 % (S.NesHeader.ROMSize<<1));
+         W.PPUBANK[2] = VROMPAGE(Map119_Chr6 % (S.NesHeader.ROMSize<<1));
     if (Map119_Chr7 & 0x40)
-         W.PPUBANK[ 3 ] = CRAMPAGE(Map119_Chr7&0x07);
+         W.PPUBANK[3] = CRAMPAGE(Map119_Chr7&0x07);
     else
-         W.PPUBANK[ 3 ] = VROMPAGE(Map119_Chr7 % (S.NesHeader.ROMSize<<1));
+         W.PPUBANK[3] = VROMPAGE(Map119_Chr7 % (S.NesHeader.ROMSize<<1));
     if ((Map119_Chr01+0) & 0x40)
-        W.PPUBANK[ 4 ] = CRAMPAGE((Map119_Chr01+0)&0x07);
+        W.PPUBANK[4] = CRAMPAGE((Map119_Chr01+0)&0x07);
     else
-        W.PPUBANK[ 4 ] = VROMPAGE((Map119_Chr01+0) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[4] = VROMPAGE((Map119_Chr01+0) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr01+1) & 0x40)
-        W.PPUBANK[ 5 ] = CRAMPAGE((Map119_Chr01+1)&0x07);
+        W.PPUBANK[5] = CRAMPAGE((Map119_Chr01+1)&0x07);
     else
-        W.PPUBANK[ 5 ] = VROMPAGE((Map119_Chr01+1) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[5] = VROMPAGE((Map119_Chr01+1) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr23+0) & 0x40)
-        W.PPUBANK[ 6 ] = CRAMPAGE((Map119_Chr23+0)&0x07);
+        W.PPUBANK[6] = CRAMPAGE((Map119_Chr23+0)&0x07);
     else
-        W.PPUBANK[ 6 ] = VROMPAGE((Map119_Chr23+0) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[6] = VROMPAGE((Map119_Chr23+0) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr23+1) & 0x40)
-        W.PPUBANK[ 7 ] = CRAMPAGE((Map119_Chr23+1)&0x07);
+        W.PPUBANK[7] = CRAMPAGE((Map119_Chr23+1)&0x07);
     else
-        W.PPUBANK[ 7 ] = VROMPAGE((Map119_Chr23+1) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[7] = VROMPAGE((Map119_Chr23+1) % (S.NesHeader.VROMSize<<3));
   } 
   else 
   {
     if ((Map119_Chr01+0) & 0x40)
-        W.PPUBANK[ 0 ] = CRAMPAGE((Map119_Chr01+0)&0x07);
+        W.PPUBANK[0] = CRAMPAGE((Map119_Chr01+0)&0x07);
     else
-        W.PPUBANK[ 0 ] = VROMPAGE((Map119_Chr01+0) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[0] = VROMPAGE((Map119_Chr01+0) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr01+1) & 0x40)
-        W.PPUBANK[ 1 ] = CRAMPAGE((Map119_Chr01+1)&0x07);
+        W.PPUBANK[1] = CRAMPAGE((Map119_Chr01+1)&0x07);
     else
-        W.PPUBANK[ 1 ] = VROMPAGE((Map119_Chr01+1) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[1] = VROMPAGE((Map119_Chr01+1) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr23+0) & 0x40)
-        W.PPUBANK[ 2 ] = CRAMPAGE((Map119_Chr23+0)&0x07);
+        W.PPUBANK[2] = CRAMPAGE((Map119_Chr23+0)&0x07);
     else
-        W.PPUBANK[ 2 ] = VROMPAGE((Map119_Chr23+0) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[2] = VROMPAGE((Map119_Chr23+0) % (S.NesHeader.VROMSize<<3));
     if ((Map119_Chr23+1) & 0x40)
-        W.PPUBANK[ 3 ] = CRAMPAGE((Map119_Chr23+1)&0x07);
+        W.PPUBANK[3] = CRAMPAGE((Map119_Chr23+1)&0x07);
     else
-        W.PPUBANK[ 3 ] = VROMPAGE((Map119_Chr23+1) % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[3] = VROMPAGE((Map119_Chr23+1) % (S.NesHeader.VROMSize<<3));
     if (Map119_Chr4 & 0x40)
-        W.PPUBANK[ 4 ] = CRAMPAGE(Map119_Chr4&0x07);
+        W.PPUBANK[4] = CRAMPAGE(Map119_Chr4&0x07);
     else
-        W.PPUBANK[ 4 ] = VROMPAGE(Map119_Chr4 % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[4] = VROMPAGE(Map119_Chr4 % (S.NesHeader.VROMSize<<3));
     if (Map119_Chr5 & 0x40)
-        W.PPUBANK[ 5 ] = CRAMPAGE(Map119_Chr5&0x07);
+        W.PPUBANK[5] = CRAMPAGE(Map119_Chr5&0x07);
     else 
-        W.PPUBANK[ 5 ] = VROMPAGE(Map119_Chr5 % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[5] = VROMPAGE(Map119_Chr5 % (S.NesHeader.VROMSize<<3));
     if (Map119_Chr6 & 0x40)
-        W.PPUBANK[ 6 ] = CRAMPAGE(Map119_Chr6&0x07);
+        W.PPUBANK[6] = CRAMPAGE(Map119_Chr6&0x07);
     else
-        W.PPUBANK[ 6 ] = VROMPAGE(Map119_Chr6 % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[6] = VROMPAGE(Map119_Chr6 % (S.NesHeader.VROMSize<<3));
     if (Map119_Chr7 & 0x40)
-        W.PPUBANK[ 7 ] = CRAMPAGE(Map119_Chr7&0x07);
+        W.PPUBANK[7] = CRAMPAGE(Map119_Chr7&0x07);
     else
-        W.PPUBANK[ 7 ] = VROMPAGE(Map119_Chr7 % (S.NesHeader.VROMSize<<3));
+        W.PPUBANK[7] = VROMPAGE(Map119_Chr7 % (S.NesHeader.VROMSize<<3));
   }
   NESCore_Develop_Character_Data();
 }

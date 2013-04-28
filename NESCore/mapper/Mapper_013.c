@@ -37,14 +37,14 @@ void Map13_Init()
   W.ROMBANK3 = ROMPAGE( 3 );
 
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = CRAMPAGE( 0 );
-  W.PPUBANK[ 1 ] = CRAMPAGE( 1 );
-  W.PPUBANK[ 2 ] = CRAMPAGE( 2 );
-  W.PPUBANK[ 3 ] = CRAMPAGE( 3 );
-  W.PPUBANK[ 4 ] = CRAMPAGE( 0 );
-  W.PPUBANK[ 5 ] = CRAMPAGE( 1 );
-  W.PPUBANK[ 6 ] = CRAMPAGE( 2 );
-  W.PPUBANK[ 7 ] = CRAMPAGE( 3 );
+  W.PPUBANK[0] = CRAMPAGE( 0 );
+  W.PPUBANK[1] = CRAMPAGE( 1 );
+  W.PPUBANK[2] = CRAMPAGE( 2 );
+  W.PPUBANK[3] = CRAMPAGE( 3 );
+  W.PPUBANK[4] = CRAMPAGE( 0 );
+  W.PPUBANK[5] = CRAMPAGE( 1 );
+  W.PPUBANK[6] = CRAMPAGE( 2 );
+  W.PPUBANK[7] = CRAMPAGE( 3 );
   NESCore_Develop_Character_Data();
 }
 
@@ -58,9 +58,9 @@ void Map13_Write( word wAddr, byte bData )
   W.ROMBANK2 = ROMPAGE((((bData&0x30)>>2)+2) % (S.NesHeader.ROMSize<<1));
   W.ROMBANK3 = ROMPAGE((((bData&0x30)>>2)+3) % (S.NesHeader.ROMSize<<1));
 
-  W.PPUBANK[ 4 ] = CRAMPAGE(((bData&0x03)<<2)+0);
-  W.PPUBANK[ 5 ] = CRAMPAGE(((bData&0x03)<<2)+1);
-  W.PPUBANK[ 6 ] = CRAMPAGE(((bData&0x03)<<2)+2);
-  W.PPUBANK[ 7 ] = CRAMPAGE(((bData&0x03)<<2)+3);
+  W.PPUBANK[4] = CRAMPAGE(((bData&0x03)<<2)+0);
+  W.PPUBANK[5] = CRAMPAGE(((bData&0x03)<<2)+1);
+  W.PPUBANK[6] = CRAMPAGE(((bData&0x03)<<2)+2);
+  W.PPUBANK[7] = CRAMPAGE(((bData&0x03)<<2)+3);
   NESCore_Develop_Character_Data();
 }

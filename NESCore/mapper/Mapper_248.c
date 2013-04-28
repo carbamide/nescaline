@@ -212,24 +212,24 @@ void Map248_Set_PPU_Banks()
 {
   if( S.NesHeader.ROMSize > 0 ) {
     if( Map248_Reg[0] & 0x80 ) {
-      W.PPUBANK[ 0 ] = VROMPAGE(Map248_Chr4 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE(Map248_Chr5 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE(Map248_Chr6 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE(Map248_Chr7 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE((Map248_Chr01+0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE((Map248_Chr01+1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE((Map248_Chr23+0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE((Map248_Chr23+1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE(Map248_Chr4 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE(Map248_Chr5 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE(Map248_Chr6 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE(Map248_Chr7 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE((Map248_Chr01+0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE((Map248_Chr01+1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE((Map248_Chr23+0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE((Map248_Chr23+1) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE((Map248_Chr01+0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE((Map248_Chr01+1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE((Map248_Chr23+0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE((Map248_Chr23+1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE(Map248_Chr4 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE(Map248_Chr5 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE(Map248_Chr6 % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE(Map248_Chr7 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE((Map248_Chr01+0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE((Map248_Chr01+1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE((Map248_Chr23+0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE((Map248_Chr23+1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE(Map248_Chr4 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE(Map248_Chr5 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE(Map248_Chr6 % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE(Map248_Chr7 % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
     }
   }

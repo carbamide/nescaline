@@ -4,7 +4,7 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte Map185_Dummy_Chr_Rom[ 0x400 ];
+byte Map185_Dummy_Chr_Rom[0x400];
 
 /*-------------------------------------------------------------------*/
 /*  Initialize Mapper 185                                            */
@@ -51,7 +51,7 @@ void Map185_Init()
   int nPage ;
 for (nPage = 0; nPage < 0x400; nPage++ )
   {
-    Map185_Dummy_Chr_Rom[ nPage ] = 0xff;
+    Map185_Dummy_Chr_Rom[nPage] = 0xff;
   }
 
 
@@ -66,24 +66,24 @@ void Map185_Write( word wAddr, byte byData )
   /* Set PPU Banks */ 
   if ( byData & 0x03 )
   {
-    W.PPUBANK[ 0 ] = VROMPAGE( 0 );
-    W.PPUBANK[ 1 ] = VROMPAGE( 1 );
-    W.PPUBANK[ 2 ] = VROMPAGE( 2 );
-    W.PPUBANK[ 3 ] = VROMPAGE( 3 );
-    W.PPUBANK[ 4 ] = VROMPAGE( 4 );
-    W.PPUBANK[ 5 ] = VROMPAGE( 5 );
-    W.PPUBANK[ 6 ] = VROMPAGE( 6 );
-    W.PPUBANK[ 7 ] = VROMPAGE( 7 );
+    W.PPUBANK[0] = VROMPAGE( 0 );
+    W.PPUBANK[1] = VROMPAGE( 1 );
+    W.PPUBANK[2] = VROMPAGE( 2 );
+    W.PPUBANK[3] = VROMPAGE( 3 );
+    W.PPUBANK[4] = VROMPAGE( 4 );
+    W.PPUBANK[5] = VROMPAGE( 5 );
+    W.PPUBANK[6] = VROMPAGE( 6 );
+    W.PPUBANK[7] = VROMPAGE( 7 );
     NESCore_Develop_Character_Data();
   } else {
-    W.PPUBANK[ 0 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 1 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 2 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 3 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 4 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 5 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 6 ] = Map185_Dummy_Chr_Rom;
-    W.PPUBANK[ 7 ] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[0] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[1] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[2] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[3] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[4] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[5] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[6] = Map185_Dummy_Chr_Rom;
+    W.PPUBANK[7] = Map185_Dummy_Chr_Rom;
     NESCore_Develop_Character_Data();
   }
 }

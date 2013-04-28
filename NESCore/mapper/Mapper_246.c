@@ -69,23 +69,23 @@ void Map246_Sram( word wAddr, byte byData )
       W.ROMBANK3 = ROMPAGE(((byData<<2)+3) % (S.NesHeader.ROMSize<<1));
       break;
     case 0x6004:
-      W.PPUBANK[ 0 ] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
-      W.PPUBANK[ 1 ] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[0] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[1] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
       NESCore_Develop_Character_Data();
       break;
     case 0x6005:
-      W.PPUBANK[ 2 ] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
-      W.PPUBANK[ 3 ] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[2] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[3] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
       NESCore_Develop_Character_Data();
       break;
     case 0x6006:
-      W.PPUBANK[ 4 ] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
-      W.PPUBANK[ 5 ] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[4] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[5] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
       NESCore_Develop_Character_Data();
       break;
     case 0x6007:
-      W.PPUBANK[ 6 ] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
-      W.PPUBANK[ 7 ] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[6] = VROMPAGE(((byData<<1)+0) % (S.NesHeader.VROMSize<<3)); 
+      W.PPUBANK[7] = VROMPAGE(((byData<<1)+1) % (S.NesHeader.VROMSize<<3)); 
       NESCore_Develop_Character_Data();
       break;
     default:

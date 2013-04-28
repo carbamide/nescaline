@@ -70,7 +70,7 @@ void Map77_Write( word wAddr, byte byData )
   byChrBank <<= 1;
   byChrBank %= ( S.NesHeader.VROMSize << 3 );
 
-  W.PPUBANK[ 0 ] = VROMPAGE( byChrBank );
-  W.PPUBANK[ 1 ] = VROMPAGE( byChrBank + 1 );
+  W.PPUBANK[0] = VROMPAGE( byChrBank );
+  W.PPUBANK[1] = VROMPAGE( byChrBank + 1 );
   NESCore_Develop_Character_Data();
 }

@@ -41,7 +41,7 @@
 #define CRAMPAGE(a)   &S.PPURAM[0x0000 + ((a)&0x1F) * 0x400]
 
 /* Address of 1K units of VRAM */
-#define VRAMPAGE(a)    &S.PPURAM[ 0x2000 + (a) * 0x400 ]
+#define VRAMPAGE(a)    &S.PPURAM[0x2000 + (a) * 0x400]
 
 /* Translate the pointer to ChrBuf into the address of Pattern Table */ 
 #define PATTBL(a)      (((a) - S.ChrBuf ) >> 2)

@@ -41,7 +41,7 @@ void Map68_Init()
   /* Initialize state flag */
   int i ;
   for (i = 0; i < 4; i++ )
-      Map68_Regs[ i ] = 0x00;
+      Map68_Regs[i] = 0x00;
 
 }
 
@@ -53,8 +53,8 @@ void Map68_Write( word wAddr, byte byData )
       /* Set PPU Banks */
       byData %= ( S.NesHeader.VROMSize << 2 );
       byData <<= 1;
-      W.PPUBANK[ 0 ] = VROMPAGE( byData );
-      W.PPUBANK[ 1 ] = VROMPAGE( byData + 1);
+      W.PPUBANK[0] = VROMPAGE( byData );
+      W.PPUBANK[1] = VROMPAGE( byData + 1);
       NESCore_Develop_Character_Data();
       break;
 
@@ -62,8 +62,8 @@ void Map68_Write( word wAddr, byte byData )
       /* Set PPU Banks */
       byData %= ( S.NesHeader.VROMSize << 2 );
       byData <<= 1;
-      W.PPUBANK[ 2 ] = VROMPAGE( byData );
-      W.PPUBANK[ 3 ] = VROMPAGE( byData + 1);
+      W.PPUBANK[2] = VROMPAGE( byData );
+      W.PPUBANK[3] = VROMPAGE( byData + 1);
       NESCore_Develop_Character_Data();
       break;
 
@@ -71,8 +71,8 @@ void Map68_Write( word wAddr, byte byData )
       /* Set PPU Banks */
       byData %= ( S.NesHeader.VROMSize << 2 );
       byData <<= 1;
-      W.PPUBANK[ 4 ] = VROMPAGE( byData );
-      W.PPUBANK[ 5 ] = VROMPAGE( byData + 1);
+      W.PPUBANK[4] = VROMPAGE( byData );
+      W.PPUBANK[5] = VROMPAGE( byData + 1);
       NESCore_Develop_Character_Data();
       break;
 
@@ -80,24 +80,24 @@ void Map68_Write( word wAddr, byte byData )
       /* Set PPU Banks */
       byData %= ( S.NesHeader.VROMSize << 2 );
       byData <<= 1;
-      W.PPUBANK[ 6 ] = VROMPAGE( byData );
-      W.PPUBANK[ 7 ] = VROMPAGE( byData + 1);
+      W.PPUBANK[6] = VROMPAGE( byData );
+      W.PPUBANK[7] = VROMPAGE( byData + 1);
       NESCore_Develop_Character_Data();
       break;
 
     case 0xC000:  
-      Map68_Regs[ 2 ] = byData;
+      Map68_Regs[2] = byData;
       Map68_SyncMirror();
       break;
 
     case 0xD000:  
-      Map68_Regs[ 3 ] = byData;
+      Map68_Regs[3] = byData;
       Map68_SyncMirror();
       break;
 
     case 0xE000:  
-      Map68_Regs[ 0 ] = ( byData & 0x10 ) >> 4;
-      Map68_Regs[ 1 ] = byData & 0x03;
+      Map68_Regs[0] = ( byData & 0x10 ) >> 4;
+      Map68_Regs[1] = byData & 0x03;
       Map68_SyncMirror();
       break;
 
@@ -113,42 +113,42 @@ void Map68_Write( word wAddr, byte byData )
 
 void Map68_SyncMirror( void )
 {
-  if ( Map68_Regs[ 0 ] )
+  if ( Map68_Regs[0] )
   {
-    switch( Map68_Regs[ 1 ] )
+    switch( Map68_Regs[1] )
     {
       case 0x00:
-        W.PPUBANK[  8 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[  9 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
-        W.PPUBANK[ 10 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[ 11 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
+        W.PPUBANK[ 8] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[ 9] = VROMPAGE( Map68_Regs[3] + 0x80 );
+        W.PPUBANK[10] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[11] = VROMPAGE( Map68_Regs[3] + 0x80 );
         break;
 
       case 0x01:
-        W.PPUBANK[  8 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[  9 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[ 10 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
-        W.PPUBANK[ 11 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
+        W.PPUBANK[ 8] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[ 9] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[10] = VROMPAGE( Map68_Regs[3] + 0x80 );
+        W.PPUBANK[11] = VROMPAGE( Map68_Regs[3] + 0x80 );
         break;
 
       case 0x02:
-        W.PPUBANK[  8 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[  9 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[ 10 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
-        W.PPUBANK[ 11 ] = VROMPAGE( Map68_Regs[ 2 ] + 0x80 );
+        W.PPUBANK[ 8] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[ 9] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[10] = VROMPAGE( Map68_Regs[2] + 0x80 );
+        W.PPUBANK[11] = VROMPAGE( Map68_Regs[2] + 0x80 );
         break;
 
       case 0x03:
-        W.PPUBANK[  8 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
-        W.PPUBANK[  9 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
-        W.PPUBANK[ 10 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
-        W.PPUBANK[ 11 ] = VROMPAGE( Map68_Regs[ 3 ] + 0x80 );
+        W.PPUBANK[ 8] = VROMPAGE( Map68_Regs[3] + 0x80 );
+        W.PPUBANK[ 9] = VROMPAGE( Map68_Regs[3] + 0x80 );
+        W.PPUBANK[10] = VROMPAGE( Map68_Regs[3] + 0x80 );
+        W.PPUBANK[11] = VROMPAGE( Map68_Regs[3] + 0x80 );
         break;
     }
     NESCore_Develop_Character_Data();
   } 
   else 
   {
-    NESCore_Mirroring( Map68_Regs[ 1 ] );
+    NESCore_Mirroring( Map68_Regs[1] );
   }
 }

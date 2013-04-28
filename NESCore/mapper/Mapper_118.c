@@ -32,8 +32,8 @@ struct Map118_State {
 
 struct Map118_State MS118;
 
-#define Map118_Chr_Swap() (MS118.Map118_Regs[ 0 ] & 0x80)
-#define Map118_Prg_Swap() (MS118.Map118_Regs[ 0 ] & 0x40)
+#define Map118_Chr_Swap() (MS118.Map118_Regs[0] & 0x80)
+#define Map118_Prg_Swap() (MS118.Map118_Regs[0] & 0x40)
 
 void Map118_Init()
 {
@@ -84,15 +84,15 @@ void Map118_Write( word wAddr, byte bData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      MS118.Map118_Regs[ 0 ] = bData;
+      MS118.Map118_Regs[0] = bData;
 
       Map118_Set_CPU_Banks();
 
       break;
 
     case 0x8001:
-      MS118.Map118_Regs[ 1 ] = bData;
-      dwBankNum = MS118.Map118_Regs[ 1 ];
+      MS118.Map118_Regs[1] = bData;
+      dwBankNum = MS118.Map118_Regs[1];
       if ((MS118.Map118_Regs[0] & 0x07) < 6)
       {
           if (bData & 0x80)
@@ -101,7 +101,7 @@ void Map118_Write( word wAddr, byte bData )
               NESCore_Mirroring(2);
       }
 
-      switch ( MS118.Map118_Regs[ 0 ] & 0x07 )
+      switch ( MS118.Map118_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -289,14 +289,14 @@ void Map118_Set_PPU_Banks()
   }
   else 
   {
-      W.PPUBANK[ 0 ] = CRAMPAGE( 0 );
-      W.PPUBANK[ 1 ] = CRAMPAGE( 1 );
-      W.PPUBANK[ 2 ] = CRAMPAGE( 2 );
-      W.PPUBANK[ 3 ] = CRAMPAGE( 3 );
-      W.PPUBANK[ 4 ] = CRAMPAGE( 4 );
-      W.PPUBANK[ 5 ] = CRAMPAGE( 5 );
-      W.PPUBANK[ 6 ] = CRAMPAGE( 6 );
-      W.PPUBANK[ 7 ] = CRAMPAGE( 7 );
+      W.PPUBANK[0] = CRAMPAGE( 0 );
+      W.PPUBANK[1] = CRAMPAGE( 1 );
+      W.PPUBANK[2] = CRAMPAGE( 2 );
+      W.PPUBANK[3] = CRAMPAGE( 3 );
+      W.PPUBANK[4] = CRAMPAGE( 4 );
+      W.PPUBANK[5] = CRAMPAGE( 5 );
+      W.PPUBANK[6] = CRAMPAGE( 6 );
+      W.PPUBANK[7] = CRAMPAGE( 7 );
       NESCore_Develop_Character_Data();
   }    
 }

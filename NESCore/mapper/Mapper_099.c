@@ -67,7 +67,7 @@ void Map99_Init()
   {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -84,24 +84,24 @@ void Map99_Apu( word wAddr, byte byData )
 {
   if( wAddr == 0x4016 ) {
     if( byData & 0x04 ) {
-      W.PPUBANK[ 0 ] = VROMPAGE(  8 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE(  9 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( 10 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( 11 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( 12 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( 13 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( 14 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( 15 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE(  8 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE(  9 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( 10 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( 11 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( 12 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( 13 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( 14 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( 15 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( 0 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( 1 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( 2 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( 3 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( 4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( 5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( 6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( 7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( 0 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( 1 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( 2 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( 3 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( 4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( 5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( 6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( 7 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     }
   }

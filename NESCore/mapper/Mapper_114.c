@@ -4,7 +4,7 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte  Map114_Regs[ 8 ];
+byte  Map114_Regs[8];
 dword Map114_Prg0, Map114_Prg1;
 dword Map114_Chr01, Map114_Chr23;
 dword Map114_Chr4, Map114_Chr5, Map114_Chr6, Map114_Chr7;
@@ -13,8 +13,8 @@ byte Map114_IRQ_Enable;
 byte Map114_IRQ_Cnt;
 byte Map114_IRQ_Latch;
 
-#define Map114_Chr_Swap()    ( Map114_Regs[ 0 ] & 0x80 )
-#define Map114_Prg_Swap()    ( Map114_Regs[ 0 ] & 0x40 )
+#define Map114_Chr_Swap()    ( Map114_Regs[0] & 0x80 )
+#define Map114_Prg_Swap()    ( Map114_Regs[0] & 0x40 )
 
 /*-------------------------------------------------------------------*/
 /*  Initialize Mapper 114                                            */
@@ -55,7 +55,7 @@ void Map114_Init()
   int nPage ;
 for (nPage = 0; nPage < 8; nPage++)
   {
-    Map114_Regs[ nPage ] = 0x00;
+    Map114_Regs[nPage] = 0x00;
   }
 
   /* Set ROM Banks */
@@ -98,7 +98,7 @@ void Map114_Sram( word wAddr, byte byData )
     int nPage ;
 for (nPage = 0; nPage < 8; nPage++)
     {
-      Map114_Regs[ nPage ] = 0x00;
+      Map114_Regs[nPage] = 0x00;
     }
 
     /* Set ROM Banks */
@@ -138,16 +138,16 @@ void Map114_Write( word wAddr, byte byData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      Map114_Regs[ 0 ] = byData;
+      Map114_Regs[0] = byData;
       Map114_Set_PPU_Banks();
       Map114_Set_CPU_Banks();
       break;
 
     case 0x8001:
-      Map114_Regs[ 1 ] = byData;
-      dwBankNum = Map114_Regs[ 1 ];
+      Map114_Regs[1] = byData;
+      dwBankNum = Map114_Regs[1];
 
-      switch ( Map114_Regs[ 0 ] & 0x07 )
+      switch ( Map114_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -214,7 +214,7 @@ void Map114_Write( word wAddr, byte byData )
       break;
 
     case 0xa000:
-      Map114_Regs[ 2 ] = byData;
+      Map114_Regs[2] = byData;
 
       if ( !S.ROM_FourScr )
       {
@@ -228,7 +228,7 @@ void Map114_Write( word wAddr, byte byData )
       break;
 
     case 0xa001:
-      Map114_Regs[ 3 ] = byData;
+      Map114_Regs[3] = byData;
 
       if ( byData & 0x80 )
       {
@@ -239,22 +239,22 @@ void Map114_Write( word wAddr, byte byData )
       break;
 
     case 0xc000:
-      Map114_Regs[ 4 ] = byData;
-      Map114_IRQ_Cnt = Map114_Regs[ 4 ];
+      Map114_Regs[4] = byData;
+      Map114_IRQ_Cnt = Map114_Regs[4];
       break;
 
     case 0xc001:
-      Map114_Regs[ 5 ] = byData;
-      Map114_IRQ_Latch = Map114_Regs[ 5 ];
+      Map114_Regs[5] = byData;
+      Map114_IRQ_Latch = Map114_Regs[5];
       break;
 
     case 0xe000:
-      Map114_Regs[ 6 ] = byData;
+      Map114_Regs[6] = byData;
       Map114_IRQ_Enable = 0;
       break;
 
     case 0xe001:
-      Map114_Regs[ 7 ] = byData;
+      Map114_Regs[7] = byData;
       Map114_IRQ_Enable = 1;
       break;
   }
@@ -313,24 +313,24 @@ void Map114_Set_PPU_Banks()
   {
     if ( Map114_Chr_Swap() )
     { 
-      W.PPUBANK[ 0 ] = VROMPAGE( Map114_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map114_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map114_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map114_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( Map114_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( Map114_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( Map114_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( Map114_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( Map114_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( Map114_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( Map114_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( Map114_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( Map114_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( Map114_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( Map114_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( Map114_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( ( Map114_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( Map114_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( Map114_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( Map114_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map114_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map114_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map114_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map114_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( Map114_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( Map114_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( Map114_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( Map114_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( Map114_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( Map114_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( Map114_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( Map114_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     }
   }

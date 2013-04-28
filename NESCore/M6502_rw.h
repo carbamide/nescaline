@@ -61,13 +61,13 @@ extern word NESPalette[64];
 static byte Rd6502(word wAddr)
 {
   byte bScratch;
-  word wScratch;
+  word wScratch = 0;
   byte bComp, bRet, bI = 0;
 
   switch (wAddr & 0xe000)
   {
     case 0x0000:  /* RAM */
-      return S.RAM[ wAddr & 0x7ff ];
+      return S.RAM[wAddr & 0x7ff];
 
     case 0x2000:  /* PPU */
         switch( wAddr ) 
@@ -77,9 +77,9 @@ static byte Rd6502(word wAddr)
                     wScratch = S.vAddr;
                     wScratch &= 0x3FFF;
                     bScratch = S.PPU_R7;
-                    S.PPU_R7 = W.PPUBANK[ wScratch >> 10 ][ wScratch & 0x3FF ]; 
+                    S.PPU_R7 = W.PPUBANK[wScratch >> 10][wScratch & 0x3FF]; 
                 } else {
-                    bScratch = W.PPUBANK[ (wScratch >> 10) & 0x10 ] [ wScratch & 0x3FF ];
+                    bScratch = W.PPUBANK[(wScratch >> 10) & 0x10] [wScratch & 0x3FF];
                 }
 
                 S.vAddr += (S.PPU_R0 & R0_INC_ADDR) ? 0x20 : 0x01;
@@ -89,7 +89,7 @@ static byte Rd6502(word wAddr)
                 break;
 
             case (0x2004): /* SPR-RAM Read */
-                return S.SPRRAM[ S.PPU_R3 ];
+                return S.SPRRAM[S.PPU_R3];
                 break;
 
             case (0x2002):
@@ -113,7 +113,7 @@ static byte Rd6502(word wAddr)
                 return wAddr & 0xff;
                 break;
             case (0x4015): /* APU Control */
-                bScratch = S.APU_Reg[ 0x15 ];
+                bScratch = S.APU_Reg[0x15];
                 if (S.pAPU.ApuC1Atl > 0) bScratch |= (1 << 0);
                 if (S.pAPU.ApuC2Atl > 0) bScratch |= (1 << 1);
 		if (!MC3Holdnote) {
@@ -124,7 +124,7 @@ static byte Rd6502(word wAddr)
 
                 if (S.pAPU.ApuC4Atl > 0)
                     bScratch |= (1 << 3);
-                S.APU_Reg[ 0x15 ] &= ~0x40;
+                S.APU_Reg[0x15] &= ~0x40;
                 return bScratch;
                 break;
 
@@ -158,36 +158,36 @@ static byte Rd6502(word wAddr)
 
     case 0x6000: 
       if (S.ROM_SRAM)
-        return S.SRAM[ wAddr & 0x1fff ];
+        return S.SRAM[wAddr & 0x1fff];
       else 
-        return W.SRAMBANK[ wAddr & 0x1fff ];
+        return W.SRAMBANK[wAddr & 0x1fff];
 
     case 0x8000:  /* ROM BANK 0 */
       INIT_GAMEGENIE
-      if (bI == 0xFF && W.ROMBANK0[ wAddr & 0x1fff] == bComp)
+      if (bI == 0xFF && W.ROMBANK0[wAddr & 0x1fff] == bComp)
             return bRet;
-      return W.ROMBANK0[ wAddr & 0x1fff ];
+      return W.ROMBANK0[wAddr & 0x1fff];
       break;
 
     case 0xa000:  /* ROM BANK 1 */
       INIT_GAMEGENIE
-      if (bI == 0xFF && W.ROMBANK1[ wAddr & 0x1fff] == bComp)
+      if (bI == 0xFF && W.ROMBANK1[wAddr & 0x1fff] == bComp)
             return bRet;
-      return W.ROMBANK1[ wAddr & 0x1fff ];
+      return W.ROMBANK1[wAddr & 0x1fff];
       break;
 
     case 0xc000:  /* ROM BANK 2 */
       INIT_GAMEGENIE
-      if (bI == 0xFF && W.ROMBANK2[ wAddr & 0x1fff] == bComp)
+      if (bI == 0xFF && W.ROMBANK2[wAddr & 0x1fff] == bComp)
             return bRet;
-      return W.ROMBANK2[ wAddr & 0x1fff ];
+      return W.ROMBANK2[wAddr & 0x1fff];
       break;
 
     case 0xe000:  /* ROM BANK 3 */
       INIT_GAMEGENIE
-      if (bI == 0xFF && W.ROMBANK3[ wAddr & 0x1fff] == bComp)
+      if (bI == 0xFF && W.ROMBANK3[wAddr & 0x1fff] == bComp)
             return bRet;
-      return W.ROMBANK3[ wAddr & 0x1fff ];
+      return W.ROMBANK3[wAddr & 0x1fff];
       break;
   }
 
@@ -204,7 +204,7 @@ static void Wr6502(word wAddr, byte bData)
   switch ( wAddr & 0xe000 )
   {
     case 0x0000:  /* RAM */
-      S.RAM[ wAddr & 0x7ff ] = bData;
+      S.RAM[wAddr & 0x7ff] = bData;
       break;
 
     case 0x2000:  /* PPU */
@@ -273,31 +273,31 @@ static void Wr6502(word wAddr, byte bData)
             {
               /* Pattern Data */
               S.ChrBufUpdate |= ( 1 << ( wScratch >> 10 ) );
-              W.PPUBANK[ wScratch >> 10 ][ wScratch & 0x3FF ] = bData;
+              W.PPUBANK[wScratch >> 10][wScratch & 0x3FF] = bData;
             }
             else if (wScratch < 0x3F00 )  /* 0x2000 - 0x3EFF */
             {
               /* Name Table and Mirror */
-              W.PPUBANK[ (wScratch) >> 10 ][ wScratch & 0x3ff ] = bData;
-              W.PPUBANK[ (wScratch ^ 0x1000) >> 10][ wScratch & 0x3FF ] = bData;
+              W.PPUBANK[(wScratch) >> 10][wScratch & 0x3ff] = bData;
+              W.PPUBANK[(wScratch ^ 0x1000) >> 10][wScratch & 0x3FF] = bData;
             }
             else if (!(wScratch & 0xF))  /* 0x3F00 or 0x3F10 */
             {
                 /* Palette Mirror */
-                S.PPURAM[ 0x3f10 ] = S.PPURAM[ 0x3f14 ] = S.PPURAM[ 0x3f18 ] 
-              = S.PPURAM[ 0x3f1c ] = S.PPURAM[ 0x3f00 ] = S.PPURAM[ 0x3f04 ] 
-              = S.PPURAM[ 0x3f08 ] = S.PPURAM[ 0x3f0c ] = bData;
+                S.PPURAM[0x3f10] = S.PPURAM[0x3f14] = S.PPURAM[0x3f18] 
+              = S.PPURAM[0x3f1c] = S.PPURAM[0x3f00] = S.PPURAM[0x3f04] 
+              = S.PPURAM[0x3f08] = S.PPURAM[0x3f0c] = bData;
 
-                S.PalTable[ 0x00 ] = S.PalTable[ 0x04 ] = S.PalTable[ 0x08 ] 
-              = S.PalTable[ 0x0c ] = S.PalTable[ 0x10 ] = S.PalTable[ 0x14 ] 
-              = S.PalTable[ 0x18 ] = S.PalTable[ 0x1c ] 
-              = NESPalette[ bData ];
+                S.PalTable[0x00] = S.PalTable[0x04] = S.PalTable[0x08] 
+              = S.PalTable[0x0c] = S.PalTable[0x10] = S.PalTable[0x14] 
+              = S.PalTable[0x18] = S.PalTable[0x1c] 
+              = NESPalette[bData];
             }
             else if (wScratch & 0x03)
             {
               /* Palette */
-              S.PPURAM[ wScratch ] = bData;
-              S.PalTable[ wScratch & 0x1f ] = NESPalette[ bData ];
+              S.PPURAM[wScratch] = bData;
+              S.PalTable[wScratch & 0x1f] = NESPalette[bData];
             }
         }
         break;
@@ -398,7 +398,7 @@ static void Wr6502(word wAddr, byte bData)
                 break;
 
             case 0x07:  /* ROM BANK 3 */
-                memcpy(S.SPRRAM, &W.ROMBANK3[((word) bData << 8) & 0x1fff ],
+                memcpy(S.SPRRAM, &W.ROMBANK3[((word) bData << 8) & 0x1fff],
                        SPRRAM_SIZE);
                 break;
           }
@@ -409,7 +409,7 @@ static void Wr6502(word wAddr, byte bData)
           break;
 
         case 0x16:  /* 0x4016 */
-          if ( !( S.APU_Reg[ 0x16 ] & 1 ) && ( bData & 1 ) )
+          if ( !( S.APU_Reg[0x16] & 1 ) && ( bData & 1 ) )
           {
             S.PAD1_Bit = 0;
             S.PAD2_Bit = 0;
@@ -426,13 +426,13 @@ static void Wr6502(word wAddr, byte bData)
       }
 
       if ( wAddr <= 0x4017 ) 
-        S.APU_Reg[ wAddr & 0x1f ] = bData;
+        S.APU_Reg[wAddr & 0x1f] = bData;
       else  
         MapperApu(wAddr, bData);
       break;
 
     case 0x6000:  /* SRAM */
-      S.SRAM[ wAddr & 0x1fff ] = bData;
+      S.SRAM[wAddr & 0x1fff] = bData;
 
       /* Write to SRAM, when no SRAM */
       if ( !S.ROM_SRAM )

@@ -31,8 +31,8 @@ struct Map4_State {
 
 struct Map4_State MS4;
 
-#define Map4_Chr_Swap() (MS4.Regs[ 0 ] & 0x80)
-#define Map4_Prg_Swap() (MS4.Regs[ 0 ] & 0x40)
+#define Map4_Chr_Swap() (MS4.Regs[0] & 0x80)
+#define Map4_Prg_Swap() (MS4.Regs[0] & 0x40)
 #define Map4_Vsz (S.NesHeader.VROMSize <<3)
 
 void Map4_Init()
@@ -83,17 +83,17 @@ void Map4_Write( word wAddr, byte bData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      MS4.Regs[ 0 ] = bData;
+      MS4.Regs[0] = bData;
 
       Map4_Set_CPU_Banks();
 
       break;
 
     case 0x8001:
-      MS4.Regs[ 1 ] = bData;
-      dwBankNum = MS4.Regs[ 1 ];
+      MS4.Regs[1] = bData;
+      dwBankNum = MS4.Regs[1];
 
-      switch ( MS4.Regs[ 0 ] & 0x07 )
+      switch ( MS4.Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -192,7 +192,7 @@ void Map4_Write( word wAddr, byte bData )
       break;
 
     case 0xa000:
-      MS4.Regs[ 2 ] = bData & 1;
+      MS4.Regs[2] = bData & 1;
       if (!S.ROM_FourScr)
       {
         if ( bData & 0x01 )
@@ -205,7 +205,7 @@ void Map4_Write( word wAddr, byte bData )
       break;
 
     case 0xa001:
-      MS4.Regs[ 3 ] = bData;
+      MS4.Regs[3] = bData;
       break;
  
     case 0xe000: /* ACK IRQ */
@@ -324,14 +324,14 @@ void Map4_Set_PPU_Banks()
   }
   else 
   {
-      W.PPUBANK[ 0 ] = CRAMPAGE( 0 );
-      W.PPUBANK[ 1 ] = CRAMPAGE( 1 );
-      W.PPUBANK[ 2 ] = CRAMPAGE( 2 );
-      W.PPUBANK[ 3 ] = CRAMPAGE( 3 );
-      W.PPUBANK[ 4 ] = CRAMPAGE( 4 );
-      W.PPUBANK[ 5 ] = CRAMPAGE( 5 );
-      W.PPUBANK[ 6 ] = CRAMPAGE( 6 );
-      W.PPUBANK[ 7 ] = CRAMPAGE( 7 );
+      W.PPUBANK[0] = CRAMPAGE( 0 );
+      W.PPUBANK[1] = CRAMPAGE( 1 );
+      W.PPUBANK[2] = CRAMPAGE( 2 );
+      W.PPUBANK[3] = CRAMPAGE( 3 );
+      W.PPUBANK[4] = CRAMPAGE( 4 );
+      W.PPUBANK[5] = CRAMPAGE( 5 );
+      W.PPUBANK[6] = CRAMPAGE( 6 );
+      W.PPUBANK[7] = CRAMPAGE( 7 );
       NESCore_Develop_Character_Data();
   }    
 }

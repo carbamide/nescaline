@@ -18,7 +18,7 @@
 
 byte  Map69_IRQ_Enable;
 dword Map69_IRQ_Cnt;
-byte  Map69_Regs[ 1 ];
+byte  Map69_Regs[1];
 
 void Map69_Init()
 {
@@ -45,7 +45,7 @@ void Map69_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -60,11 +60,11 @@ void Map69_Write( word wAddr, byte byData )
   switch ( wAddr )
   {
     case 0x8000:
-      Map69_Regs[ 0 ] = byData & 0x0f;
+      Map69_Regs[0] = byData & 0x0f;
       break;
 
     case 0xA000:
-      switch ( Map69_Regs[ 0 ] )
+      switch ( Map69_Regs[0] )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -76,7 +76,7 @@ void Map69_Write( word wAddr, byte byData )
         case 0x06:
         case 0x07:
           byData %= ( S.NesHeader.VROMSize << 3 );
-          W.PPUBANK[ Map69_Regs[ 0 ] ] = VROMPAGE( byData );
+          W.PPUBANK[Map69_Regs[0]] = VROMPAGE( byData );
           NESCore_Develop_Character_Data();
           break;
 

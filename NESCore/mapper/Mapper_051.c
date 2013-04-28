@@ -40,7 +40,7 @@ void Map51_Init()
   /* Set PPU Banks */
   int nPage ;
   for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = CRAMPAGE( nPage );
+      W.PPUBANK[nPage] = CRAMPAGE( nPage );
   NESCore_Develop_Character_Data();
 
 }

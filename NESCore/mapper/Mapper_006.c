@@ -18,7 +18,7 @@
 
 byte Map6_IRQ_Enable;
 dword Map6_IRQ_Cnt;
-byte Map6_Chr_Ram[ 0x2000 * 4 ];
+byte Map6_Chr_Ram[0x2000 * 4];
 
 void Map6_Init()
 {
@@ -46,7 +46,7 @@ void Map6_Init()
   {
     for (nPage = 0; nPage < 8; ++nPage)
     {
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     }
     NESCore_Develop_Character_Data();
   }
@@ -54,7 +54,7 @@ void Map6_Init()
   {
     for ( nPage = 0; nPage < 8; ++nPage )
     {
-      W.PPUBANK[ nPage ] = Map6_VROMPAGE( nPage );
+      W.PPUBANK[nPage] = Map6_VROMPAGE( nPage );
     }
     NESCore_Develop_Character_Data();
   }
@@ -111,14 +111,14 @@ void Map6_Write( word wAddr, byte bData )
   W.ROMBANK1 = ROMPAGE( byPrgBank + 1 );
 
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 0 * 0x400 ];
-  W.PPUBANK[ 1 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 1 * 0x400 ];
-  W.PPUBANK[ 2 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 2 * 0x400 ];
-  W.PPUBANK[ 3 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 3 * 0x400 ];
-  W.PPUBANK[ 4 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 4 * 0x400 ];
-  W.PPUBANK[ 5 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 5 * 0x400 ];
-  W.PPUBANK[ 6 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 6 * 0x400 ];
-  W.PPUBANK[ 7 ] = &Map6_Chr_Ram[ byChrBank * 0x2000 + 7 * 0x400 ];
+  W.PPUBANK[0] = &Map6_Chr_Ram[byChrBank * 0x2000 + 0 * 0x400];
+  W.PPUBANK[1] = &Map6_Chr_Ram[byChrBank * 0x2000 + 1 * 0x400];
+  W.PPUBANK[2] = &Map6_Chr_Ram[byChrBank * 0x2000 + 2 * 0x400];
+  W.PPUBANK[3] = &Map6_Chr_Ram[byChrBank * 0x2000 + 3 * 0x400];
+  W.PPUBANK[4] = &Map6_Chr_Ram[byChrBank * 0x2000 + 4 * 0x400];
+  W.PPUBANK[5] = &Map6_Chr_Ram[byChrBank * 0x2000 + 5 * 0x400];
+  W.PPUBANK[6] = &Map6_Chr_Ram[byChrBank * 0x2000 + 6 * 0x400];
+  W.PPUBANK[7] = &Map6_Chr_Ram[byChrBank * 0x2000 + 7 * 0x400];
   NESCore_Develop_Character_Data();
 }
 

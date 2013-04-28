@@ -16,7 +16,7 @@
 
 */
 
-byte Map21_Regs[ 10 ];
+byte Map21_Regs[10];
 byte Map21_IRQ_Enable;
 byte Map21_IRQ_Cnt;
 byte Map21_IRQ_Latch;
@@ -42,8 +42,8 @@ void Map21_Init()
   /* Initialize State Registers */
   int nPage ;
   for (nPage = 0; nPage < 8; nPage++ )
-      Map21_Regs[ nPage ] = nPage;
-  Map21_Regs[ 8 ] = 0;
+      Map21_Regs[nPage] = nPage;
+  Map21_Regs[8] = 0;
 
   Map21_IRQ_Enable = 0;
   Map21_IRQ_Cnt = 0;
@@ -56,7 +56,7 @@ void Map21_Write( word wAddr, byte byData )
   {
     /* Set ROM Banks */
     case 0x8000:
-      if ( Map21_Regs[ 8 ] & 0x02 )
+      if ( Map21_Regs[8] & 0x02 )
       {
         byData %= ( S.NesHeader.ROMSize << 1 );
         W.ROMBANK2 = ROMPAGE( byData );
@@ -94,110 +94,110 @@ void Map21_Write( word wAddr, byte byData )
       break;
 
     case 0x9002:
-      Map21_Regs[ 8 ] = byData;
+      Map21_Regs[8] = byData;
       break;
 
     case 0xb000:
-      Map21_Regs[ 0 ] = ( Map21_Regs[ 0 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 0 ] = VROMPAGE( Map21_Regs[ 0 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[0] = ( Map21_Regs[0] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[0] = VROMPAGE( Map21_Regs[0] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb002:
-      Map21_Regs[ 0 ] = ( Map21_Regs[ 0 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 0 ] = VROMPAGE( Map21_Regs[ 0 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[0] = ( Map21_Regs[0] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[0] = VROMPAGE( Map21_Regs[0] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb001:
     case 0xb004:
-      Map21_Regs[ 1 ] = ( Map21_Regs[ 1 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map21_Regs[ 1 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[1] = ( Map21_Regs[1] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[1] = VROMPAGE( Map21_Regs[1] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb003:
     case 0xb006:
-      Map21_Regs[ 1 ] = ( Map21_Regs[ 1 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map21_Regs[ 1 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[1] = ( Map21_Regs[1] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[1] = VROMPAGE( Map21_Regs[1] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc000:
-      Map21_Regs[ 2 ] = ( Map21_Regs[ 2 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map21_Regs[ 2 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[2] = ( Map21_Regs[2] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[2] = VROMPAGE( Map21_Regs[2] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc002:
-      Map21_Regs[ 2 ] = ( Map21_Regs[ 2 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map21_Regs[ 2 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[2] = ( Map21_Regs[2] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[2] = VROMPAGE( Map21_Regs[2] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc001:
     case 0xc004:
-      Map21_Regs[ 3 ] = ( Map21_Regs[ 3 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map21_Regs[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[3] = ( Map21_Regs[3] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[3] = VROMPAGE( Map21_Regs[3] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc003:
     case 0xc006:
-      Map21_Regs[ 3 ] = ( Map21_Regs[ 3 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map21_Regs[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[3] = ( Map21_Regs[3] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[3] = VROMPAGE( Map21_Regs[3] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd000:
-      Map21_Regs[ 4 ] = ( Map21_Regs[ 4 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map21_Regs[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[4] = ( Map21_Regs[4] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[4] = VROMPAGE( Map21_Regs[4] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd002:
-      Map21_Regs[ 4 ] = ( Map21_Regs[ 4 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map21_Regs[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[4] = ( Map21_Regs[4] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[4] = VROMPAGE( Map21_Regs[4] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd001:
     case 0xd004:
-      Map21_Regs[ 5 ] = ( Map21_Regs[ 5 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map21_Regs[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[5] = ( Map21_Regs[5] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[5] = VROMPAGE( Map21_Regs[5] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd003:
     case 0xd006:
-      Map21_Regs[ 5 ] = ( Map21_Regs[ 5 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map21_Regs[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[5] = ( Map21_Regs[5] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[5] = VROMPAGE( Map21_Regs[5] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe000:
-      Map21_Regs[ 6 ] = ( Map21_Regs[ 6 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map21_Regs[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[6] = ( Map21_Regs[6] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[6] = VROMPAGE( Map21_Regs[6] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe002:
-      Map21_Regs[ 6 ] = ( Map21_Regs[ 6 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map21_Regs[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[6] = ( Map21_Regs[6] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[6] = VROMPAGE( Map21_Regs[6] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe001:
     case 0xe004:
-      Map21_Regs[ 7 ] = ( Map21_Regs[ 7 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map21_Regs[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[7] = ( Map21_Regs[7] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[7] = VROMPAGE( Map21_Regs[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe003:
     case 0xe006:
-      Map21_Regs[ 7 ] = ( Map21_Regs[ 7 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map21_Regs[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map21_Regs[7] = ( Map21_Regs[7] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[7] = VROMPAGE( Map21_Regs[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 

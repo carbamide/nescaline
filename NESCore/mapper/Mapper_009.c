@@ -56,7 +56,7 @@ void Map9_Init()
   if ( S.NesHeader.VROMSize > 0 )
   {
     for ( nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -92,10 +92,10 @@ void Map9_Write( word wAddr, byte bData )
         /* Latch Control */
         if (MS9.Latch1.State == 0xFD)
         {
-            W.PPUBANK[ 0 ] = VROMPAGE( bData );
-            W.PPUBANK[ 1 ] = VROMPAGE( bData + 1 );
-            W.PPUBANK[ 2 ] = VROMPAGE( bData + 2 );
-            W.PPUBANK[ 3 ] = VROMPAGE( bData + 3 );     
+            W.PPUBANK[0] = VROMPAGE( bData );
+            W.PPUBANK[1] = VROMPAGE( bData + 1 );
+            W.PPUBANK[2] = VROMPAGE( bData + 2 );
+            W.PPUBANK[3] = VROMPAGE( bData + 3 );     
             NESCore_Develop_Character_Data();
         }
         MS9.Latch1.Lo = bData;
@@ -107,10 +107,10 @@ void Map9_Write( word wAddr, byte bData )
         bData <<= 2;
         if (MS9.Latch1.State == 0xFE)
         {
-            W.PPUBANK[ 0 ] = VROMPAGE( bData );
-            W.PPUBANK[ 1 ] = VROMPAGE( bData + 1 );
-            W.PPUBANK[ 2 ] = VROMPAGE( bData + 2 );
-            W.PPUBANK[ 3 ] = VROMPAGE( bData + 3 );     
+            W.PPUBANK[0] = VROMPAGE( bData );
+            W.PPUBANK[1] = VROMPAGE( bData + 1 );
+            W.PPUBANK[2] = VROMPAGE( bData + 2 );
+            W.PPUBANK[3] = VROMPAGE( bData + 3 );     
             NESCore_Develop_Character_Data();
         }
         MS9.Latch1.Hi = bData;
@@ -123,10 +123,10 @@ void Map9_Write( word wAddr, byte bData )
   
         if (MS9.Latch2.State == 0xFD)
         {
-            W.PPUBANK[ 4 ] = VROMPAGE( bData );
-            W.PPUBANK[ 5 ] = VROMPAGE( bData + 1 );
-            W.PPUBANK[ 6 ] = VROMPAGE( bData + 2 );
-            W.PPUBANK[ 7 ] = VROMPAGE( bData + 3 );    
+            W.PPUBANK[4] = VROMPAGE( bData );
+            W.PPUBANK[5] = VROMPAGE( bData + 1 );
+            W.PPUBANK[6] = VROMPAGE( bData + 2 );
+            W.PPUBANK[7] = VROMPAGE( bData + 3 );    
             NESCore_Develop_Character_Data();
         }
         MS9.Latch2.Lo = bData;
@@ -139,10 +139,10 @@ void Map9_Write( word wAddr, byte bData )
   
         if (MS9.Latch2.State == 0xFE)
         {
-            W.PPUBANK[ 4 ] = VROMPAGE( bData );
-            W.PPUBANK[ 5 ] = VROMPAGE( bData + 1 );
-            W.PPUBANK[ 6 ] = VROMPAGE( bData + 2 );
-            W.PPUBANK[ 7 ] = VROMPAGE( bData + 3 ); 
+            W.PPUBANK[4] = VROMPAGE( bData );
+            W.PPUBANK[5] = VROMPAGE( bData + 1 );
+            W.PPUBANK[6] = VROMPAGE( bData + 2 );
+            W.PPUBANK[7] = VROMPAGE( bData + 3 ); 
             NESCore_Develop_Character_Data();
         }
         MS9.Latch2.Hi = bData;
@@ -160,37 +160,37 @@ void Map9_PPU( word wAddr )
   {
     case 0x0FD0:
       MS9.Latch1.State = 0xFD;
-      W.PPUBANK[ 0 ] = VROMPAGE( MS9.Latch1.Lo );
-      W.PPUBANK[ 1 ] = VROMPAGE( MS9.Latch1.Lo + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( MS9.Latch1.Lo + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( MS9.Latch1.Lo + 3 );     
+      W.PPUBANK[0] = VROMPAGE( MS9.Latch1.Lo );
+      W.PPUBANK[1] = VROMPAGE( MS9.Latch1.Lo + 1 );
+      W.PPUBANK[2] = VROMPAGE( MS9.Latch1.Lo + 2 );
+      W.PPUBANK[3] = VROMPAGE( MS9.Latch1.Lo + 3 );     
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0FE0:
       MS9.Latch1.State = 0xFE;
-      W.PPUBANK[ 0 ] = VROMPAGE( MS9.Latch1.Hi );
-      W.PPUBANK[ 1 ] = VROMPAGE( MS9.Latch1.Hi + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( MS9.Latch1.Hi + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( MS9.Latch1.Hi + 3 );     
+      W.PPUBANK[0] = VROMPAGE( MS9.Latch1.Hi );
+      W.PPUBANK[1] = VROMPAGE( MS9.Latch1.Hi + 1 );
+      W.PPUBANK[2] = VROMPAGE( MS9.Latch1.Hi + 2 );
+      W.PPUBANK[3] = VROMPAGE( MS9.Latch1.Hi + 3 );     
       NESCore_Develop_Character_Data();      
       break;
 
     case 0x1FD0:
       MS9.Latch2.State = 0xFD;
-      W.PPUBANK[ 4 ] = VROMPAGE( MS9.Latch2.Lo );
-      W.PPUBANK[ 5 ] = VROMPAGE( MS9.Latch2.Lo + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( MS9.Latch2.Lo + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( MS9.Latch2.Lo + 3 );     
+      W.PPUBANK[4] = VROMPAGE( MS9.Latch2.Lo );
+      W.PPUBANK[5] = VROMPAGE( MS9.Latch2.Lo + 1 );
+      W.PPUBANK[6] = VROMPAGE( MS9.Latch2.Lo + 2 );
+      W.PPUBANK[7] = VROMPAGE( MS9.Latch2.Lo + 3 );     
       NESCore_Develop_Character_Data();
       break;      
 
     case 0x1FE0:
       MS9.Latch2.State = 0xFE;
-      W.PPUBANK[ 4 ] = VROMPAGE( MS9.Latch2.Hi );
-      W.PPUBANK[ 5 ] = VROMPAGE( MS9.Latch2.Hi + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( MS9.Latch2.Hi + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( MS9.Latch2.Hi + 3 );     
+      W.PPUBANK[4] = VROMPAGE( MS9.Latch2.Hi );
+      W.PPUBANK[5] = VROMPAGE( MS9.Latch2.Hi + 1 );
+      W.PPUBANK[6] = VROMPAGE( MS9.Latch2.Hi + 2 );
+      W.PPUBANK[7] = VROMPAGE( MS9.Latch2.Hi + 3 );     
       NESCore_Develop_Character_Data();            
       break;
   }

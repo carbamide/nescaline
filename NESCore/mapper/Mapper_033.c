@@ -16,7 +16,7 @@
 
 */
 
-byte Map33_Regs[ 8 ];
+byte Map33_Regs[8];
 byte Map33_Switch;
 
 byte Map33_IRQ_Enable;
@@ -48,8 +48,8 @@ void Map33_Init()
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
     {
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
-        Map33_Regs[ nPage ] = nPage;
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
+        Map33_Regs[nPage] = nPage;
     }
     NESCore_Develop_Character_Data();
   } 
@@ -57,7 +57,7 @@ void Map33_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        Map33_Regs[ nPage ] = 0;
+        Map33_Regs[nPage] = 0;
   }
 
   Map33_Switch = 0;
@@ -81,44 +81,44 @@ void Map33_Write( word wAddr, byte byData )
       break;
 
     case 0x8002:
-      Map33_Regs[ 0 ] = byData * 2;
-      Map33_Regs[ 1 ] = byData * 2 + 1;
+      Map33_Regs[0] = byData * 2;
+      Map33_Regs[1] = byData * 2 + 1;
 
-      W.PPUBANK[ 0 ] = VROMPAGE( Map33_Regs[ 0 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map33_Regs[ 1 ] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( Map33_Regs[0] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( Map33_Regs[1] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x8003:
-      Map33_Regs[ 2 ] = byData * 2;
-      Map33_Regs[ 3 ] = byData * 2 + 1;
+      Map33_Regs[2] = byData * 2;
+      Map33_Regs[3] = byData * 2 + 1;
 
-      W.PPUBANK[ 2 ] = VROMPAGE( Map33_Regs[ 2 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map33_Regs[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( Map33_Regs[2] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( Map33_Regs[3] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa000:
-      Map33_Regs[ 4 ] = byData;
-      W.PPUBANK[ 4 ] = VROMPAGE( Map33_Regs[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map33_Regs[4] = byData;
+      W.PPUBANK[4] = VROMPAGE( Map33_Regs[4] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa001:
-      Map33_Regs[ 5 ] = byData;
-      W.PPUBANK[ 5 ] = VROMPAGE( Map33_Regs[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map33_Regs[5] = byData;
+      W.PPUBANK[5] = VROMPAGE( Map33_Regs[5] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa002:
-      Map33_Regs[ 6 ] = byData;
-      W.PPUBANK[ 6 ] = VROMPAGE( Map33_Regs[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map33_Regs[6] = byData;
+      W.PPUBANK[6] = VROMPAGE( Map33_Regs[6] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa003:
-      Map33_Regs[ 7 ] = byData;
-      W.PPUBANK[ 7 ] = VROMPAGE( Map33_Regs[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map33_Regs[7] = byData;
+      W.PPUBANK[7] = VROMPAGE( Map33_Regs[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 

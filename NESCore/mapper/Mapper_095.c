@@ -4,13 +4,13 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte  Map95_Regs[ 1 ];
+byte  Map95_Regs[1];
 dword Map95_Prg0, Map95_Prg1;
 dword Map95_Chr01, Map95_Chr23;
 dword Map95_Chr4, Map95_Chr5, Map95_Chr6, Map95_Chr7;
 
-#define Map95_Chr_Swap()    ( Map95_Regs[ 0 ] & 0x80 )
-#define Map95_Prg_Swap()    ( Map95_Regs[ 0 ] & 0x40 )
+#define Map95_Chr_Swap()    ( Map95_Regs[0] & 0x80 )
+#define Map95_Prg_Swap()    ( Map95_Regs[0] & 0x40 )
 
 /*-------------------------------------------------------------------*/
 /*  Initialize Mapper 95                                             */
@@ -48,7 +48,7 @@ void Map95_Init()
   W.SRAMBANK = S.SRAM;
 
   /* Initialize State Registers */
-  Map95_Regs[ 0 ] = 0;
+  Map95_Regs[0] = 0;
 
   /* Set ROM Banks */
   Map95_Prg0 = 0;
@@ -84,13 +84,13 @@ void Map95_Write( word wAddr, byte byData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      Map95_Regs[ 0 ] = byData;
+      Map95_Regs[0] = byData;
       Map95_Set_PPU_Banks();
       Map95_Set_CPU_Banks();
       break;
 
     case 0x8001:
-      if ( Map95_Regs[ 0 ] <= 0x05 )
+      if ( Map95_Regs[0] <= 0x05 )
       {
         if ( byData & 0x20 ) 
         {
@@ -103,7 +103,7 @@ void Map95_Write( word wAddr, byte byData )
 
       dwBankNum = byData;
 
-      switch ( Map95_Regs[ 0 ] & 0x07 )
+      switch ( Map95_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -199,24 +199,24 @@ void Map95_Set_PPU_Banks()
   {
     if ( Map95_Chr_Swap() )
     { 
-      W.PPUBANK[ 0 ] = VROMPAGE( Map95_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map95_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map95_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map95_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( Map95_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( Map95_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( Map95_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( Map95_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( Map95_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( Map95_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( Map95_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( Map95_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( Map95_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( Map95_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( Map95_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( Map95_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( ( Map95_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( Map95_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( Map95_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( Map95_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map95_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map95_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map95_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map95_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( Map95_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( Map95_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( Map95_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( Map95_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( Map95_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( Map95_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( Map95_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( Map95_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     }
   }

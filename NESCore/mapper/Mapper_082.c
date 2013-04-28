@@ -4,7 +4,7 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte Map82_Regs[ 1 ];
+byte Map82_Regs[1];
 
 /*-------------------------------------------------------------------*/
 /*  Initialize Mapper 82                                             */
@@ -52,7 +52,7 @@ void Map82_Init()
   {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -75,13 +75,13 @@ void Map82_Sram( word wAddr, byte byData )
       byData &= 0xfe;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      if ( Map82_Regs[ 0 ] )
+      if ( Map82_Regs[0] )
       {
-        W.PPUBANK[ 4 ] = VROMPAGE( byData );
-        W.PPUBANK[ 5 ] = VROMPAGE( byData + 1 );
+        W.PPUBANK[4] = VROMPAGE( byData );
+        W.PPUBANK[5] = VROMPAGE( byData + 1 );
       } else {
-        W.PPUBANK[ 0 ] = VROMPAGE( byData );
-        W.PPUBANK[ 1 ] = VROMPAGE( byData + 1 );
+        W.PPUBANK[0] = VROMPAGE( byData );
+        W.PPUBANK[1] = VROMPAGE( byData + 1 );
       }
       NESCore_Develop_Character_Data();
       break;
@@ -90,13 +90,13 @@ void Map82_Sram( word wAddr, byte byData )
       byData &= 0xfe;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      if ( Map82_Regs[ 0 ] )
+      if ( Map82_Regs[0] )
       {
-        W.PPUBANK[ 6 ] = VROMPAGE( byData );
-        W.PPUBANK[ 7 ] = VROMPAGE( byData + 1 );
+        W.PPUBANK[6] = VROMPAGE( byData );
+        W.PPUBANK[7] = VROMPAGE( byData + 1 );
       } else {
-        W.PPUBANK[ 2 ] = VROMPAGE( byData );
-        W.PPUBANK[ 3 ] = VROMPAGE( byData + 1 );
+        W.PPUBANK[2] = VROMPAGE( byData );
+        W.PPUBANK[3] = VROMPAGE( byData + 1 );
       }
       NESCore_Develop_Character_Data();
       break;
@@ -104,11 +104,11 @@ void Map82_Sram( word wAddr, byte byData )
     case 0x7ef2:
       byData %= ( S.NesHeader.VROMSize << 3 );
       
-      if ( !Map82_Regs[ 0 ] )
+      if ( !Map82_Regs[0] )
       {
-        W.PPUBANK[ 4 ] = VROMPAGE( byData );
+        W.PPUBANK[4] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 0 ] = VROMPAGE( byData );
+        W.PPUBANK[0] = VROMPAGE( byData );
       }
       NESCore_Develop_Character_Data();
       break;    
@@ -116,11 +116,11 @@ void Map82_Sram( word wAddr, byte byData )
     case 0x7ef3:
       byData %= ( S.NesHeader.VROMSize << 3 );
       
-      if ( !Map82_Regs[ 0 ] )
+      if ( !Map82_Regs[0] )
       {
-        W.PPUBANK[ 5 ] = VROMPAGE( byData );
+        W.PPUBANK[5] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 1 ] = VROMPAGE( byData );
+        W.PPUBANK[1] = VROMPAGE( byData );
       }
       NESCore_Develop_Character_Data();
       break;  
@@ -128,11 +128,11 @@ void Map82_Sram( word wAddr, byte byData )
     case 0x7ef4:
       byData %= ( S.NesHeader.VROMSize << 3 );
       
-      if ( !Map82_Regs[ 0 ] )
+      if ( !Map82_Regs[0] )
       {
-        W.PPUBANK[ 6 ] = VROMPAGE( byData );
+        W.PPUBANK[6] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 2 ] = VROMPAGE( byData );
+        W.PPUBANK[2] = VROMPAGE( byData );
       }
       NESCore_Develop_Character_Data();
       break;  
@@ -140,18 +140,18 @@ void Map82_Sram( word wAddr, byte byData )
     case 0x7ef5:
       byData %= ( S.NesHeader.VROMSize << 3 );
       
-      if ( !Map82_Regs[ 0 ] )
+      if ( !Map82_Regs[0] )
       {
-        W.PPUBANK[ 7 ] = VROMPAGE( byData );
+        W.PPUBANK[7] = VROMPAGE( byData );
       } else {
-        W.PPUBANK[ 3 ] = VROMPAGE( byData );
+        W.PPUBANK[3] = VROMPAGE( byData );
       }
       NESCore_Develop_Character_Data();
       break;  
 
     /* Name Table Mirroring */
     case 0x7ef6:
-      Map82_Regs[ 0 ] = byData & 0x02;
+      Map82_Regs[0] = byData & 0x02;
       
       if ( byData & 0x01 )
       {

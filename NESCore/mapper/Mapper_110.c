@@ -51,7 +51,7 @@ void Map110_Init()
   if ( S.NesHeader.VROMSize > 0 ) {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -83,53 +83,53 @@ void Map110_Apu( word wAddr, byte byData )
 
     case	0:
       Map110_Reg0 = byData & 0x01;
-      W.PPUBANK[ 0 ] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
       break;
 
     case	2:
       Map110_Reg0 = byData;
-      W.PPUBANK[ 0 ] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
       break;
 
     case	4:
       Map110_Reg0 = Map110_Reg0 | (byData<<1);
-      W.PPUBANK[ 0 ] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
       break;
 
     case	6:
       Map110_Reg0 = Map110_Reg0 | (byData<<2);
-      W.PPUBANK[ 0 ] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE(((Map110_Reg0 << 3) + 0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE(((Map110_Reg0 << 3) + 1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE(((Map110_Reg0 << 3) + 2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE(((Map110_Reg0 << 3) + 3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE(((Map110_Reg0 << 3) + 4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE(((Map110_Reg0 << 3) + 5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE(((Map110_Reg0 << 3) + 6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE(((Map110_Reg0 << 3) + 7) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
       break;
 

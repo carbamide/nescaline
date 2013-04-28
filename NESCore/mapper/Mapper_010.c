@@ -53,7 +53,7 @@ void Map10_Init()
   if ( S.NesHeader.VROMSize > 0 )
   {
     for ( nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -92,10 +92,10 @@ void Map10_Write( word wAddr, byte byData )
       if (0xfd == latch3.state)
       {
         /* Set PPU Banks */
-        W.PPUBANK[ 0 ] = VROMPAGE( byData );
-        W.PPUBANK[ 1 ] = VROMPAGE( byData + 1 );
-        W.PPUBANK[ 2 ] = VROMPAGE( byData + 2 );
-        W.PPUBANK[ 3 ] = VROMPAGE( byData + 3 );     
+        W.PPUBANK[0] = VROMPAGE( byData );
+        W.PPUBANK[1] = VROMPAGE( byData + 1 );
+        W.PPUBANK[2] = VROMPAGE( byData + 2 );
+        W.PPUBANK[3] = VROMPAGE( byData + 3 );     
         NESCore_Develop_Character_Data();
       }
       break;
@@ -111,10 +111,10 @@ void Map10_Write( word wAddr, byte byData )
       if (0xfe == latch3.state)
       {
         /* Set PPU Banks */
-        W.PPUBANK[ 0 ] = VROMPAGE( byData );
-        W.PPUBANK[ 1 ] = VROMPAGE( byData + 1 );
-        W.PPUBANK[ 2 ] = VROMPAGE( byData + 2 );
-        W.PPUBANK[ 3 ] = VROMPAGE( byData + 3 );     
+        W.PPUBANK[0] = VROMPAGE( byData );
+        W.PPUBANK[1] = VROMPAGE( byData + 1 );
+        W.PPUBANK[2] = VROMPAGE( byData + 2 );
+        W.PPUBANK[3] = VROMPAGE( byData + 3 );     
         NESCore_Develop_Character_Data();
       }
       break;
@@ -130,10 +130,10 @@ void Map10_Write( word wAddr, byte byData )
       if (0xfd == latch4.state)
       {
         /* Set PPU Banks */
-        W.PPUBANK[ 4 ] = VROMPAGE( byData );
-        W.PPUBANK[ 5 ] = VROMPAGE( byData + 1 );
-        W.PPUBANK[ 6 ] = VROMPAGE( byData + 2 );
-        W.PPUBANK[ 7 ] = VROMPAGE( byData + 3 );    
+        W.PPUBANK[4] = VROMPAGE( byData );
+        W.PPUBANK[5] = VROMPAGE( byData + 1 );
+        W.PPUBANK[6] = VROMPAGE( byData + 2 );
+        W.PPUBANK[7] = VROMPAGE( byData + 3 );    
         NESCore_Develop_Character_Data();
       }
       break;
@@ -149,10 +149,10 @@ void Map10_Write( word wAddr, byte byData )
       if (0xfe == latch4.state)
       {
         /* Set PPU Banks */
-        W.PPUBANK[ 4 ] = VROMPAGE( byData );
-        W.PPUBANK[ 5 ] = VROMPAGE( byData + 1 );
-        W.PPUBANK[ 6 ] = VROMPAGE( byData + 2 );
-        W.PPUBANK[ 7 ] = VROMPAGE( byData + 3 ); 
+        W.PPUBANK[4] = VROMPAGE( byData );
+        W.PPUBANK[5] = VROMPAGE( byData + 1 );
+        W.PPUBANK[6] = VROMPAGE( byData + 2 );
+        W.PPUBANK[7] = VROMPAGE( byData + 3 ); 
         NESCore_Develop_Character_Data();
       }
       break;
@@ -173,10 +173,10 @@ void Map10_PPU( word wAddr )
       /* Latch Control */
       latch3.state = 0xfd;
       /* Set PPU Banks */
-      W.PPUBANK[ 0 ] = VROMPAGE( latch3.lo_bank );
-      W.PPUBANK[ 1 ] = VROMPAGE( latch3.lo_bank + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( latch3.lo_bank + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( latch3.lo_bank + 3 );     
+      W.PPUBANK[0] = VROMPAGE( latch3.lo_bank );
+      W.PPUBANK[1] = VROMPAGE( latch3.lo_bank + 1 );
+      W.PPUBANK[2] = VROMPAGE( latch3.lo_bank + 2 );
+      W.PPUBANK[3] = VROMPAGE( latch3.lo_bank + 3 );     
       NESCore_Develop_Character_Data();
       break;
 
@@ -184,10 +184,10 @@ void Map10_PPU( word wAddr )
       /* Latch Control */
       latch3.state = 0xfe;
       /* Set PPU Banks */
-      W.PPUBANK[ 0 ] = VROMPAGE( latch3.hi_bank );
-      W.PPUBANK[ 1 ] = VROMPAGE( latch3.hi_bank + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( latch3.hi_bank + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( latch3.hi_bank + 3 );     
+      W.PPUBANK[0] = VROMPAGE( latch3.hi_bank );
+      W.PPUBANK[1] = VROMPAGE( latch3.hi_bank + 1 );
+      W.PPUBANK[2] = VROMPAGE( latch3.hi_bank + 2 );
+      W.PPUBANK[3] = VROMPAGE( latch3.hi_bank + 3 );     
       NESCore_Develop_Character_Data();      
       break;
 
@@ -195,10 +195,10 @@ void Map10_PPU( word wAddr )
       /* Latch Control */
       latch4.state = 0xfd;
       /* Set PPU Banks */
-      W.PPUBANK[ 4 ] = VROMPAGE( latch4.lo_bank );
-      W.PPUBANK[ 5 ] = VROMPAGE( latch4.lo_bank + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( latch4.lo_bank + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( latch4.lo_bank + 3 );     
+      W.PPUBANK[4] = VROMPAGE( latch4.lo_bank );
+      W.PPUBANK[5] = VROMPAGE( latch4.lo_bank + 1 );
+      W.PPUBANK[6] = VROMPAGE( latch4.lo_bank + 2 );
+      W.PPUBANK[7] = VROMPAGE( latch4.lo_bank + 3 );     
       NESCore_Develop_Character_Data();
       break;      
 
@@ -206,10 +206,10 @@ void Map10_PPU( word wAddr )
       /* Latch Control */
       latch4.state = 0xfe;
       /* Set PPU Banks */
-      W.PPUBANK[ 4 ] = VROMPAGE( latch4.hi_bank );
-      W.PPUBANK[ 5 ] = VROMPAGE( latch4.hi_bank + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( latch4.hi_bank + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( latch4.hi_bank + 3 );     
+      W.PPUBANK[4] = VROMPAGE( latch4.hi_bank );
+      W.PPUBANK[5] = VROMPAGE( latch4.hi_bank + 1 );
+      W.PPUBANK[6] = VROMPAGE( latch4.hi_bank + 2 );
+      W.PPUBANK[7] = VROMPAGE( latch4.hi_bank + 3 );     
       NESCore_Develop_Character_Data();            
       break;
   }

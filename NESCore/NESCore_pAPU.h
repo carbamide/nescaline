@@ -34,7 +34,7 @@ struct ApuEvent_t {
 
 struct pAPU_State {
 
-    struct ApuEvent_t ApuEventQueue[ APU_EVENT_MAX ];
+    struct ApuEvent_t ApuEventQueue[APU_EVENT_MAX];
 
     /* Rectangle Wave 1 Resources */
 
@@ -126,7 +126,7 @@ struct pAPU_State {
 #define MC1SweepIncDec    ( S.pAPU.ApuC1b & 0x08 )
 #define MC1SweepShifts    ( S.pAPU.ApuC1b & 0x07 ) 
 #define MC1SweepDelay     ( ( ( (word) S.pAPU.ApuC1b & 0x70 ) >> 4 ) << 10)
-#define MC1FreqLimit      ( ApuFreqLimit[ (S.pAPU.ApuC1b & 0x07) ] )
+#define MC1FreqLimit      ( ApuFreqLimit[(S.pAPU.ApuC1b & 0x07)] )
 
 /* Rectangle Wave #1 Macros */
 #define MC2Vol            ( S.pAPU.ApuC2a & 0x0F )
@@ -138,21 +138,21 @@ struct pAPU_State {
 #define MC2SweepIncDec    ( S.pAPU.ApuC2b & 0x08 )
 #define MC2SweepShifts    ( S.pAPU.ApuC2b & 0x07 ) 
 #define MC2SweepDelay     ( ( ( (word) S.pAPU.ApuC2b & 0x70 ) >> 4 ) << 10)
-#define MC2FreqLimit      ( ApuFreqLimit[ ( S.pAPU.ApuC2b & 0x07 ) ] )
+#define MC2FreqLimit      ( ApuFreqLimit[( S.pAPU.ApuC2b & 0x07 )] )
 
 /* Triangle Wave Macros */
 #define MC3Holdnote       ( S.pAPU.ApuC3a & 0x80 )
 #define MC3LinearLength   ( ( (word)S.pAPU.ApuC3a & 0x7f ) << 6 )
-#define MC3LengthCounter  ( ApuAtl[ ( ( S.pAPU.ApuC3d & 0xf8) >> 3 ) ] )
+#define MC3LengthCounter  ( ApuAtl[( ( S.pAPU.ApuC3d & 0xf8) >> 3 )] )
 #define MC3Freq           ( ( ( (word)S.pAPU.ApuC3d & 0x07) << 8) + S.pAPU.ApuC3c )
 
 /* White Noise Macros */
 #define MC4Vol            ( S.pAPU.ApuC4a & 0x0F )
 #define MC4Env            ( S.pAPU.ApuC4a & 0x10 )
 #define MC4Hold           ( S.pAPU.ApuC4a & 0x20 )
-#define MC4Freq           ( ApuNoiseFreq [ (S.pAPU.ApuC4c & 0x0f) ])
+#define MC4Freq           ( ApuNoiseFreq [(S.pAPU.ApuC4c & 0x0f)])
 #define MC4Small          ( S.pAPU.ApuC4c & 0x80 )
-#define MC4LengthCounter  ( ApuAtl[ ( S.pAPU.ApuC4d >> 3 ) ] << 1 )
+#define MC4LengthCounter  ( ApuAtl[( S.pAPU.ApuC4d >> 3 )] << 1 )
 
 #define APUET_MASK      0xfc
 #define APUET_C1        0x00

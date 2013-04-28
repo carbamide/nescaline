@@ -43,7 +43,7 @@ void Map18_Init()
 
   int i ;
   for (i = 0; i < sizeof( Map18_Regs ); i++ )
-    Map18_Regs[ i ] = 0;
+    Map18_Regs[i] = 0;
   Map18_IRQ_Enable = 0;
   Map18_IRQ_Latch = 0;
   Map18_IRQ_Cnt = 0;
@@ -55,129 +55,129 @@ void Map18_Write( word wAddr, byte byData )
   {
     /* Set ROM Banks */
     case 0x8000:
-      Map18_Regs[ 0 ] = ( Map18_Regs[ 0 ] & 0xf0 ) | ( byData & 0x0f );
-      W.ROMBANK0 = ROMPAGE( Map18_Regs[ 0 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[0] = ( Map18_Regs[0] & 0xf0 ) | ( byData & 0x0f );
+      W.ROMBANK0 = ROMPAGE( Map18_Regs[0] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     case 0x8001:
-      Map18_Regs[ 0 ] = ( Map18_Regs[ 0 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.ROMBANK0 = ROMPAGE( Map18_Regs[ 0 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[0] = ( Map18_Regs[0] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.ROMBANK0 = ROMPAGE( Map18_Regs[0] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     case 0x8002:
-      Map18_Regs[ 1 ] = ( Map18_Regs[ 1 ] & 0xf0 ) | ( byData & 0x0f );
-      W.ROMBANK1 = ROMPAGE( Map18_Regs[ 1 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[1] = ( Map18_Regs[1] & 0xf0 ) | ( byData & 0x0f );
+      W.ROMBANK1 = ROMPAGE( Map18_Regs[1] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     case 0x8003:
-      Map18_Regs[ 1 ] = ( Map18_Regs[ 1 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.ROMBANK1 = ROMPAGE( Map18_Regs[ 1 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[1] = ( Map18_Regs[1] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.ROMBANK1 = ROMPAGE( Map18_Regs[1] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     case 0x9000:
-      Map18_Regs[ 2 ] = ( Map18_Regs[ 2 ] & 0xf0 ) | ( byData & 0x0f );
-      W.ROMBANK2 = ROMPAGE( Map18_Regs[ 2 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[2] = ( Map18_Regs[2] & 0xf0 ) | ( byData & 0x0f );
+      W.ROMBANK2 = ROMPAGE( Map18_Regs[2] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     case 0x9001:
-      Map18_Regs[ 2 ] = ( Map18_Regs[ 2 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.ROMBANK2 = ROMPAGE( Map18_Regs[ 2 ] % ( S.NesHeader.ROMSize << 1 ) );
+      Map18_Regs[2] = ( Map18_Regs[2] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.ROMBANK2 = ROMPAGE( Map18_Regs[2] % ( S.NesHeader.ROMSize << 1 ) );
       break;
 
     /* Set PPU Banks */
     case 0xA000:
-      Map18_Regs[ 3 ]  = ( Map18_Regs[ 3 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 0 ] = VROMPAGE( Map18_Regs[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[3]  = ( Map18_Regs[3] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[0] = VROMPAGE( Map18_Regs[3] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();      
       break;
 
     case 0xA001:
-      Map18_Regs[ 3 ] = ( Map18_Regs[ 3 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 0 ] = VROMPAGE( Map18_Regs[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[3] = ( Map18_Regs[3] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[0] = VROMPAGE( Map18_Regs[3] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();        
       break;
 
     case 0xA002:
-      Map18_Regs[ 4 ]  = ( Map18_Regs[ 4 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map18_Regs[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[4]  = ( Map18_Regs[4] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[1] = VROMPAGE( Map18_Regs[4] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();         
       break;
 
     case 0xA003:
-      Map18_Regs[ 4 ] = ( Map18_Regs[ 4 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map18_Regs[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[4] = ( Map18_Regs[4] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[1] = VROMPAGE( Map18_Regs[4] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data(); 
       break;
 
     case 0xB000:
-      Map18_Regs[ 5 ]  = ( Map18_Regs[ 5 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map18_Regs[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[5]  = ( Map18_Regs[5] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[2] = VROMPAGE( Map18_Regs[5] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();      
       break;
 
     case 0xB001:
-      Map18_Regs[ 5 ] = ( Map18_Regs[ 5 ] &0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map18_Regs[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[5] = ( Map18_Regs[5] &0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[2] = VROMPAGE( Map18_Regs[5] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();        
       break;
 
     case 0xB002:
-      Map18_Regs[ 6 ]  = ( Map18_Regs[ 6 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map18_Regs[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[6]  = ( Map18_Regs[6] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[3] = VROMPAGE( Map18_Regs[6] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();         
       break;
 
     case 0xB003:
-      Map18_Regs[ 6 ] = ( Map18_Regs[ 6 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map18_Regs[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[6] = ( Map18_Regs[6] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[3] = VROMPAGE( Map18_Regs[6] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data(); 
       break;
 
     case 0xC000:
-      Map18_Regs[ 7 ]  = ( Map18_Regs[ 7 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map18_Regs[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[7]  = ( Map18_Regs[7] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[4] = VROMPAGE( Map18_Regs[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();      
       break;
 
     case 0xC001:
-      Map18_Regs[ 7 ] = ( Map18_Regs[ 7 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map18_Regs[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[7] = ( Map18_Regs[7] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[4] = VROMPAGE( Map18_Regs[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();        
       break;
 
     case 0xC002:
-      Map18_Regs[ 8 ]  = ( Map18_Regs[ 8 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map18_Regs[ 8 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[8]  = ( Map18_Regs[8] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[5] = VROMPAGE( Map18_Regs[8] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();         
       break;
 
     case 0xC003:
-      Map18_Regs[ 8 ] = ( Map18_Regs[ 8 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map18_Regs[ 8 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[8] = ( Map18_Regs[8] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[5] = VROMPAGE( Map18_Regs[8] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data(); 
       break;
 
     case 0xD000:
-      Map18_Regs[ 9 ]  = ( Map18_Regs[ 9 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map18_Regs[ 9 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[9]  = ( Map18_Regs[9] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[6] = VROMPAGE( Map18_Regs[9] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();      
       break;
 
     case 0xD001:
-      Map18_Regs[ 9 ] = ( Map18_Regs[ 9 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map18_Regs[ 9 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[9] = ( Map18_Regs[9] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[6] = VROMPAGE( Map18_Regs[9] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();        
       break;
 
     case 0xD002:
-      Map18_Regs[ 10 ]  = ( Map18_Regs[ 10 ] & 0xf0 ) | ( byData & 0x0f );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map18_Regs[ 10 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[10]  = ( Map18_Regs[10] & 0xf0 ) | ( byData & 0x0f );
+      W.PPUBANK[7] = VROMPAGE( Map18_Regs[10] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();         
       break;
 
     case 0xD003:
-      Map18_Regs[ 10 ] = ( Map18_Regs[ 10 ] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map18_Regs[ 10 ] % ( S.NesHeader.VROMSize << 3 ) );
+      Map18_Regs[10] = ( Map18_Regs[10] & 0x0f ) | ( ( byData & 0x0f ) << 4 );
+      W.PPUBANK[7] = VROMPAGE( Map18_Regs[10] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data(); 
       break;
 

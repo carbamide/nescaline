@@ -215,24 +215,24 @@ void Map116_Set_PPU_Banks()
 {
   if ( S.NesHeader.VROMSize > 0 ) {
     if( Map116_Reg[0] & 0x80 ) {
-      W.PPUBANK[ 0 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr7) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr3) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr0) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 1 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr1) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 2 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr2) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 3 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr3) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 4 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr4) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 5 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr5) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 6 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr6) % (S.NesHeader.VROMSize<<3));
-      W.PPUBANK[ 7 ] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr7) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[0] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr0) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[1] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr1) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[2] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr2) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[3] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr3) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[4] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr4) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[5] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr5) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[6] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr6) % (S.NesHeader.VROMSize<<3));
+      W.PPUBANK[7] = VROMPAGE( ((Map116_ExChrSwitch<<8)+Map116_Chr7) % (S.NesHeader.VROMSize<<3));
       NESCore_Develop_Character_Data();
     }
   }

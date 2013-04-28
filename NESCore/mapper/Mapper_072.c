@@ -41,7 +41,7 @@ void Map72_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 }
@@ -63,14 +63,14 @@ void Map72_Write( word wAddr, byte byData )
     /* Set PPU Banks */
     byBank <<= 3;
     byBank %= ( S.NesHeader.VROMSize << 3 );
-    W.PPUBANK[ 0 ] = VROMPAGE( byBank );
-    W.PPUBANK[ 1 ] = VROMPAGE( byBank + 1 );
-    W.PPUBANK[ 2 ] = VROMPAGE( byBank + 2 );
-    W.PPUBANK[ 3 ] = VROMPAGE( byBank + 3 );
-    W.PPUBANK[ 4 ] = VROMPAGE( byBank + 4 );
-    W.PPUBANK[ 5 ] = VROMPAGE( byBank + 5 );
-    W.PPUBANK[ 6 ] = VROMPAGE( byBank + 6 );
-    W.PPUBANK[ 7 ] = VROMPAGE( byBank + 7 );
+    W.PPUBANK[0] = VROMPAGE( byBank );
+    W.PPUBANK[1] = VROMPAGE( byBank + 1 );
+    W.PPUBANK[2] = VROMPAGE( byBank + 2 );
+    W.PPUBANK[3] = VROMPAGE( byBank + 3 );
+    W.PPUBANK[4] = VROMPAGE( byBank + 4 );
+    W.PPUBANK[5] = VROMPAGE( byBank + 5 );
+    W.PPUBANK[6] = VROMPAGE( byBank + 6 );
+    W.PPUBANK[7] = VROMPAGE( byBank + 7 );
     NESCore_Develop_Character_Data();
   }
 }

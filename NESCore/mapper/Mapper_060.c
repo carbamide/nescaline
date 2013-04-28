@@ -38,7 +38,7 @@ void Map60_Init()
   if ( S.NesHeader.VROMSize > 0 ) {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 }
@@ -61,14 +61,14 @@ void Map60_Write( word wAddr, byte byData )
   }
   
 
-  W.PPUBANK[ 0 ] = VROMPAGE((((wAddr&0x07)<<3)+0) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 1 ] = VROMPAGE((((wAddr&0x07)<<3)+1) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 2 ] = VROMPAGE((((wAddr&0x07)<<3)+2) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 3 ] = VROMPAGE((((wAddr&0x07)<<3)+3) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 4 ] = VROMPAGE((((wAddr&0x07)<<3)+4) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 5 ] = VROMPAGE((((wAddr&0x07)<<3)+5) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 6 ] = VROMPAGE((((wAddr&0x07)<<3)+6) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 7 ] = VROMPAGE((((wAddr&0x07)<<3)+7) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[0] = VROMPAGE((((wAddr&0x07)<<3)+0) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[1] = VROMPAGE((((wAddr&0x07)<<3)+1) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[2] = VROMPAGE((((wAddr&0x07)<<3)+2) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[3] = VROMPAGE((((wAddr&0x07)<<3)+3) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[4] = VROMPAGE((((wAddr&0x07)<<3)+4) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[5] = VROMPAGE((((wAddr&0x07)<<3)+5) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[6] = VROMPAGE((((wAddr&0x07)<<3)+6) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[7] = VROMPAGE((((wAddr&0x07)<<3)+7) % (S.NesHeader.VROMSize<<3));
   NESCore_Develop_Character_Data();
   
   if( byData & 0x08 ) NESCore_Mirroring( 0 );

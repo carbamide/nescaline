@@ -282,13 +282,13 @@ void Map187_Set_CPU_Banks()
 /*-------------------------------------------------------------------*/
 void Map187_Set_PPU_Banks()
 {
-  W.PPUBANK[ 0 ] = VROMPAGE(((Map187_Chr[0]<<3)+0) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 1 ] = VROMPAGE(((Map187_Chr[1]<<3)+1) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 2 ] = VROMPAGE(((Map187_Chr[2]<<3)+2) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 3 ] = VROMPAGE(((Map187_Chr[3]<<3)+3) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 4 ] = VROMPAGE(((Map187_Chr[4]<<3)+4) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 5 ] = VROMPAGE(((Map187_Chr[5]<<3)+5) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 6 ] = VROMPAGE(((Map187_Chr[6]<<3)+6) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 7 ] = VROMPAGE(((Map187_Chr[7]<<3)+7) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[0] = VROMPAGE(((Map187_Chr[0]<<3)+0) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[1] = VROMPAGE(((Map187_Chr[1]<<3)+1) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[2] = VROMPAGE(((Map187_Chr[2]<<3)+2) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[3] = VROMPAGE(((Map187_Chr[3]<<3)+3) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[4] = VROMPAGE(((Map187_Chr[4]<<3)+4) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[5] = VROMPAGE(((Map187_Chr[5]<<3)+5) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[6] = VROMPAGE(((Map187_Chr[6]<<3)+6) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[7] = VROMPAGE(((Map187_Chr[7]<<3)+7) % (S.NesHeader.VROMSize<<3));
   NESCore_Develop_Character_Data();
 }

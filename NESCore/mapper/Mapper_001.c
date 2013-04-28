@@ -63,10 +63,10 @@ void Map1_Init()
 
   MS1.Map1_Cnt = 0;
   MS1.Map1_Latch = 0x00;
-  MS1.Map1_Regs[ 0 ] = 0x0c;
-  MS1.Map1_Regs[ 1 ] = 0x00;
-  MS1.Map1_Regs[ 2 ] = 0x00;
-  MS1.Map1_Regs[ 3 ] = 0x00;
+  MS1.Map1_Regs[0] = 0x0c;
+  MS1.Map1_Regs[1] = 0x00;
+  MS1.Map1_Regs[2] = 0x00;
+  MS1.Map1_Regs[3] = 0x00;
 
   size_in_K = (S.NesHeader.ROMSize << 1) * 8;
 
@@ -141,7 +141,7 @@ void Map1_Write(word wAddr, byte bData)
   if( MS1.Map1_Cnt < 5 ) return;
 
   dwRegNum = ( wAddr & 0x7FFF ) >> 13;
-  MS1.Map1_Regs[ dwRegNum ] = MS1.Map1_Latch;
+  MS1.Map1_Regs[dwRegNum] = MS1.Map1_Latch;
 
   MS1.Map1_Cnt = 0;
   MS1.Map1_Latch = 0x00;
@@ -210,24 +210,24 @@ void Map1_Write(word wAddr, byte bData)
           {
             /* Swap 4K */
             bankNum <<= 2;
-            W.PPUBANK[ 0 ]= VROMPAGE((bankNum+0) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 1 ]= VROMPAGE((bankNum+1) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 2 ]= VROMPAGE((bankNum+2) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 3 ]= VROMPAGE((bankNum+3) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[0]= VROMPAGE((bankNum+0) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[1]= VROMPAGE((bankNum+1) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[2]= VROMPAGE((bankNum+2) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[3]= VROMPAGE((bankNum+3) % (S.NesHeader.VROMSize << 3));
             NESCore_Develop_Character_Data();
           }
           else
           {
             /* Swap 8k */
             bankNum <<= 2;
-            W.PPUBANK[ 0 ]= VROMPAGE((bankNum+0) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 1 ]= VROMPAGE((bankNum+1) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 2 ]= VROMPAGE((bankNum+2) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 3 ]= VROMPAGE((bankNum+3) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 4 ]= VROMPAGE((bankNum+4) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 5 ]= VROMPAGE((bankNum+5) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 6 ]= VROMPAGE((bankNum+6) % (S.NesHeader.VROMSize << 3));
-            W.PPUBANK[ 7 ]= VROMPAGE((bankNum+7) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[0]= VROMPAGE((bankNum+0) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[1]= VROMPAGE((bankNum+1) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[2]= VROMPAGE((bankNum+2) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[3]= VROMPAGE((bankNum+3) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[4]= VROMPAGE((bankNum+4) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[5]= VROMPAGE((bankNum+5) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[6]= VROMPAGE((bankNum+6) % (S.NesHeader.VROMSize << 3));
+            W.PPUBANK[7]= VROMPAGE((bankNum+7) % (S.NesHeader.VROMSize << 3));
             NESCore_Develop_Character_Data();
           }
         }
@@ -255,13 +255,13 @@ void Map1_Write(word wAddr, byte bData)
 
         if (!S.NesHeader.VROMSize) 
         {
-          if (MS1.Map1_Regs[ 0 ] & 0x10)
+          if (MS1.Map1_Regs[0] & 0x10)
           {
             bankNum <<= 2;
-            W.PPUBANK[ 4 ] = CRAMPAGE(bankNum  );
-            W.PPUBANK[ 5 ] = CRAMPAGE(bankNum+1);
-            W.PPUBANK[ 6 ] = CRAMPAGE(bankNum+2);
-            W.PPUBANK[ 7 ] = CRAMPAGE(bankNum+3);
+            W.PPUBANK[4] = CRAMPAGE(bankNum  );
+            W.PPUBANK[5] = CRAMPAGE(bankNum+1);
+            W.PPUBANK[6] = CRAMPAGE(bankNum+2);
+            W.PPUBANK[7] = CRAMPAGE(bankNum+3);
             NESCore_Develop_Character_Data();
             break;
           }

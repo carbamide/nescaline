@@ -4,7 +4,7 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte Map189_Regs[ 1 ];
+byte Map189_Regs[1];
 byte Map189_IRQ_Cnt;
 byte Map189_IRQ_Latch;
 byte Map189_IRQ_Enable;
@@ -56,7 +56,7 @@ void Map189_Init()
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
     {
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     }
     NESCore_Develop_Character_Data();
   }
@@ -101,34 +101,34 @@ void Map189_Write( word wAddr, byte byData )
       switch( Map189_Regs[0] )
       {
         case 0x40:
-	  W.PPUBANK[ 0 ] = VROMPAGE( ( byData + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-	  W.PPUBANK[ 1 ] = VROMPAGE( ( byData + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[0] = VROMPAGE( ( byData + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[1] = VROMPAGE( ( byData + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 
         case 0x41:
-	  W.PPUBANK[ 2 ] = VROMPAGE( ( byData + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-	  W.PPUBANK[ 3 ] = VROMPAGE( ( byData + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[2] = VROMPAGE( ( byData + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[3] = VROMPAGE( ( byData + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 
         case 0x42:
-	  W.PPUBANK[ 4 ] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[4] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 
         case 0x43:
-	  W.PPUBANK[ 5 ] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[5] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 
         case 0x44:
-	  W.PPUBANK[ 6 ] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[6] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 
         case 0x45:
-	  W.PPUBANK[ 7 ] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
+	  W.PPUBANK[7] = VROMPAGE( byData % ( S.NesHeader.VROMSize << 3 ) );
 	  NESCore_Develop_Character_Data();
 	  break;
 

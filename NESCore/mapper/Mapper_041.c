@@ -16,7 +16,7 @@
 
 */
 
-byte Map41_Regs[ 2 ];
+byte Map41_Regs[2];
 
 void Map41_Init()
 {
@@ -42,7 +42,7 @@ void Map41_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -51,22 +51,22 @@ void Map41_Init()
 void Map41_Write( word wAddr, byte byData )
 {
   /* Set PPU Banks */
-  if ( Map41_Regs[ 0 ] )
+  if ( Map41_Regs[0] )
   {
     byte byChrBank;
     
-    byChrBank = Map41_Regs[ 1 ] | ( byData & 0x0003 );
+    byChrBank = Map41_Regs[1] | ( byData & 0x0003 );
     byChrBank <<= 3;
     byChrBank %= ( S.NesHeader.VROMSize << 3 );
 
-    W.PPUBANK[ 0 ] = VROMPAGE( byChrBank );
-    W.PPUBANK[ 1 ] = VROMPAGE( byChrBank + 1 );
-    W.PPUBANK[ 2 ] = VROMPAGE( byChrBank + 2 );
-    W.PPUBANK[ 3 ] = VROMPAGE( byChrBank + 3 );
-    W.PPUBANK[ 4 ] = VROMPAGE( byChrBank + 4 );
-    W.PPUBANK[ 5 ] = VROMPAGE( byChrBank + 5 );
-    W.PPUBANK[ 6 ] = VROMPAGE( byChrBank + 6 );
-    W.PPUBANK[ 7 ] = VROMPAGE( byChrBank + 7 );
+    W.PPUBANK[0] = VROMPAGE( byChrBank );
+    W.PPUBANK[1] = VROMPAGE( byChrBank + 1 );
+    W.PPUBANK[2] = VROMPAGE( byChrBank + 2 );
+    W.PPUBANK[3] = VROMPAGE( byChrBank + 3 );
+    W.PPUBANK[4] = VROMPAGE( byChrBank + 4 );
+    W.PPUBANK[5] = VROMPAGE( byChrBank + 5 );
+    W.PPUBANK[6] = VROMPAGE( byChrBank + 6 );
+    W.PPUBANK[7] = VROMPAGE( byChrBank + 7 );
 
     NESCore_Develop_Character_Data();
   }
@@ -89,8 +89,8 @@ void Map41_Sram( word wAddr, byte byData )
     W.ROMBANK2 = ROMPAGE( byBank + 2 );
     W.ROMBANK3 = ROMPAGE( byBank + 3 );
 
-    Map41_Regs[ 0 ] = ( byData & 0x04 );
-    Map41_Regs[ 1 ] = ( byData & 0x18 ) >> 1;
+    Map41_Regs[0] = ( byData & 0x04 );
+    Map41_Regs[1] = ( byData & 0x18 ) >> 1;
 
     /* Name Table Mirroring */
     if ( byData & 0x20 )

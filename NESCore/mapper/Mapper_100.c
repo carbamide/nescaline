@@ -76,7 +76,7 @@ void Map100_Init()
   Map100_IRQ_Cnt = 0;
   Map100_IRQ_Latch = 0;
   int i ;
-for (i = 0; i < 8; i++ ) { Map100_Reg[ i ] = 0x00; }
+for (i = 0; i < 8; i++ ) { Map100_Reg[i] = 0x00; }
 
 
  
@@ -278,14 +278,14 @@ void Map100_Set_PPU_Banks()
 {
   if ( S.NesHeader.VROMSize > 0 )
   {
-      W.PPUBANK[ 0 ] = VROMPAGE( Map100_Chr0 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map100_Chr1 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map100_Chr2 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map100_Chr3 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map100_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map100_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map100_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map100_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( Map100_Chr0 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( Map100_Chr1 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( Map100_Chr2 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( Map100_Chr3 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( Map100_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( Map100_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( Map100_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( Map100_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
   }
 }

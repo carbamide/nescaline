@@ -16,7 +16,7 @@
 
 */
 
-byte Map75_Regs[ 2 ];
+byte Map75_Regs[2];
 
 void Map75_Init()
 {
@@ -43,13 +43,13 @@ void Map75_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
   /* Initialize State Flag */
-  Map75_Regs[ 0 ] = 0;
-  Map75_Regs[ 1 ] = 1;
+  Map75_Regs[0] = 0;
+  Map75_Regs[1] = 1;
 }
 
 void Map75_Write( word wAddr, byte byData )
@@ -72,17 +72,17 @@ void Map75_Write( word wAddr, byte byData )
       }
 
       /* Set PPU Banks */
-      Map75_Regs[ 0 ] = ( Map75_Regs[ 0 ] & 0x0f ) | ( ( byData & 0x02 ) << 3 );
-      W.PPUBANK[ 0 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 0 );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 3 );
+      Map75_Regs[0] = ( Map75_Regs[0] & 0x0f ) | ( ( byData & 0x02 ) << 3 );
+      W.PPUBANK[0] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 0 );
+      W.PPUBANK[1] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 1 );
+      W.PPUBANK[2] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 2 );
+      W.PPUBANK[3] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 3 );
 
-      Map75_Regs[ 1 ] = ( Map75_Regs[ 1 ] & 0x0f ) | ( ( byData & 0x04 ) << 2 );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 0 );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 3 );
+      Map75_Regs[1] = ( Map75_Regs[1] & 0x0f ) | ( ( byData & 0x04 ) << 2 );
+      W.PPUBANK[4] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 0 );
+      W.PPUBANK[5] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 1 );
+      W.PPUBANK[6] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 2 );
+      W.PPUBANK[7] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 3 );
       NESCore_Develop_Character_Data();
       break;
 
@@ -100,21 +100,21 @@ void Map75_Write( word wAddr, byte byData )
 
     case 0xE000:
       /* Set PPU Banks */
-      Map75_Regs[ 0 ] = ( Map75_Regs[ 0 ] & 0x10 ) | ( byData & 0x0f );
-      W.PPUBANK[ 0 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 0 );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 1 );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 2 );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( Map75_Regs[ 0 ] << 2 ) + 3 );
+      Map75_Regs[0] = ( Map75_Regs[0] & 0x10 ) | ( byData & 0x0f );
+      W.PPUBANK[0] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 0 );
+      W.PPUBANK[1] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 1 );
+      W.PPUBANK[2] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 2 );
+      W.PPUBANK[3] = VROMPAGE( ( Map75_Regs[0] << 2 ) + 3 );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xF000:
       /* Set PPU Banks */
-      Map75_Regs[ 1 ] = ( Map75_Regs[ 1 ] & 0x10 ) | ( byData & 0x0f );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 0 );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 1 );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 2 );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( Map75_Regs[ 1 ] << 2 ) + 3 );
+      Map75_Regs[1] = ( Map75_Regs[1] & 0x10 ) | ( byData & 0x0f );
+      W.PPUBANK[4] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 0 );
+      W.PPUBANK[5] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 1 );
+      W.PPUBANK[6] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 2 );
+      W.PPUBANK[7] = VROMPAGE( ( Map75_Regs[1] << 2 ) + 3 );
       NESCore_Develop_Character_Data();
       break;
   }

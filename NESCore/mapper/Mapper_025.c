@@ -44,7 +44,7 @@ void Map25_Init()
   W.ROMBANK3 = ROMLASTPAGE( 0 );
 
   for (nPage = 0; nPage < 16; nPage++)
-      Map25_VBank[ nPage ] = 0x00;
+      Map25_VBank[nPage] = 0x00;
 }
 
 void Map25_Write( word wAddr, byte byData )
@@ -100,25 +100,25 @@ void Map25_Write( word wAddr, byte byData )
       switch ( wAddr & 0xfffc)
       {
         case 0xb000:
-          Map25_VBank[ 0 + ( wAddr & 0x0003 ) ] = byData & 0x0f;
+          Map25_VBank[0 + ( wAddr & 0x0003 )] = byData & 0x0f;
           nBank = 0 + ( wAddr & 0x0001 );
           Map25_Sync_Vrom( nBank );
           break;
   
         case 0xc000:
-          Map25_VBank[ 4 + ( wAddr & 0x0003 ) ] = byData & 0x0f;
+          Map25_VBank[4 + ( wAddr & 0x0003 )] = byData & 0x0f;
           nBank = 2 + ( wAddr & 0x0001 );
           Map25_Sync_Vrom( nBank );
           break;
 
         case 0xd000:
-          Map25_VBank[ 8 + ( wAddr & 0x0003 ) ] = byData & 0x0f;
+          Map25_VBank[8 + ( wAddr & 0x0003 )] = byData & 0x0f;
           nBank = 4 + ( wAddr & 0x0001 );
           Map25_Sync_Vrom( nBank );
           break;
 
         case 0xe000:
-          Map25_VBank[ 12 + ( wAddr & 0x0003 ) ] = byData & 0x0f;
+          Map25_VBank[12 + ( wAddr & 0x0003 )] = byData & 0x0f;
           nBank = 6 + ( wAddr & 0x0001 );
           Map25_Sync_Vrom( nBank );
           break;
@@ -149,10 +149,10 @@ void Map25_Sync_Vrom( int nBank )
 {
   byte byValue;
   
-  byValue  = Map25_VBank[ ( nBank << 1 ) - ( nBank & 0x01 ) ];
-  byValue |= Map25_VBank[ ( nBank << 1 ) - ( nBank & 0x01 ) + 2] << 4;
+  byValue  = Map25_VBank[( nBank << 1 ) - ( nBank & 0x01 )];
+  byValue |= Map25_VBank[( nBank << 1 ) - ( nBank & 0x01 ) + 2] << 4;
   byValue %= ( S.NesHeader.VROMSize << 3 );
-  W.PPUBANK[ nBank ] = VROMPAGE( byValue );
+  W.PPUBANK[nBank] = VROMPAGE( byValue );
   NESCore_Develop_Character_Data();
 }
 

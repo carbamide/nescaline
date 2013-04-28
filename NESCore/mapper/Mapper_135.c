@@ -110,7 +110,7 @@ void Map135_Apu( word wAddr, byte byData )
     }
     break;
   }
-  //Map135_Wram[ wAddr & 0x1fff ] = byData;
+  //Map135_Wram[wAddr & 0x1fff] = byData;
 }
 
 /*-------------------------------------------------------------------*/
@@ -119,13 +119,13 @@ void Map135_Apu( word wAddr, byte byData )
 void	Map135_Set_PPU_Banks()
 {
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = VROMPAGE( (((0|(Map135_Chr0l<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 1 ] = VROMPAGE( (((0|(Map135_Chr0l<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 2 ] = VROMPAGE( (((1|(Map135_Chr0h<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 3 ] = VROMPAGE( (((1|(Map135_Chr0h<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 4 ] = VROMPAGE( (((0|(Map135_Chr1l<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 5 ] = VROMPAGE( (((0|(Map135_Chr1l<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 6 ] = VROMPAGE( (((1|(Map135_Chr1h<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 7 ] = VROMPAGE( (((1|(Map135_Chr1h<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[0] = VROMPAGE( (((0|(Map135_Chr0l<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[1] = VROMPAGE( (((0|(Map135_Chr0l<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[2] = VROMPAGE( (((1|(Map135_Chr0h<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[3] = VROMPAGE( (((1|(Map135_Chr0h<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[4] = VROMPAGE( (((0|(Map135_Chr1l<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[5] = VROMPAGE( (((0|(Map135_Chr1l<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[6] = VROMPAGE( (((1|(Map135_Chr1h<<1)|(Map135_Chrch<<4))<<1) + 0) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[7] = VROMPAGE( (((1|(Map135_Chr1h<<1)|(Map135_Chrch<<4))<<1) + 1) % (S.NesHeader.VROMSize << 3) );
   NESCore_Develop_Character_Data();
 }

@@ -16,7 +16,7 @@
 
 */
 
-byte  Map49_Regs[ 3 ];
+byte  Map49_Regs[3];
 dword Map49_Prg0, Map49_Prg1;
 dword Map49_Chr01, Map49_Chr23;
 dword Map49_Chr4, Map49_Chr5, Map49_Chr6, Map49_Chr7;
@@ -57,11 +57,11 @@ void Map49_Init()
 
   int nPage ;
   for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
   NESCore_Develop_Character_Data();
   
   /* Initialize IRQ Registers */
-  Map49_Regs[ 0 ] = Map49_Regs[ 1 ] = Map49_Regs[ 2 ] = 0;
+  Map49_Regs[0] = Map49_Regs[1] = Map49_Regs[2] = 0;
   Map49_IRQ_Enable = 0;
   Map49_IRQ_Cnt = 0;
   Map49_IRQ_Latch = 0;
@@ -69,9 +69,9 @@ void Map49_Init()
 
 void Map49_Sram( word wAddr, byte byData )
 {
-  if ( Map49_Regs[ 2 ] & 0x80 )
+  if ( Map49_Regs[2] & 0x80 )
   {
-    Map49_Regs[ 1 ] = byData;
+    Map49_Regs[1] = byData;
     Map49_Set_CPU_Banks();
     Map49_Set_PPU_Banks();
   }
@@ -82,20 +82,20 @@ void Map49_Write( word wAddr, byte byData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      if ( ( byData & 0x40 ) != ( Map49_Regs[ 0 ] & 0x40 ) )
+      if ( ( byData & 0x40 ) != ( Map49_Regs[0] & 0x40 ) )
       {
         Map49_Set_CPU_Banks();
       }
-      if ( ( byData & 0x80 ) != ( Map49_Regs[ 0 ] & 0x80 ) )
+      if ( ( byData & 0x80 ) != ( Map49_Regs[0] & 0x80 ) )
       {
-        Map49_Regs[ 0 ] = byData;
+        Map49_Regs[0] = byData;
         Map49_Set_PPU_Banks();
       }
-      Map49_Regs[ 0 ] = byData;
+      Map49_Regs[0] = byData;
       break;
 
     case 0x8001:
-      switch ( Map49_Regs[ 0 ] & 0x07 )
+      switch ( Map49_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -154,7 +154,7 @@ void Map49_Write( word wAddr, byte byData )
       break;
 
     case 0xa001:
-      Map49_Regs[ 2 ] = byData;
+      Map49_Regs[2] = byData;
       break;
 
     case 0xc000:
@@ -197,25 +197,25 @@ void Map49_Set_CPU_Banks()
 {
   dword dwBank0, dwBank1, dwBank2, dwBank3;
 
-  if ( Map49_Regs[ 1 ] & 0x01 )
+  if ( Map49_Regs[1] & 0x01 )
   {
-    if ( Map49_Regs[ 0 ] & 0x40 )
+    if ( Map49_Regs[0] & 0x40 )
     {
-      dwBank0 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0e ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank1 = ( Map49_Prg1 & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank2 = ( Map49_Prg0 & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank3 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
+      dwBank0 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0e ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank1 = ( Map49_Prg1 & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank2 = ( Map49_Prg0 & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank3 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
     } else {
-      dwBank0 = ( Map49_Prg0 & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank1 = ( Map49_Prg1 & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank2 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0e ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
-      dwBank3 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) >> 2 );
+      dwBank0 = ( Map49_Prg0 & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank1 = ( Map49_Prg1 & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank2 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0e ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
+      dwBank3 = ( ( ( S.NesHeader.ROMSize << 1 ) - 1 ) & 0x0f ) | ( ( Map49_Regs[1] & 0xc0 ) >> 2 );
     }
   } else {
-    dwBank0 = ( ( Map49_Regs[ 1 ] & 0x70 ) >> 2 ) | 0;
-    dwBank1 = ( ( Map49_Regs[ 1 ] & 0x70 ) >> 2 ) | 1;
-    dwBank2 = ( ( Map49_Regs[ 1 ] & 0x70 ) >> 2 ) | 2;
-    dwBank3 = ( ( Map49_Regs[ 1 ] & 0x70 ) >> 2 ) | 3;
+    dwBank0 = ( ( Map49_Regs[1] & 0x70 ) >> 2 ) | 0;
+    dwBank1 = ( ( Map49_Regs[1] & 0x70 ) >> 2 ) | 1;
+    dwBank2 = ( ( Map49_Regs[1] & 0x70 ) >> 2 ) | 2;
+    dwBank3 = ( ( Map49_Regs[1] & 0x70 ) >> 2 ) | 3;
   }
 
   /* Set ROM Banks */ 
@@ -227,34 +227,34 @@ void Map49_Set_CPU_Banks()
 
 void Map49_Set_PPU_Banks()
 {
-  Map49_Chr01 = ( Map49_Chr01 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
-  Map49_Chr23 = ( Map49_Chr23 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
-  Map49_Chr4 = ( Map49_Chr4 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
-  Map49_Chr5 = ( Map49_Chr5 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
-  Map49_Chr6 = ( Map49_Chr6 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
-  Map49_Chr7 = ( Map49_Chr7 & 0x7f ) | ( ( Map49_Regs[ 1 ] & 0xc0 ) << 1 );
+  Map49_Chr01 = ( Map49_Chr01 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
+  Map49_Chr23 = ( Map49_Chr23 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
+  Map49_Chr4 = ( Map49_Chr4 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
+  Map49_Chr5 = ( Map49_Chr5 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
+  Map49_Chr6 = ( Map49_Chr6 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
+  Map49_Chr7 = ( Map49_Chr7 & 0x7f ) | ( ( Map49_Regs[1] & 0xc0 ) << 1 );
 
   /* Set PPU Banks */ 
-  if ( Map49_Regs[ 0 ] & 0x80 )
+  if ( Map49_Regs[0] & 0x80 )
   { 
-    W.PPUBANK[ 0 ] = VROMPAGE( Map49_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 1 ] = VROMPAGE( Map49_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 2 ] = VROMPAGE( Map49_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 3 ] = VROMPAGE( Map49_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 4 ] = VROMPAGE( ( Map49_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 5 ] = VROMPAGE( ( Map49_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 6 ] = VROMPAGE( ( Map49_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 7 ] = VROMPAGE( ( Map49_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[0] = VROMPAGE( Map49_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[1] = VROMPAGE( Map49_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[2] = VROMPAGE( Map49_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[3] = VROMPAGE( Map49_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[4] = VROMPAGE( ( Map49_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[5] = VROMPAGE( ( Map49_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[6] = VROMPAGE( ( Map49_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[7] = VROMPAGE( ( Map49_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
     NESCore_Develop_Character_Data();
   } else {
-    W.PPUBANK[ 0 ] = VROMPAGE( ( Map49_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 1 ] = VROMPAGE( ( Map49_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 2 ] = VROMPAGE( ( Map49_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 3 ] = VROMPAGE( ( Map49_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 4 ] = VROMPAGE( Map49_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 5 ] = VROMPAGE( Map49_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 6 ] = VROMPAGE( Map49_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-    W.PPUBANK[ 7 ] = VROMPAGE( Map49_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[0] = VROMPAGE( ( Map49_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[1] = VROMPAGE( ( Map49_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[2] = VROMPAGE( ( Map49_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[3] = VROMPAGE( ( Map49_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[4] = VROMPAGE( Map49_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[5] = VROMPAGE( Map49_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[6] = VROMPAGE( Map49_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+    W.PPUBANK[7] = VROMPAGE( Map49_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
     NESCore_Develop_Character_Data();
   }
 }

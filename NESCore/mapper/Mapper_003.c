@@ -47,7 +47,7 @@ void Map3_Init()
   if (S.NesHeader.VROMSize > 0)
   {
     for ( nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 }
@@ -59,14 +59,14 @@ void Map3_Write(word wAddr, byte bData)
   bData %= S.NesHeader.VROMSize;
   dwBase = ( (dword)bData ) << 3;
 
-  W.PPUBANK[ 0 ] = VROMPAGE( dwBase + 0 );
-  W.PPUBANK[ 1 ] = VROMPAGE( dwBase + 1 );
-  W.PPUBANK[ 2 ] = VROMPAGE( dwBase + 2 );
-  W.PPUBANK[ 3 ] = VROMPAGE( dwBase + 3 );
-  W.PPUBANK[ 4 ] = VROMPAGE( dwBase + 4 );
-  W.PPUBANK[ 5 ] = VROMPAGE( dwBase + 5 );
-  W.PPUBANK[ 6 ] = VROMPAGE( dwBase + 6 );
-  W.PPUBANK[ 7 ] = VROMPAGE( dwBase + 7 );
+  W.PPUBANK[0] = VROMPAGE( dwBase + 0 );
+  W.PPUBANK[1] = VROMPAGE( dwBase + 1 );
+  W.PPUBANK[2] = VROMPAGE( dwBase + 2 );
+  W.PPUBANK[3] = VROMPAGE( dwBase + 3 );
+  W.PPUBANK[4] = VROMPAGE( dwBase + 4 );
+  W.PPUBANK[5] = VROMPAGE( dwBase + 5 );
+  W.PPUBANK[6] = VROMPAGE( dwBase + 6 );
+  W.PPUBANK[7] = VROMPAGE( dwBase + 7 );
 
   NESCore_Develop_Character_Data();
 }

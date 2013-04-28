@@ -88,14 +88,14 @@ void Map96_PPU( word wAddr )
 /*-------------------------------------------------------------------*/
 void Map96_Set_Banks()
 {
-  W.PPUBANK[ 0 ] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+0);
-  W.PPUBANK[ 1 ] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+1);
-  W.PPUBANK[ 2 ] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+2);
-  W.PPUBANK[ 3 ] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+3);
-  W.PPUBANK[ 4 ] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+0);
-  W.PPUBANK[ 5 ] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+1);
-  W.PPUBANK[ 6 ] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+2);
-  W.PPUBANK[ 7 ] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+3);
+  W.PPUBANK[0] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+0);
+  W.PPUBANK[1] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+1);
+  W.PPUBANK[2] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+2);
+  W.PPUBANK[3] = CRAMPAGE(((Map96_Reg[0]*4+Map96_Reg[1])<<2)+3);
+  W.PPUBANK[4] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+0);
+  W.PPUBANK[5] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+1);
+  W.PPUBANK[6] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+2);
+  W.PPUBANK[7] = CRAMPAGE(((Map96_Reg[0]*4+0x03)<<2)+3);
   NESCore_Develop_Character_Data();
 }
 

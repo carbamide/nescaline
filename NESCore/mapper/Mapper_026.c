@@ -45,7 +45,7 @@ void Map26_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -94,49 +94,49 @@ void Map26_Write( word wAddr, byte byData )
 
     case 0xd000:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 0 ] = VROMPAGE( byData );
+      W.PPUBANK[0] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd001:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 2 ] = VROMPAGE( byData );
+      W.PPUBANK[2] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd002:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 1 ] = VROMPAGE( byData );
+      W.PPUBANK[1] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd003:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 3 ] = VROMPAGE( byData );
+      W.PPUBANK[3] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe000:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 4 ] = VROMPAGE( byData );
+      W.PPUBANK[4] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe001:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 6 ] = VROMPAGE( byData );
+      W.PPUBANK[6] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe002:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 5 ] = VROMPAGE( byData );
+      W.PPUBANK[5] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xe003:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 7 ] = VROMPAGE( byData );
+      W.PPUBANK[7] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 

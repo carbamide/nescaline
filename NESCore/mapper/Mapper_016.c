@@ -40,9 +40,9 @@ void Map16_Init()
   W.ROMBANK2 = ROMLASTPAGE( 1 );
   W.ROMBANK3 = ROMLASTPAGE( 0 );
 
-  Map16_Regs[ 0 ] = 0;
-  Map16_Regs[ 1 ] = 0;
-  Map16_Regs[ 2 ] = 0;
+  Map16_Regs[0] = 0;
+  Map16_Regs[1] = 0;
+  Map16_Regs[2] = 0;
 
   Map16_IRQ_Enable = 0;
   Map16_IRQ_Cnt = 0;
@@ -55,49 +55,49 @@ void Map16_Write( word wAddr, byte byData )
   {
     case 0x0000:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 0 ] = VROMPAGE( byData );
+      W.PPUBANK[0] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0001:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 1 ] = VROMPAGE( byData );
+      W.PPUBANK[1] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0002:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 2 ] = VROMPAGE( byData );
+      W.PPUBANK[2] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0003:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 3 ] = VROMPAGE( byData );
+      W.PPUBANK[3] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0004:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 4 ] = VROMPAGE( byData );
+      W.PPUBANK[4] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0005:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 5 ] = VROMPAGE( byData );
+      W.PPUBANK[5] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0006:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 6 ] = VROMPAGE( byData );
+      W.PPUBANK[6] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x0007:
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ 7 ] = VROMPAGE( byData );
+      W.PPUBANK[7] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 

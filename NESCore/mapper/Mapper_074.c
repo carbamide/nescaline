@@ -16,14 +16,14 @@
 
 */
 
-byte  Map74_Regs[ 8 ];
+byte  Map74_Regs[8];
 dword Map74_Rom_Bank;
 dword Map74_Prg0, Map74_Prg1;
 dword Map74_Chr01, Map74_Chr23;
 dword Map74_Chr4, Map74_Chr5, Map74_Chr6, Map74_Chr7;
 
-#define Map74_Chr_Swap()    ( Map74_Regs[ 0 ] & 0x80 )
-#define Map74_Prg_Swap()    ( Map74_Regs[ 0 ] & 0x40 )
+#define Map74_Chr_Swap()    ( Map74_Regs[0] & 0x80 )
+#define Map74_Prg_Swap()    ( Map74_Regs[0] & 0x40 )
 
 byte Map74_IRQ_Enable;
 byte Map74_IRQ_Cnt;
@@ -50,7 +50,7 @@ void Map74_Init()
   /* Initialize State Registers */
   int nPage ;
   for (nPage = 0; nPage < 8; nPage++ )
-      Map74_Regs[ nPage ] = 0x00;
+      Map74_Regs[nPage] = 0x00;
 
   /* Set ROM Banks */
   Map74_Prg0 = 0;
@@ -91,16 +91,16 @@ void Map74_Write( word wAddr, byte byData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      Map74_Regs[ 0 ] = byData;
+      Map74_Regs[0] = byData;
       Map74_Set_PPU_Banks();
       Map74_Set_CPU_Banks();
       break;
 
     case 0x8001:
-      Map74_Regs[ 1 ] = byData;
-      dwBankNum = Map74_Regs[ 1 ];
+      Map74_Regs[1] = byData;
+      dwBankNum = Map74_Regs[1];
 
-      switch ( Map74_Regs[ 0 ] & 0x07 )
+      switch ( Map74_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -167,7 +167,7 @@ void Map74_Write( word wAddr, byte byData )
       break;
 
     case 0xa000:
-      Map74_Regs[ 2 ] = byData;
+      Map74_Regs[2] = byData;
 
       if ( !S.ROM_FourScr )
       {
@@ -181,16 +181,16 @@ void Map74_Write( word wAddr, byte byData )
       break;
 
     case 0xa001:
-      Map74_Regs[ 3 ] = byData;
+      Map74_Regs[3] = byData;
       break;
 
     case 0xc000:
-      Map74_Regs[ 4 ] = byData;
+      Map74_Regs[4] = byData;
       Map74_IRQ_Latch = byData;
       break;
 
     case 0xc001:
-      Map74_Regs[ 5 ] = byData;
+      Map74_Regs[5] = byData;
       if ( S.PPU_Scanline < 240 )
       {
           Map74_IRQ_Cnt |= 0x80;
@@ -203,13 +203,13 @@ void Map74_Write( word wAddr, byte byData )
       break;
 
     case 0xe000:
-      Map74_Regs[ 6 ] = byData;
+      Map74_Regs[6] = byData;
       Map74_IRQ_Enable = 0;
 			Map74_IRQ_Request = 0;
       break;
 
     case 0xe001:
-      Map74_Regs[ 7 ] = byData;
+      Map74_Regs[7] = byData;
       Map74_IRQ_Enable = 1;
 			Map74_IRQ_Request = 0;
       break;
@@ -266,24 +266,24 @@ void Map74_Set_PPU_Banks()
   {
     if ( Map74_Chr_Swap() )
     { 
-      W.PPUBANK[ 0 ] = VROMPAGE( Map74_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( Map74_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( Map74_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( Map74_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( Map74_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( Map74_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( Map74_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( Map74_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( Map74_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( Map74_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( Map74_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( Map74_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( Map74_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( Map74_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( Map74_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( Map74_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( ( Map74_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( Map74_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( Map74_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( Map74_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( Map74_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( Map74_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( Map74_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( Map74_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( Map74_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( Map74_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( Map74_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( Map74_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( Map74_Chr4 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( Map74_Chr5 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( Map74_Chr6 % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( Map74_Chr7 % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     }
   }
@@ -291,24 +291,24 @@ void Map74_Set_PPU_Banks()
   {
     if ( Map74_Chr_Swap() )
     { 
-      W.PPUBANK[ 0 ] = CRAMPAGE( 0 );
-      W.PPUBANK[ 1 ] = CRAMPAGE( 1 );
-      W.PPUBANK[ 2 ] = CRAMPAGE( 2 );
-      W.PPUBANK[ 3 ] = CRAMPAGE( 3 );
-      W.PPUBANK[ 4 ] = CRAMPAGE( 4 );
-      W.PPUBANK[ 5 ] = CRAMPAGE( 5 );
-      W.PPUBANK[ 6 ] = CRAMPAGE( 6 );
-      W.PPUBANK[ 7 ] = CRAMPAGE( 7 );
+      W.PPUBANK[0] = CRAMPAGE( 0 );
+      W.PPUBANK[1] = CRAMPAGE( 1 );
+      W.PPUBANK[2] = CRAMPAGE( 2 );
+      W.PPUBANK[3] = CRAMPAGE( 3 );
+      W.PPUBANK[4] = CRAMPAGE( 4 );
+      W.PPUBANK[5] = CRAMPAGE( 5 );
+      W.PPUBANK[6] = CRAMPAGE( 6 );
+      W.PPUBANK[7] = CRAMPAGE( 7 );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = CRAMPAGE( 0 );
-      W.PPUBANK[ 1 ] = CRAMPAGE( 1 );
-      W.PPUBANK[ 2 ] = CRAMPAGE( 2 );
-      W.PPUBANK[ 3 ] = CRAMPAGE( 3 );
-      W.PPUBANK[ 4 ] = CRAMPAGE( 4 );
-      W.PPUBANK[ 5 ] = CRAMPAGE( 5 );
-      W.PPUBANK[ 6 ] = CRAMPAGE( 6 );
-      W.PPUBANK[ 7 ] = CRAMPAGE( 7 );
+      W.PPUBANK[0] = CRAMPAGE( 0 );
+      W.PPUBANK[1] = CRAMPAGE( 1 );
+      W.PPUBANK[2] = CRAMPAGE( 2 );
+      W.PPUBANK[3] = CRAMPAGE( 3 );
+      W.PPUBANK[4] = CRAMPAGE( 4 );
+      W.PPUBANK[5] = CRAMPAGE( 5 );
+      W.PPUBANK[6] = CRAMPAGE( 6 );
+      W.PPUBANK[7] = CRAMPAGE( 7 );
       NESCore_Develop_Character_Data();
     }
   }    

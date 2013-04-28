@@ -43,7 +43,7 @@ void Map64_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -73,11 +73,11 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 4 ] = VROMPAGE( byData );
-            W.PPUBANK[ 5 ] = VROMPAGE( byData + 1 );      
+            W.PPUBANK[4] = VROMPAGE( byData );
+            W.PPUBANK[5] = VROMPAGE( byData + 1 );      
           } else {
-            W.PPUBANK[ 0 ] = VROMPAGE( byData );
-            W.PPUBANK[ 1 ] = VROMPAGE( byData + 1 );  
+            W.PPUBANK[0] = VROMPAGE( byData );
+            W.PPUBANK[1] = VROMPAGE( byData + 1 );  
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -87,11 +87,11 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 6 ] = VROMPAGE( byData );
-            W.PPUBANK[ 7 ] = VROMPAGE( byData + 1 );      
+            W.PPUBANK[6] = VROMPAGE( byData );
+            W.PPUBANK[7] = VROMPAGE( byData + 1 );      
           } else {
-            W.PPUBANK[ 2 ] = VROMPAGE( byData );
-            W.PPUBANK[ 3 ] = VROMPAGE( byData + 1 );  
+            W.PPUBANK[2] = VROMPAGE( byData );
+            W.PPUBANK[3] = VROMPAGE( byData + 1 );  
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -101,9 +101,9 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 0 ] = VROMPAGE( byData );
+            W.PPUBANK[0] = VROMPAGE( byData );
           } else {
-            W.PPUBANK[ 4 ] = VROMPAGE( byData );
+            W.PPUBANK[4] = VROMPAGE( byData );
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -113,9 +113,9 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 1 ] = VROMPAGE( byData );
+            W.PPUBANK[1] = VROMPAGE( byData );
           } else {
-            W.PPUBANK[ 5 ] = VROMPAGE( byData );
+            W.PPUBANK[5] = VROMPAGE( byData );
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -125,9 +125,9 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 2 ] = VROMPAGE( byData );
+            W.PPUBANK[2] = VROMPAGE( byData );
           } else {
-            W.PPUBANK[ 6 ] = VROMPAGE( byData );
+            W.PPUBANK[6] = VROMPAGE( byData );
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -137,9 +137,9 @@ void Map64_Write( word wAddr, byte byData )
           byData %= ( S.NesHeader.VROMSize << 3 );
           if ( Map64_Chr )
           {
-            W.PPUBANK[ 3 ] = VROMPAGE( byData );
+            W.PPUBANK[3] = VROMPAGE( byData );
           } else {
-            W.PPUBANK[ 7 ] = VROMPAGE( byData );
+            W.PPUBANK[7] = VROMPAGE( byData );
           } 
           NESCore_Develop_Character_Data();
           break;
@@ -169,14 +169,14 @@ void Map64_Write( word wAddr, byte byData )
         case 0x08:
           /* Set PPU Banks */
           byData %= ( S.NesHeader.VROMSize << 3 );
-          W.PPUBANK[ 1 ] = VROMPAGE( byData );
+          W.PPUBANK[1] = VROMPAGE( byData );
           NESCore_Develop_Character_Data();
           break;
 
         case 0x09:
           /* Set PPU Banks */
           byData %= ( S.NesHeader.VROMSize << 3 );
-          W.PPUBANK[ 3 ] = VROMPAGE( byData );
+          W.PPUBANK[3] = VROMPAGE( byData );
           NESCore_Develop_Character_Data();
           break;
 

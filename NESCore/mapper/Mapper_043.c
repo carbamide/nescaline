@@ -47,7 +47,7 @@ void Map43_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -56,7 +56,7 @@ void Map43_Init()
 byte Map43_ReadApu( word wAddr )
 {
   if (0x5000 <= wAddr && wAddr < 0x6000) 
-      return W.ROM[ 0x2000*8 + 0x1000 + (wAddr - 0x5000) ];
+      return W.ROM[0x2000*8 + 0x1000 + (wAddr - 0x5000)];
   return (byte)(wAddr >> 8);
 }
 

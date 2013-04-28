@@ -16,14 +16,14 @@
 
 */
 
-byte  Map44_Regs[ 8 ];
+byte  Map44_Regs[8];
 dword Map44_Rom_Bank;
 dword Map44_Prg0, Map44_Prg1;
 dword Map44_Chr01, Map44_Chr23;
 dword Map44_Chr4, Map44_Chr5, Map44_Chr6, Map44_Chr7;
 
-#define Map44_Chr_Swap()    ( Map44_Regs[ 0 ] & 0x80 )
-#define Map44_Prg_Swap()    ( Map44_Regs[ 0 ] & 0x40 )
+#define Map44_Chr_Swap()    ( Map44_Regs[0] & 0x80 )
+#define Map44_Prg_Swap()    ( Map44_Regs[0] & 0x40 )
 
 byte Map44_IRQ_Enable;
 byte Map44_IRQ_Cnt;
@@ -48,7 +48,7 @@ void Map44_Init()
   /* Initialize State Registers */
   int nPage ;
   for (nPage = 0; nPage < 8; nPage++ )
-      Map44_Regs[ nPage ] = 0x00;
+      Map44_Regs[nPage] = 0x00;
 
   /* Set ROM Banks */
   Map44_Rom_Bank = 0;
@@ -83,16 +83,16 @@ void Map44_Write( word wAddr, byte byData )
   switch ( wAddr & 0xe001 )
   {
     case 0x8000:
-      Map44_Regs[ 0 ] = byData;
+      Map44_Regs[0] = byData;
       Map44_Set_PPU_Banks();
       Map44_Set_CPU_Banks();
       break;
 
     case 0x8001:
-      Map44_Regs[ 1 ] = byData;
-      dwBankNum = Map44_Regs[ 1 ];
+      Map44_Regs[1] = byData;
+      dwBankNum = Map44_Regs[1];
 
-      switch ( Map44_Regs[ 0 ] & 0x07 )
+      switch ( Map44_Regs[0] & 0x07 )
       {
         /* Set PPU Banks */
         case 0x00:
@@ -159,7 +159,7 @@ void Map44_Write( word wAddr, byte byData )
       break;
 
     case 0xa000:
-      Map44_Regs[ 2 ] = byData;
+      Map44_Regs[2] = byData;
 
       if ( !S.ROM_FourScr )
       {
@@ -183,22 +183,22 @@ void Map44_Write( word wAddr, byte byData )
       break;
 
     case 0xc000:
-      Map44_Regs[ 4 ] = byData;
-      Map44_IRQ_Cnt = Map44_Regs[ 4 ];
+      Map44_Regs[4] = byData;
+      Map44_IRQ_Cnt = Map44_Regs[4];
       break;
 
     case 0xc001:
-      Map44_Regs[ 5 ] = byData;
-      Map44_IRQ_Latch = Map44_Regs[ 5 ];
+      Map44_Regs[5] = byData;
+      Map44_IRQ_Latch = Map44_Regs[5];
       break;
 
     case 0xe000:
-      Map44_Regs[ 6 ] = byData;
+      Map44_Regs[6] = byData;
       Map44_IRQ_Enable = 0;
       break;
 
     case 0xe001:
-      Map44_Regs[ 7 ] = byData;
+      Map44_Regs[7] = byData;
       Map44_IRQ_Enable = 1;
       break;
   }
@@ -244,24 +244,24 @@ void Map44_Set_PPU_Banks()
   {
     if ( Map44_Chr_Swap() )
     { 
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr4 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr5 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr6 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr7 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr4 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr5 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr6 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr7 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     } else {
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr4 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr5 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr6 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr7 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr01 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr23 + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr4 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr5 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr6 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( Map44_Rom_Bank << 7 ) + Map44_Chr7 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
     }
   }

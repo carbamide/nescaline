@@ -16,7 +16,7 @@
 
 */
 
-byte Map48_Regs[ 1 ];
+byte Map48_Regs[1];
 byte Map48_IRQ_Enable;
 byte Map48_IRQ_Cnt;
 
@@ -45,12 +45,12 @@ void Map48_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
   /* Initialize IRQ Registers */
-  Map48_Regs[ 0 ] = 0;
+  Map48_Regs[0] = 0;
   Map48_IRQ_Enable = 0;
   Map48_IRQ_Cnt = 0;
 }
@@ -61,7 +61,7 @@ void Map48_Write( word wAddr, byte byData )
   {
     case 0x8000:
       /* Name Table Mirroring */ 
-      if ( !Map48_Regs[ 0 ] )
+      if ( !Map48_Regs[0] )
       {
         if ( byData & 0x40 )
         {
@@ -81,34 +81,34 @@ void Map48_Write( word wAddr, byte byData )
  
     /* Set PPU Banks */
     case 0x8002:
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( byData << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( byData << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0x8003:
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( byData << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( byData << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa000:
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa001:
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa002:
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa003:
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( byData << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
@@ -128,7 +128,7 @@ void Map48_Write( word wAddr, byte byData )
       } else {
         NESCore_Mirroring( 1 );
       }
-      Map48_Regs[ 0 ] = 1;
+      Map48_Regs[0] = 1;
       break;
   }
 }

@@ -114,9 +114,9 @@ int NESCore_LoadROM(const char *fileName) {
 		;
     if ( nIdx == 8 )
 		S.MapperNo |= (S.NesHeader.Info2 & 0xf0);
-    for (nIdx = 0; MapperTable[ nIdx ].nMapperNo != -1; ++nIdx)
+    for (nIdx = 0; MapperTable[nIdx].nMapperNo != -1; ++nIdx)
     {
-		if (MapperTable[ nIdx ].nMapperNo == S.MapperNo) {
+		if (MapperTable[nIdx].nMapperNo == S.MapperNo) {
 			mapperSupported = 1;
 			break;
 		}
@@ -330,9 +330,9 @@ int NESCore_Reset()
 		;
     if ( nIdx == 8 ) 
 		S.MapperNo |= (S.NesHeader.Info2 & 0xf0);
-    for (nIdx = 0; MapperTable[ nIdx ].nMapperNo != -1; ++nIdx)
+    for (nIdx = 0; MapperTable[nIdx].nMapperNo != -1; ++nIdx)
     {
-        if (MapperTable[ nIdx ].nMapperNo == S.MapperNo) {
+        if (MapperTable[nIdx].nMapperNo == S.MapperNo) {
             mapperSupported = 1;
             break;
         }
@@ -377,15 +377,15 @@ int NESCore_Reset()
     /* Initialize Scanline Table */
     for ( nIdx = 0; nIdx < S.ScanlinesPerFrame; ++nIdx ) {
         if ( nIdx < SCAN_ON_SCREEN_START )
-            PPU_ScanTable[ nIdx ] = SCAN_ON_SCREEN;
+            PPU_ScanTable[nIdx] = SCAN_ON_SCREEN;
         else if ( nIdx < SCAN_BOTTOM_OFF_SCREEN_START )
-            PPU_ScanTable[ nIdx ] = SCAN_ON_SCREEN;
+            PPU_ScanTable[nIdx] = SCAN_ON_SCREEN;
         else if ( nIdx < SCAN_UNKNOWN_START )
-            PPU_ScanTable[ nIdx ] = SCAN_ON_SCREEN;
+            PPU_ScanTable[nIdx] = SCAN_ON_SCREEN;
         else if ( nIdx < SCAN_VBLANK_START )
-            PPU_ScanTable[ nIdx ] = SCAN_UNKNOWN;
+            PPU_ScanTable[nIdx] = SCAN_UNKNOWN;
         else
-            PPU_ScanTable[ nIdx ] = SCAN_VBLANK;
+            PPU_ScanTable[nIdx] = SCAN_VBLANK;
     }
 	
     /* Initialize Resources */
@@ -394,7 +394,7 @@ int NESCore_Reset()
     S.FrameCnt  = 0;
     S.ChrBufUpdate = 0xff;
 #ifdef DOUBLE_BUFFERING
-    S.WorkFrame = S.DoubleFrame[ 0 ];
+    S.WorkFrame = S.DoubleFrame[0];
     S.WorkFrameIdx = 0;
 #endif
 	
@@ -412,7 +412,7 @@ int NESCore_Reset()
         NESCore_Init_pAPU();           /* Pseudo-Audio Processing Unit */
 	
     NESCore_Debug("Initializing mapper %d [Idx %d]", S.MapperNo, S.MapperIdx);
-    MapperTable[ S.MapperIdx ].pMapperInit(); /* Memory Mapper */
+    MapperTable[S.MapperIdx].pMapperInit(); /* Memory Mapper */
     NESCore_Debug("Mapper initialized");
 	
     NESCore_Debug("Initializing 6502");
@@ -712,10 +712,10 @@ int NESCore_Import_Wiring(struct NES_Wiring *I) {
 void NESCore_Mirroring(int mType)
 {
 	S.PPU_LastMirror = mType;
-	W.PPUBANK[NAME_TABLE0] = &S.PPURAM[ S.PPU_MirrorTable[ mType ][ 0 ] * 0x400 ];
-	W.PPUBANK[NAME_TABLE1] = &S.PPURAM[ S.PPU_MirrorTable[ mType ][ 1 ] * 0x400 ];
-	W.PPUBANK[NAME_TABLE2] = &S.PPURAM[ S.PPU_MirrorTable[ mType ][ 2 ] * 0x400 ];
-	W.PPUBANK[NAME_TABLE3] = &S.PPURAM[ S.PPU_MirrorTable[ mType ][ 3 ] * 0x400 ];
+	W.PPUBANK[NAME_TABLE0] = &S.PPURAM[S.PPU_MirrorTable[mType][0] * 0x400];
+	W.PPUBANK[NAME_TABLE1] = &S.PPURAM[S.PPU_MirrorTable[mType][1] * 0x400];
+	W.PPUBANK[NAME_TABLE2] = &S.PPURAM[S.PPU_MirrorTable[mType][2] * 0x400];
+	W.PPUBANK[NAME_TABLE3] = &S.PPURAM[S.PPU_MirrorTable[mType][3] * 0x400];
 }
 
 
@@ -794,7 +794,7 @@ void NESCore_Cycle()
 int NESCore_HSync()
 {
 	/* Render the CURRENT scanline */
-	if ( (S.FrameCnt == 0 || S.Zapper_Sync) && PPU_ScanTable[ S.PPU_Scanline ] == SCAN_ON_SCREEN)
+	if ( (S.FrameCnt == 0 || S.Zapper_Sync) && PPU_ScanTable[S.PPU_Scanline] == SCAN_ON_SCREEN)
 	{
 		NESCore_DrawScanline();
 	}
@@ -834,7 +834,7 @@ int NESCore_HSync()
 				
 #ifdef DOUBLE_BUFFERING 
 				S.WorkFrameIdx = 1 - S.WorkFrameIdx;
-				S.WorkFrame = S.DoubleFrame[ S.WorkFrameIdx ];
+				S.WorkFrame = S.DoubleFrame[S.WorkFrameIdx];
 #endif
 			}
 			break;
@@ -886,7 +886,7 @@ void NESCore_DrawScanline()
 	byte *bgIndex = S.NES_BG_Index_Temp;
 	
 	byte bySprCol;
-	byte pSprBuf[ NES_DISP_WIDTH + 7 ];
+	byte pSprBuf[NES_DISP_WIDTH + 7];
 	
 	byte nNameTable;
 	byte Scroll_Y_Course;
@@ -902,12 +902,12 @@ void NESCore_DrawScanline()
 	/* MMC5 VROM Switch */
 	MapperRenderScreen(1);
 	
-	pPoint = &S.WorkFrame[ S.PPU_Scanline * NES_DISP_WIDTH ];
+	pPoint = &S.WorkFrame[S.PPU_Scanline * NES_DISP_WIDTH];
 	
 	if ( (!(S.PPU_R1 & R1_SHOW_BG)))
 	{
 		/* Clear scanline if display is off */
-		memset(&S.WorkFrame[ S.PPU_Scanline * NES_DISP_WIDTH ], 0, NES_DISP_WIDTH << 1); /* Assumes 16-Bit buffer! */
+		memset(&S.WorkFrame[S.PPU_Scanline * NES_DISP_WIDTH], 0, NES_DISP_WIDTH << 1); /* Assumes 16-Bit buffer! */
 	} else {
 		/* Vertical Increment */
 		S.vAddr = (S.vAddr + 0x1000) & 0x7FFF;
@@ -942,15 +942,15 @@ void NESCore_DrawScanline()
 			/* Render Block to Left */
 			/* -------------------- */
 			
-			pbyNameTable = W.PPUBANK[ nNameTable ] + (nY << 5) + nX;
+			pbyNameTable = W.PPUBANK[nNameTable] + (nY << 5) + nX;
 			pbyChrData = W.PPU_BG + ( *pbyNameTable << 6 ) + nYBit;
-			pAttrBase = W.PPUBANK[ nNameTable ] + 0x3c0 + ((nY >> 2) << 3);
+			pAttrBase = W.PPUBANK[nNameTable] + 0x3c0 + ((nY >> 2) << 3);
 			pPalTbl = &S.PalTable[(((pAttrBase[nX >> 2] >> ((nX & 2) + nY4)) &3) << 2)];
 			
 			//memcpy(bgIndex, &pbyChrData[Scroll_X_Fine], 8 - Scroll_X_Fine);
 			for ( nIdx = Scroll_X_Fine; nIdx < 8; ++nIdx ) {
-				*( pPoint++ ) = pPalTbl[ pbyChrData[ nIdx ] ];
-				*( bgIndex++ ) = pbyChrData[ nIdx ];
+				*( pPoint++ ) = pPalTbl[pbyChrData[nIdx]];
+				*( bgIndex++ ) = pbyChrData[nIdx];
 			}
 			//bgIndex += (8 - Scroll_X_Fine);
 			
@@ -967,22 +967,22 @@ void NESCore_DrawScanline()
 				pbyChrData = W.PPU_BG + (*pbyNameTable << 6 ) + nYBit;
 				pPalTbl = &S.PalTable[(((pAttrBase[nX>>2]>> ((nX & 2) + nY4)) & 3) << 2)];
 				//memcpy(bgIndex, pbyChrData, 8);
-				pPoint[ 0 ] = pPalTbl[ pbyChrData[ 0 ] ]; 
-				pPoint[ 1 ] = pPalTbl[ pbyChrData[ 1 ] ];
-				pPoint[ 2 ] = pPalTbl[ pbyChrData[ 2 ] ];
-				pPoint[ 3 ] = pPalTbl[ pbyChrData[ 3 ] ];
-				pPoint[ 4 ] = pPalTbl[ pbyChrData[ 4 ] ];
-				pPoint[ 5 ] = pPalTbl[ pbyChrData[ 5 ] ];
-				pPoint[ 6 ] = pPalTbl[ pbyChrData[ 6 ] ];
-				pPoint[ 7 ] = pPalTbl[ pbyChrData[ 7 ] ];
-				bgIndex[ 0 ] = pbyChrData[ 0 ]; 
-				bgIndex[ 1 ] = pbyChrData[ 1 ];
-				bgIndex[ 2 ] = pbyChrData[ 2 ];
-				bgIndex[ 3 ] = pbyChrData[ 3 ];
-				bgIndex[ 4 ] = pbyChrData[ 4 ];
-				bgIndex[ 5 ] = pbyChrData[ 5 ];
-				bgIndex[ 6 ] = pbyChrData[ 6 ];
-				bgIndex[ 7 ] = pbyChrData[ 7 ];
+				pPoint[0] = pPalTbl[pbyChrData[0]]; 
+				pPoint[1] = pPalTbl[pbyChrData[1]];
+				pPoint[2] = pPalTbl[pbyChrData[2]];
+				pPoint[3] = pPalTbl[pbyChrData[3]];
+				pPoint[4] = pPalTbl[pbyChrData[4]];
+				pPoint[5] = pPalTbl[pbyChrData[5]];
+				pPoint[6] = pPalTbl[pbyChrData[6]];
+				pPoint[7] = pPalTbl[pbyChrData[7]];
+				bgIndex[0] = pbyChrData[0]; 
+				bgIndex[1] = pbyChrData[1];
+				bgIndex[2] = pbyChrData[2];
+				bgIndex[3] = pbyChrData[3];
+				bgIndex[4] = pbyChrData[4];
+				bgIndex[5] = pbyChrData[5];
+				bgIndex[6] = pbyChrData[6];
+				bgIndex[7] = pbyChrData[7];
 				pPoint += 8;
 				bgIndex += 8;
 				MapperPPU(PATTBL(pbyChrData));
@@ -997,8 +997,8 @@ void NESCore_DrawScanline()
 			
 			/* Horizontal Mirror */
 			nNameTable = NAME_TABLE0 + ((S.vAddr >> 10) & 0x03);
-			pbyNameTable = W.PPUBANK[ nNameTable ] + ( nYCache << 5);
-			pAttrBase = W.PPUBANK[ nNameTable ] + 0x3c0 + (( nYCache >> 2 ) << 3);
+			pbyNameTable = W.PPUBANK[nNameTable] + ( nYCache << 5);
+			pAttrBase = W.PPUBANK[nNameTable] + 0x3c0 + (( nYCache >> 2 ) << 3);
 			
 			/* Render Right Table */
 			/* ------------------ */
@@ -1008,22 +1008,22 @@ void NESCore_DrawScanline()
 				pbyChrData = W.PPU_BG + (*pbyNameTable << 6) + nYBit;
 				pPalTbl = &S.PalTable[(((pAttrBase[nX >> 2] >> ((nX & 2)+ nY4)) & 3)<<2)];
 				//memcpy(bgIndex, pbyChrData, 8);
-				pPoint[ 0 ] = pPalTbl[ pbyChrData[ 0 ] ]; 
-				pPoint[ 1 ] = pPalTbl[ pbyChrData[ 1 ] ];
-				pPoint[ 2 ] = pPalTbl[ pbyChrData[ 2 ] ];
-				pPoint[ 3 ] = pPalTbl[ pbyChrData[ 3 ] ];
-				pPoint[ 4 ] = pPalTbl[ pbyChrData[ 4 ] ];
-				pPoint[ 5 ] = pPalTbl[ pbyChrData[ 5 ] ];
-				pPoint[ 6 ] = pPalTbl[ pbyChrData[ 6 ] ];
-				pPoint[ 7 ] = pPalTbl[ pbyChrData[ 7 ] ];
-				bgIndex[ 0 ] = pbyChrData[ 0 ]; 
-				bgIndex[ 1 ] = pbyChrData[ 1 ];
-				bgIndex[ 2 ] = pbyChrData[ 2 ];
-				bgIndex[ 3 ] = pbyChrData[ 3 ];
-				bgIndex[ 4 ] = pbyChrData[ 4 ];
-				bgIndex[ 5 ] = pbyChrData[ 5 ];
-				bgIndex[ 6 ] = pbyChrData[ 6 ];
-				bgIndex[ 7 ] = pbyChrData[ 7 ];
+				pPoint[0] = pPalTbl[pbyChrData[0]]; 
+				pPoint[1] = pPalTbl[pbyChrData[1]];
+				pPoint[2] = pPalTbl[pbyChrData[2]];
+				pPoint[3] = pPalTbl[pbyChrData[3]];
+				pPoint[4] = pPalTbl[pbyChrData[4]];
+				pPoint[5] = pPalTbl[pbyChrData[5]];
+				pPoint[6] = pPalTbl[pbyChrData[6]];
+				pPoint[7] = pPalTbl[pbyChrData[7]];
+				bgIndex[0] = pbyChrData[0]; 
+				bgIndex[1] = pbyChrData[1];
+				bgIndex[2] = pbyChrData[2];
+				bgIndex[3] = pbyChrData[3];
+				bgIndex[4] = pbyChrData[4];
+				bgIndex[5] = pbyChrData[5];
+				bgIndex[6] = pbyChrData[6];
+				bgIndex[7] = pbyChrData[7];
 				pPoint += 8;
 				bgIndex += 8;
 				
@@ -1038,8 +1038,8 @@ void NESCore_DrawScanline()
 			pPalTbl = &S.PalTable[(((pAttrBase[nX >> 2] >> ((nX & 2) + nY4)) & 3)<< 2)];
 			//memcpy(bgIndex, pbyChrData, Scroll_X_Fine);
 			for ( nIdx = 0; nIdx < Scroll_X_Fine; ++nIdx ) {
-				pPoint[ nIdx ] = pPalTbl[ pbyChrData[ nIdx ] ];
-				bgIndex[ nIdx ] = pbyChrData[ nIdx ];  
+				pPoint[nIdx] = pPalTbl[pbyChrData[nIdx]];
+				bgIndex[nIdx] = pbyChrData[nIdx];  
 			}
 			
 			MapperPPU(PATTBL(pbyChrData));
@@ -1048,7 +1048,7 @@ void NESCore_DrawScanline()
 			if ( !( S.PPU_R1 & R1_CLIP_BG ) )
 			{
 				word *pPointTop;
-				pPointTop = &S.WorkFrame[ S.PPU_Scanline * NES_DISP_WIDTH ];
+				pPointTop = &S.WorkFrame[S.PPU_Scanline * NES_DISP_WIDTH];
 				memset(pPointTop, 0, 16);
 			}
 			
@@ -1058,7 +1058,7 @@ void NESCore_DrawScanline()
 			{
 				word *pPointTop;
 				
-				pPointTop = &S.WorkFrame[ S.PPU_Scanline * NES_DISP_WIDTH ];
+				pPointTop = &S.WorkFrame[S.PPU_Scanline * NES_DISP_WIDTH];
 				memset( pPointTop, 0, NES_DISP_WIDTH << 1 );
 			}  
 			
@@ -1079,7 +1079,7 @@ void NESCore_DrawScanline()
 		
 		nSprCnt = 0;
 		for ( pSPRRAM = S.SPRRAM + (252); pSPRRAM >= S.SPRRAM; pSPRRAM -= 4 ) {
-			nY = pSPRRAM[ SPR_Y ] + 1;
+			nY = pSPRRAM[SPR_Y] + 1;
 			if ( nY > S.PPU_Scanline || nY + S.PPU_SP_Height <= S.PPU_Scanline )
 				continue;  /* Next Sprite */
 			
@@ -1093,65 +1093,65 @@ void NESCore_DrawScanline()
 			if ( S.PPU_R0 & R0_SP_SIZE )
 			{
 				/* Sprite size 8x16 */
-				if (pSPRRAM[ SPR_CHR ] & 1)
+				if (pSPRRAM[SPR_CHR] & 1)
 				{
 					pbyChrData = S.ChrBuf + 0x4000
-					+ ((pSPRRAM[ SPR_CHR ] & 0xfe ) << 6) + nYBit;
+					+ ((pSPRRAM[SPR_CHR] & 0xfe ) << 6) + nYBit;
 				}
 				else
 				{
 					pbyChrData = S.ChrBuf 
-					+ ( ( pSPRRAM[ SPR_CHR ] & 0xfe ) << 6 ) + nYBit;
+					+ ( ( pSPRRAM[SPR_CHR] & 0xfe ) << 6 ) + nYBit;
 				}
 			}
 			else
 			{
 				/* Sprite size 8x8 */
-				pbyChrData = W.PPU_SP + ( pSPRRAM[ SPR_CHR ] << 6 ) + nYBit;
+				pbyChrData = W.PPU_SP + ( pSPRRAM[SPR_CHR] << 6 ) + nYBit;
 			}
 			
 			bySprCol = (nAttr & ( SPR_ATTR_COLOR | SPR_ATTR_PRI )) << 2;
 			
-			nX = pSPRRAM[ SPR_X ];
+			nX = pSPRRAM[SPR_X];
 			
 			if ( nAttr & SPR_ATTR_H_FLIP )
 			{
 				/* Horizontal Flip */
-				if ( pbyChrData[ 7 ] )
+				if ( pbyChrData[7] )
 					pSprBuf[nX]     = bySprCol | pbyChrData[7];
-				if ( pbyChrData[ 6 ] )
+				if ( pbyChrData[6] )
 					pSprBuf[nX + 1] = bySprCol | pbyChrData[6];
-				if ( pbyChrData[ 5 ] )
+				if ( pbyChrData[5] )
 					pSprBuf[nX + 2] = bySprCol | pbyChrData[5];
-				if ( pbyChrData[ 4 ] )
+				if ( pbyChrData[4] )
 					pSprBuf[nX + 3] = bySprCol | pbyChrData[4];
-				if ( pbyChrData[ 3 ] )
+				if ( pbyChrData[3] )
 					pSprBuf[nX + 4] = bySprCol | pbyChrData[3];
-				if ( pbyChrData[ 2 ] )
+				if ( pbyChrData[2] )
 					pSprBuf[nX + 5] = bySprCol | pbyChrData[2];
-				if ( pbyChrData[ 1 ] )
+				if ( pbyChrData[1] )
 					pSprBuf[nX + 6] = bySprCol | pbyChrData[1];
-				if ( pbyChrData[ 0 ] )
+				if ( pbyChrData[0] )
 					pSprBuf[nX + 7] = bySprCol | pbyChrData[0];
 			}
 			else
 			{
 				/* No Flip */
-				if ( pbyChrData[ 0 ] )
+				if ( pbyChrData[0] )
 					pSprBuf[nX]     = bySprCol | pbyChrData[0];
-				if ( pbyChrData[ 1 ] )
+				if ( pbyChrData[1] )
 					pSprBuf[nX + 1] = bySprCol | pbyChrData[1];
-				if ( pbyChrData[ 2 ] )
+				if ( pbyChrData[2] )
 					pSprBuf[nX + 2] = bySprCol | pbyChrData[2];
-				if ( pbyChrData[ 3 ] )
+				if ( pbyChrData[3] )
 					pSprBuf[nX + 3] = bySprCol | pbyChrData[3];
-				if ( pbyChrData[ 4 ] )
+				if ( pbyChrData[4] )
 					pSprBuf[nX + 4] = bySprCol | pbyChrData[4];
-				if ( pbyChrData[ 5 ] )
+				if ( pbyChrData[5] )
 					pSprBuf[nX + 5] = bySprCol | pbyChrData[5];
-				if ( pbyChrData[ 6 ] )
+				if ( pbyChrData[6] )
 					pSprBuf[nX + 6] = bySprCol | pbyChrData[6];
-				if ( pbyChrData[ 7 ] )
+				if ( pbyChrData[7] )
 					pSprBuf[nX + 7] = bySprCol | pbyChrData[7];
 			}
 		}
@@ -1160,11 +1160,11 @@ void NESCore_DrawScanline()
 		pPoint -= ( NES_DISP_WIDTH - Scroll_X_Fine );
 		for ( nX = 0; nX < NES_DISP_WIDTH; ++nX )
 		{
-			nSprData = pSprBuf[ nX ];
+			nSprData = pSprBuf[nX];
 			
 			if ( nSprData  && ( !(nSprData & 0x80) || ((S.NES_BG_Index_Temp[nX] & 3) == 0)))
 			{
-					pPoint[ nX ] = S.PalTable[ ( nSprData & 0xf ) + 0x10 ];
+					pPoint[nX] = S.PalTable[( nSprData & 0xf ) + 0x10];
 			}
 		}
 		
@@ -1172,7 +1172,7 @@ void NESCore_DrawScanline()
 		if (!( S.PPU_R1 & R1_CLIP_SP ))
 		{
 			word *pPointTop;
-			pPointTop = &S.WorkFrame[ S.PPU_Scanline * NES_DISP_WIDTH ];
+			pPointTop = &S.WorkFrame[S.PPU_Scanline * NES_DISP_WIDTH];
 			memset( pPointTop, 0, 16 );
 		}
 		
@@ -1195,7 +1195,7 @@ void NESCore_GetSprHitY()
 	dword *pdwChrData;
 	int nOff;
 	
-	if (S.SPRRAM[ SPR_ATTR ] & SPR_ATTR_V_FLIP)
+	if (S.SPRRAM[SPR_ATTR] & SPR_ATTR_V_FLIP)
 	{
 		/* Vertical Flip */
 		nYBit = ( S.PPU_SP_Height - 1 ) << 3;
@@ -1210,27 +1210,27 @@ void NESCore_GetSprHitY()
 	if (S.PPU_R0 & R0_SP_SIZE)
 	{
 		/* Sprite size 8x16 */
-		if (S.SPRRAM[ SPR_CHR ] & 0x01)
+		if (S.SPRRAM[SPR_CHR] & 0x01)
 		{
 			pdwChrData = (dword *)(S.ChrBuf + 0x4000
-								   + ((S.SPRRAM[ SPR_CHR ] & 0xfe) << 6) + nYBit);
+								   + ((S.SPRRAM[SPR_CHR] & 0xfe) << 6) + nYBit);
 		}
 		else
 		{
 			pdwChrData = (dword *)(S.ChrBuf 
-								   + ((S.SPRRAM[ SPR_CHR ] & 0xfe) << 6) + nYBit);
+								   + ((S.SPRRAM[SPR_CHR] & 0xfe) << 6) + nYBit);
 		}
 	} else {
 		/* Sprite size 8x8 */
-		pdwChrData = (dword *)(W.PPU_SP + (S.SPRRAM[ SPR_CHR ] << 6) + nYBit);
+		pdwChrData = (dword *)(W.PPU_SP + (S.SPRRAM[SPR_CHR] << 6) + nYBit);
 	}
 	
-	if ((S.SPRRAM[ SPR_Y ] + 1 <= SCAN_UNKNOWN_START) && (S.SPRRAM[SPR_Y] > 0))
+	if ((S.SPRRAM[SPR_Y] + 1 <= SCAN_UNKNOWN_START) && (S.SPRRAM[SPR_Y] > 0))
 	{
 		int nLine;
 		for ( nLine = 0; nLine < S.PPU_SP_Height; nLine++ )
 		{
-			if ((word)pdwChrData[ 0 ] | (word)pdwChrData[ 1 ])
+			if ((word)pdwChrData[0] | (word)pdwChrData[1])
 			{
 				/* Scanline Hits Sprite #0 */
 				S.SpriteJustHit = S.SPRRAM[SPR_Y] + nLine + 1;
@@ -1267,7 +1267,7 @@ void NESCore_Develop_Character_Data()
 	
 	for (nBank = 0; nBank < 8; ++nBank)
 	{
-		if ( W.pbyPrevBank[ nBank ] == W.PPUBANK[ nBank ] 
+		if ( W.pbyPrevBank[nBank] == W.PPUBANK[nBank] 
 			&& ! ((S.ChrBufUpdate >> nBank) & 1) )
 		{
 			continue;
@@ -1280,24 +1280,24 @@ void NESCore_Develop_Character_Data()
 			nOff = ( nBank << 12 ) + ( nIdx << 6 );
 			for ( nY = 0; nY < 8; ++nY )
 			{
-				pbyBGData = W.PPUBANK[ nBank ] + ( nIdx << 4 ) + nY;
+				pbyBGData = W.PPUBANK[nBank] + ( nIdx << 4 ) + nY;
 				
-				bData1 = (( pbyBGData[ 0 ] >> 1 ) & 0x55) | (pbyBGData[ 8 ] & 0xAA);
-				bData2 = (pbyBGData[ 0 ] & 0x55 ) | (( pbyBGData[ 8 ] << 1 ) & 0xAA);
+				bData1 = (( pbyBGData[0] >> 1 ) & 0x55) | (pbyBGData[8] & 0xAA);
+				bData2 = (pbyBGData[0] & 0x55 ) | (( pbyBGData[8] << 1 ) & 0xAA);
 				
-				S.ChrBuf[ nOff ]     = ( bData1 >> 6 ) & 3;
-				S.ChrBuf[ nOff + 1 ] = ( bData2 >> 6 ) & 3;
-				S.ChrBuf[ nOff + 2 ] = ( bData1 >> 4 ) & 3;
-				S.ChrBuf[ nOff + 3 ] = ( bData2 >> 4 ) & 3;
-				S.ChrBuf[ nOff + 4 ] = ( bData1 >> 2 ) & 3;
-				S.ChrBuf[ nOff + 5 ] = ( bData2 >> 2 ) & 3;
-				S.ChrBuf[ nOff + 6 ] = bData1 & 3;
-				S.ChrBuf[ nOff + 7 ] = bData2 & 3;
+				S.ChrBuf[nOff]     = ( bData1 >> 6 ) & 3;
+				S.ChrBuf[nOff + 1] = ( bData2 >> 6 ) & 3;
+				S.ChrBuf[nOff + 2] = ( bData1 >> 4 ) & 3;
+				S.ChrBuf[nOff + 3] = ( bData2 >> 4 ) & 3;
+				S.ChrBuf[nOff + 4] = ( bData1 >> 2 ) & 3;
+				S.ChrBuf[nOff + 5] = ( bData2 >> 2 ) & 3;
+				S.ChrBuf[nOff + 6] = bData1 & 3;
+				S.ChrBuf[nOff + 7] = bData2 & 3;
 				
 				nOff += 8;
 			}
 		}
-		W.pbyPrevBank[ nBank ] = W.PPUBANK[ nBank ];
+		W.pbyPrevBank[nBank] = W.PPUBANK[nBank];
 	}
 	
 	S.ChrBufUpdate = 0;

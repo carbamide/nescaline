@@ -49,7 +49,7 @@ void Map140_Init()
   if ( S.NesHeader.VROMSize > 0 ) {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -77,13 +77,13 @@ void Map140_Apu( word wAddr, byte byData )
   W.ROMBANK3 = ROMPAGE( (((byData%0xF0)>>2) + 3 ) % (S.NesHeader.ROMSize << 1) );
 
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = VROMPAGE( (((byData&0x0F)<<3) + 0) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 1 ] = VROMPAGE( (((byData&0x0F)<<3) + 1) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 2 ] = VROMPAGE( (((byData&0x0F)<<3) + 2) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 3 ] = VROMPAGE( (((byData&0x0F)<<3) + 3) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 4 ] = VROMPAGE( (((byData&0x0F)<<3) + 4) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 5 ] = VROMPAGE( (((byData&0x0F)<<3) + 5) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 6 ] = VROMPAGE( (((byData&0x0F)<<3) + 6) % (S.NesHeader.VROMSize << 3) );
-  W.PPUBANK[ 7 ] = VROMPAGE( (((byData&0x0F)<<3) + 7) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[0] = VROMPAGE( (((byData&0x0F)<<3) + 0) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[1] = VROMPAGE( (((byData&0x0F)<<3) + 1) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[2] = VROMPAGE( (((byData&0x0F)<<3) + 2) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[3] = VROMPAGE( (((byData&0x0F)<<3) + 3) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[4] = VROMPAGE( (((byData&0x0F)<<3) + 4) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[5] = VROMPAGE( (((byData&0x0F)<<3) + 5) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[6] = VROMPAGE( (((byData&0x0F)<<3) + 6) % (S.NesHeader.VROMSize << 3) );
+  W.PPUBANK[7] = VROMPAGE( (((byData&0x0F)<<3) + 7) % (S.NesHeader.VROMSize << 3) );
   NESCore_Develop_Character_Data();
 }

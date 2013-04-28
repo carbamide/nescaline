@@ -50,7 +50,7 @@ void Map78_Init()
   {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -75,14 +75,14 @@ void Map78_Write( word wAddr, byte byData )
   /* Set PPU Banks */
   byChrBank <<= 3;
   byChrBank %= ( S.NesHeader.VROMSize << 3 );
-  W.PPUBANK[ 0 ] = VROMPAGE( byChrBank );  
-  W.PPUBANK[ 1 ] = VROMPAGE( byChrBank + 1 ); 
-  W.PPUBANK[ 2 ] = VROMPAGE( byChrBank + 2 ); 
-  W.PPUBANK[ 3 ] = VROMPAGE( byChrBank + 3 );
-  W.PPUBANK[ 4 ] = VROMPAGE( byChrBank + 4 ); 
-  W.PPUBANK[ 5 ] = VROMPAGE( byChrBank + 5 ); 
-  W.PPUBANK[ 6 ] = VROMPAGE( byChrBank + 6 ); 
-  W.PPUBANK[ 7 ] = VROMPAGE( byChrBank + 7 ); 
+  W.PPUBANK[0] = VROMPAGE( byChrBank );  
+  W.PPUBANK[1] = VROMPAGE( byChrBank + 1 ); 
+  W.PPUBANK[2] = VROMPAGE( byChrBank + 2 ); 
+  W.PPUBANK[3] = VROMPAGE( byChrBank + 3 );
+  W.PPUBANK[4] = VROMPAGE( byChrBank + 4 ); 
+  W.PPUBANK[5] = VROMPAGE( byChrBank + 5 ); 
+  W.PPUBANK[6] = VROMPAGE( byChrBank + 6 ); 
+  W.PPUBANK[7] = VROMPAGE( byChrBank + 7 ); 
   NESCore_Develop_Character_Data();  
 
   /* Set Name Table Mirroring */

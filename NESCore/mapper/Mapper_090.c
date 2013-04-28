@@ -4,11 +4,11 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte Map90_Prg_Reg[ 4 ];
-byte Map90_Chr_Low_Reg[ 8 ];
-byte Map90_Chr_High_Reg[ 8 ];
-byte Map90_Nam_Low_Reg[ 4 ];
-byte Map90_Nam_High_Reg[ 4 ];
+byte Map90_Prg_Reg[4];
+byte Map90_Chr_Low_Reg[8];
+byte Map90_Chr_High_Reg[8];
+byte Map90_Nam_Low_Reg[4];
+byte Map90_Nam_High_Reg[4];
 
 byte Map90_Prg_Bank_Size;
 byte Map90_Prg_Bank_6000;
@@ -70,7 +70,7 @@ void Map90_Init()
   {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -82,13 +82,13 @@ for (nPage = 0; nPage < 8; ++nPage )
   byte byPage;
   for ( byPage = 0; byPage < 4; byPage++ )
   {
-    Map90_Prg_Reg[ byPage ] = ( S.NesHeader.ROMSize << 1 ) - 4 + byPage;
-    Map90_Nam_Low_Reg[ byPage ] = 0;
-    Map90_Nam_High_Reg[ byPage ] = 0;
-    Map90_Chr_Low_Reg[ byPage ] = byPage;
-    Map90_Chr_High_Reg[ byPage ] = 0;
-    Map90_Chr_Low_Reg[ byPage + 4 ] = byPage + 4;
-    Map90_Chr_High_Reg[ byPage + 4 ] = 0;
+    Map90_Prg_Reg[byPage] = ( S.NesHeader.ROMSize << 1 ) - 4 + byPage;
+    Map90_Nam_Low_Reg[byPage] = 0;
+    Map90_Nam_High_Reg[byPage] = 0;
+    Map90_Chr_Low_Reg[byPage] = byPage;
+    Map90_Chr_High_Reg[byPage] = 0;
+    Map90_Chr_Low_Reg[byPage + 4] = byPage + 4;
+    Map90_Chr_High_Reg[byPage + 4] = 0;
   }
 
 
@@ -137,7 +137,7 @@ void Map90_Write( word wAddr, byte byData )
     case 0x8001:
     case 0x8002:
     case 0x8003:
-      Map90_Prg_Reg[ wAddr & 0x03 ] = byData;
+      Map90_Prg_Reg[wAddr & 0x03] = byData;
       Map90_Sync_Prg_Banks();
       break;
     
@@ -149,7 +149,7 @@ void Map90_Write( word wAddr, byte byData )
     case 0x9005:
     case 0x9006:
     case 0x9007:
-      Map90_Chr_Low_Reg[ wAddr & 0x07 ] = byData;
+      Map90_Chr_Low_Reg[wAddr & 0x07] = byData;
       Map90_Sync_Chr_Banks();
       break;
 
@@ -161,7 +161,7 @@ void Map90_Write( word wAddr, byte byData )
     case 0xa005:
     case 0xa006:
     case 0xa007:
-      Map90_Chr_High_Reg[ wAddr & 0x07 ] = byData;
+      Map90_Chr_High_Reg[wAddr & 0x07] = byData;
       Map90_Sync_Chr_Banks();
       break;
 
@@ -169,7 +169,7 @@ void Map90_Write( word wAddr, byte byData )
     case 0xb001:
     case 0xb002:
     case 0xb003:
-      Map90_Nam_Low_Reg[ wAddr & 0x03 ] = byData;
+      Map90_Nam_Low_Reg[wAddr & 0x03] = byData;
       Map90_Sync_Mirror();
       break;
 
@@ -177,7 +177,7 @@ void Map90_Write( word wAddr, byte byData )
     case 0xb005:
     case 0xb006:
     case 0xb007:
-      Map90_Nam_High_Reg[ wAddr & 0x03 ] = byData;
+      Map90_Nam_High_Reg[wAddr & 0x03] = byData;
       Map90_Sync_Mirror();
       break;
 
@@ -256,19 +256,19 @@ void Map90_HSync()
 void Map90_Sync_Mirror( void )
 {
   byte byPage;
-  dword dwNamBank[ 4 ];
+  dword dwNamBank[4];
 
   for ( byPage = 0; byPage < 4; byPage++ )
   {
-    dwNamBank[ byPage ] = 
-      ( (dword)Map90_Nam_High_Reg[ byPage ] << 8 ) | (dword)Map90_Nam_Low_Reg[ byPage ];
+    dwNamBank[byPage] = 
+      ( (dword)Map90_Nam_High_Reg[byPage] << 8 ) | (dword)Map90_Nam_Low_Reg[byPage];
   }
 
   if ( Map90_Mirror_Mode )
   {
     for ( byPage = 0; byPage < 4; byPage++ )
     {
-      if ( !Map90_Nam_High_Reg[ byPage ] && ( Map90_Nam_Low_Reg[ byPage ] == byPage ) )
+      if ( !Map90_Nam_High_Reg[byPage] && ( Map90_Nam_Low_Reg[byPage] == byPage ) )
       {
         Map90_Mirror_Mode = 0;
       }
@@ -276,10 +276,10 @@ void Map90_Sync_Mirror( void )
 
     if ( Map90_Mirror_Mode )
     {
-        W.PPUBANK[ NAME_TABLE0 ] = VROMPAGE( dwNamBank[ 0 ] % ( S.NesHeader.VROMSize << 3 ) );
-        W.PPUBANK[ NAME_TABLE1 ] = VROMPAGE( dwNamBank[ 1 ] % ( S.NesHeader.VROMSize << 3 ) );
-        W.PPUBANK[ NAME_TABLE2 ] = VROMPAGE( dwNamBank[ 2 ] % ( S.NesHeader.VROMSize << 3 ) );
-        W.PPUBANK[ NAME_TABLE3 ] = VROMPAGE( dwNamBank[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
+        W.PPUBANK[NAME_TABLE0] = VROMPAGE( dwNamBank[0] % ( S.NesHeader.VROMSize << 3 ) );
+        W.PPUBANK[NAME_TABLE1] = VROMPAGE( dwNamBank[1] % ( S.NesHeader.VROMSize << 3 ) );
+        W.PPUBANK[NAME_TABLE2] = VROMPAGE( dwNamBank[2] % ( S.NesHeader.VROMSize << 3 ) );
+        W.PPUBANK[NAME_TABLE3] = VROMPAGE( dwNamBank[3] % ( S.NesHeader.VROMSize << 3 ) );
     }
   } else {
     switch ( Map90_Mirror_Type )
@@ -305,61 +305,61 @@ void Map90_Sync_Mirror( void )
 void Map90_Sync_Chr_Banks( void )
 {
   byte byPage;
-  dword dwChrBank[ 8 ];
+  dword dwChrBank[8];
 
   for ( byPage = 0; byPage < 8; byPage++ )
   {
-    dwChrBank[ byPage ] =
-      ( (dword)Map90_Chr_High_Reg[ byPage ] << 8 ) | (dword)Map90_Chr_Low_Reg[ byPage ];
+    dwChrBank[byPage] =
+      ( (dword)Map90_Chr_High_Reg[byPage] << 8 ) | (dword)Map90_Chr_Low_Reg[byPage];
   }
 
   switch ( Map90_Chr_Bank_Size )
   {
     case 0:
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 4 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 5 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 6 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 3 ) + 7 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 4 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 5 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 6 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( dwChrBank[0] << 3 ) + 7 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 1:
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 2 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 2 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 2 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 2 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 2 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 2 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 2 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 2 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( dwChrBank[0] << 2 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( dwChrBank[0] << 2 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( dwChrBank[0] << 2 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( dwChrBank[0] << 2 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( dwChrBank[4] << 2 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( dwChrBank[4] << 2 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( dwChrBank[4] << 2 ) + 2 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( dwChrBank[4] << 2 ) + 3 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     case 2:
-      W.PPUBANK[ 0 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( ( ( dwChrBank[ 0 ] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( ( ( dwChrBank[ 2 ] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( ( ( dwChrBank[ 2 ] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( ( ( dwChrBank[ 4 ] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( ( ( dwChrBank[ 6 ] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( ( ( dwChrBank[ 6 ] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( ( ( dwChrBank[0] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( ( ( dwChrBank[0] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( ( ( dwChrBank[2] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( ( ( dwChrBank[2] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( ( ( dwChrBank[4] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( ( ( dwChrBank[4] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( ( ( dwChrBank[6] << 1 ) + 0 ) % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( ( ( dwChrBank[6] << 1 ) + 1 ) % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
 
     default:
-      W.PPUBANK[ 0 ] = VROMPAGE( dwChrBank[ 0 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 1 ] = VROMPAGE( dwChrBank[ 1 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 2 ] = VROMPAGE( dwChrBank[ 2 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 3 ] = VROMPAGE( dwChrBank[ 3 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 4 ] = VROMPAGE( dwChrBank[ 4 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 5 ] = VROMPAGE( dwChrBank[ 5 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 6 ] = VROMPAGE( dwChrBank[ 6 ] % ( S.NesHeader.VROMSize << 3 ) );
-      W.PPUBANK[ 7 ] = VROMPAGE( dwChrBank[ 7 ] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[0] = VROMPAGE( dwChrBank[0] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[1] = VROMPAGE( dwChrBank[1] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[2] = VROMPAGE( dwChrBank[2] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[3] = VROMPAGE( dwChrBank[3] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[4] = VROMPAGE( dwChrBank[4] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[5] = VROMPAGE( dwChrBank[5] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[6] = VROMPAGE( dwChrBank[6] % ( S.NesHeader.VROMSize << 3 ) );
+      W.PPUBANK[7] = VROMPAGE( dwChrBank[7] % ( S.NesHeader.VROMSize << 3 ) );
       NESCore_Develop_Character_Data();
       break;
   }
@@ -380,8 +380,8 @@ void Map90_Sync_Prg_Banks( void )
       break;
 
     case 1:
-      W.ROMBANK0 = ROMPAGE( ( ( Map90_Prg_Reg[ 1 ] << 1 ) + 0 ) % ( S.NesHeader.ROMSize << 1 ) );
-      W.ROMBANK1 = ROMPAGE( ( ( Map90_Prg_Reg[ 1 ] << 1 ) + 1 ) % ( S.NesHeader.ROMSize << 1 ) );
+      W.ROMBANK0 = ROMPAGE( ( ( Map90_Prg_Reg[1] << 1 ) + 0 ) % ( S.NesHeader.ROMSize << 1 ) );
+      W.ROMBANK1 = ROMPAGE( ( ( Map90_Prg_Reg[1] << 1 ) + 1 ) % ( S.NesHeader.ROMSize << 1 ) );
       W.ROMBANK2 = ROMLASTPAGE( 1 );
       W.ROMBANK3 = ROMLASTPAGE( 0 );      
       break;
@@ -389,28 +389,28 @@ void Map90_Sync_Prg_Banks( void )
     case 2:
       if ( Map90_Prg_Bank_E000 )
       {
-        W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[ 0 ] % ( S.NesHeader.ROMSize << 1 ) );
-        W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[ 1 ] % ( S.NesHeader.ROMSize << 1 ) );
-        W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[ 2 ] % ( S.NesHeader.ROMSize << 1 ) );
-        W.ROMBANK3 = ROMPAGE( Map90_Prg_Reg[ 3 ] % ( S.NesHeader.ROMSize << 1 ) );   
+        W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[0] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[1] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[2] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK3 = ROMPAGE( Map90_Prg_Reg[3] % ( S.NesHeader.ROMSize << 1 ) );   
       } else {
         if ( Map90_Prg_Bank_6000 )
         {
-          W.SRAMBANK = ROMPAGE( Map90_Prg_Reg[ 3 ] % ( S.NesHeader.ROMSize << 1 ) );
+          W.SRAMBANK = ROMPAGE( Map90_Prg_Reg[3] % ( S.NesHeader.ROMSize << 1 ) );
         }
-        W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[ 0 ] % ( S.NesHeader.ROMSize << 1 ) );
-        W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[ 1 ] % ( S.NesHeader.ROMSize << 1 ) );
-        W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[ 2 ] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[0] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[1] % ( S.NesHeader.ROMSize << 1 ) );
+        W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[2] % ( S.NesHeader.ROMSize << 1 ) );
         W.ROMBANK3 = ROMLASTPAGE( 0 );  
       }
       break;
 
     default:
       /* 8k in reverse mode? */
-      W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[ 3 ] % ( S.NesHeader.ROMSize << 1 ) );
-      W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[ 2 ] % ( S.NesHeader.ROMSize << 1 ) );
-      W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[ 1 ] % ( S.NesHeader.ROMSize << 1 ) );
-      W.ROMBANK3 = ROMPAGE( Map90_Prg_Reg[ 0 ] % ( S.NesHeader.ROMSize << 1 ) ); 
+      W.ROMBANK0 = ROMPAGE( Map90_Prg_Reg[3] % ( S.NesHeader.ROMSize << 1 ) );
+      W.ROMBANK1 = ROMPAGE( Map90_Prg_Reg[2] % ( S.NesHeader.ROMSize << 1 ) );
+      W.ROMBANK2 = ROMPAGE( Map90_Prg_Reg[1] % ( S.NesHeader.ROMSize << 1 ) );
+      W.ROMBANK3 = ROMPAGE( Map90_Prg_Reg[0] % ( S.NesHeader.ROMSize << 1 ) ); 
       break;
   }
 }

@@ -198,14 +198,14 @@ word ApuFreqLimit[8] =
 };
 
 /* Noise Frequency Lookup Table */
-dword ApuNoiseFreq[ 16 ] =
+dword ApuNoiseFreq[16] =
 {
     0x002, 0x004, 0x008, 0x010, 0x020, 0x030, 0x040, 0x050, 
     0x065, 0x07F, 0x0BE, 0x0FE, 0x17D, 0x1FC, 0x3F9, 0x7F2
 };
 
 /* DMC Transfer Clocks Table */
-dword ApuDpcmCycles[ 16 ] = 
+dword ApuDpcmCycles[16] = 
 {
   428, 380, 340, 320, 286, 254, 226, 214,
   190, 160, 142, 128, 106,  85,  72,  54
@@ -234,7 +234,7 @@ int ApuWriteWave1(int event)
 	case 2:
 	  S.pAPU.ApuC1c = S.pAPU.ApuEventQueue[event].data;
 	  S.pAPU.ApuC1Freq = ((((word) S.pAPU.ApuC1d & 0x07) << 8) + S.pAPU.ApuC1c);
-	  S.pAPU.ApuC1Atl = ApuAtl[ ( S.pAPU.ApuC1d & 0xf8 ) >> 3 ];
+	  S.pAPU.ApuC1Atl = ApuAtl[( S.pAPU.ApuC1d & 0xf8 ) >> 3];
 	  if ( S.pAPU.ApuC1Freq ) 
           {
               S.pAPU.ApuC1Skip = (ApuPulseMagic << 1) / S.pAPU.ApuC1Freq;
@@ -360,7 +360,7 @@ int ApuWriteWave2(int event )
         {
 	case 0:
 	  S.pAPU.ApuC2a    = S.pAPU.ApuEventQueue[event].data;
-	  S.pAPU.ApuC2Wave = pulse_waves[ MC2DutyCycle >> 6 ];
+	  S.pAPU.ApuC2Wave = pulse_waves[MC2DutyCycle >> 6];
 	  break;
 
 	case 1:
@@ -370,7 +370,7 @@ int ApuWriteWave2(int event )
 	case 2:
 	  S.pAPU.ApuC2c = S.pAPU.ApuEventQueue[event].data;
 	  S.pAPU.ApuC2Freq = ( ( ( (word)S.pAPU.ApuC2d & 0x07 ) << 8 ) + S.pAPU.ApuC2c );
-	  S.pAPU.ApuC2Atl = ApuAtl[ ( S.pAPU.ApuC2d & 0xf8 ) >> 3 ];
+	  S.pAPU.ApuC2Atl = ApuAtl[( S.pAPU.ApuC2d & 0xf8 ) >> 3];
 	  
 	  if ( S.pAPU.ApuC2Freq ) 
           {
@@ -383,7 +383,7 @@ int ApuWriteWave2(int event )
 	case 3:
 	  S.pAPU.ApuC2d = S.pAPU.ApuEventQueue[event].data;
 	  S.pAPU.ApuC2Freq = ( ( ( (word)S.pAPU.ApuC2d & 0x07 ) << 8 ) + S.pAPU.ApuC2c );
-	  S.pAPU.ApuC2Atl = ApuAtl[ ( S.pAPU.ApuC2d & 0xf8 ) >> 3 ];
+	  S.pAPU.ApuC2Atl = ApuAtl[( S.pAPU.ApuC2d & 0xf8 ) >> 3];
 	  if ( S.pAPU.ApuC2Freq ) 
           {
 	    S.pAPU.ApuC2Skip = ( ApuPulseMagic << 1 ) / S.pAPU.ApuC2Freq;
@@ -567,7 +567,7 @@ void ApuRenderingWave3( void )
     {
       S.pAPU.ApuC3Index += S.pAPU.ApuC3Skip;
       S.pAPU.ApuC3Index &= 0x1fffffff;
-      wave_buffers[2][i] = triangle_50[ S.pAPU.ApuC3Index >> 24 ] >> S.pAPU.ApuVolumeDivider;
+      wave_buffers[2][i] = triangle_50[S.pAPU.ApuC3Index >> 24] >> S.pAPU.ApuVolumeDivider;
       if (!S.BassBoost) 
           wave_buffers[2][i] >>= 1;
     } else {
@@ -890,13 +890,13 @@ void NESCore_Init_pAPU(void)
   NESCore_Callback_InitSound(S.userData);
 
   ApuQuality = pAPU_QUALITY - 1;
-  ApuPulseMagic      = ApuQual[ ApuQuality ].pulse_magic;
-  ApuTriangleMagic   = ApuQual[ ApuQuality ].triangle_magic;
-  ApuNoiseMagic      = ApuQual[ ApuQuality ].noise_magic;
-  ApuSamplesPerSync  = ApuQual[ ApuQuality ].samples_per_sync;
-  ApuCyclesPerSample = ApuQual[ ApuQuality ].cycles_per_sample;
-  ApuSampleRate      = ApuQual[ ApuQuality ].sample_rate;
-  ApuCycleRate       = ApuQual[ ApuQuality ].cycle_rate;
+  ApuPulseMagic      = ApuQual[ApuQuality].pulse_magic;
+  ApuTriangleMagic   = ApuQual[ApuQuality].triangle_magic;
+  ApuNoiseMagic      = ApuQual[ApuQuality].noise_magic;
+  ApuSamplesPerSync  = ApuQual[ApuQuality].samples_per_sync;
+  ApuCyclesPerSample = ApuQual[ApuQuality].cycles_per_sample;
+  ApuSampleRate      = ApuQual[ApuQuality].sample_rate;
+  ApuCycleRate       = ApuQual[ApuQuality].cycle_rate;
 
   NESCore_Callback_OpenSound(S.userData, ApuSamplesPerSync, ApuSampleRate );
 

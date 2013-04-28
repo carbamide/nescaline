@@ -49,7 +49,7 @@ void Map228_Init()
   if ( S.NesHeader.VROMSize > 0 ) {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -91,14 +91,14 @@ void Map228_Write( word wAddr, byte byData )
 
   byte byChr = ((wAddr&0x000F)<<2)|(byData&0x03);
 
-  W.PPUBANK[ 0 ] = VROMPAGE(((byChr<<3)+0) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 1 ] = VROMPAGE(((byChr<<3)+1) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 2 ] = VROMPAGE(((byChr<<3)+2) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 3 ] = VROMPAGE(((byChr<<3)+3) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 4 ] = VROMPAGE(((byChr<<3)+4) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 5 ] = VROMPAGE(((byChr<<3)+5) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 6 ] = VROMPAGE(((byChr<<3)+6) % (S.NesHeader.VROMSize<<3)); 
-  W.PPUBANK[ 7 ] = VROMPAGE(((byChr<<3)+7) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[0] = VROMPAGE(((byChr<<3)+0) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[1] = VROMPAGE(((byChr<<3)+1) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[2] = VROMPAGE(((byChr<<3)+2) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[3] = VROMPAGE(((byChr<<3)+3) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[4] = VROMPAGE(((byChr<<3)+4) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[5] = VROMPAGE(((byChr<<3)+5) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[6] = VROMPAGE(((byChr<<3)+6) % (S.NesHeader.VROMSize<<3)); 
+  W.PPUBANK[7] = VROMPAGE(((byChr<<3)+7) % (S.NesHeader.VROMSize<<3)); 
   NESCore_Develop_Character_Data();
   
   if( wAddr & 0x2000 ) {

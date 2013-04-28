@@ -4,8 +4,8 @@
 /*                                                                   */
 /*===================================================================*/
 
-byte Map85_Chr_Ram[ 0x100 * 0x400 ];
-byte Map85_Regs[ 1 ];
+byte Map85_Chr_Ram[0x100 * 0x400];
+byte Map85_Regs[1];
 byte Map85_IRQ_Enable;
 byte Map85_IRQ_Cnt;
 byte Map85_IRQ_Latch;
@@ -52,18 +52,18 @@ void Map85_Init()
   W.ROMBANK3 = ROMLASTPAGE( 0 );
 
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 1 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 2 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 3 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 4 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 5 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 6 ] = Map85_VROMPAGE( 0 );
-  W.PPUBANK[ 7 ] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[0] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[1] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[2] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[3] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[4] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[5] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[6] = Map85_VROMPAGE( 0 );
+  W.PPUBANK[7] = Map85_VROMPAGE( 0 );
   NESCore_Develop_Character_Data();
 
   /* Initialize State Registers */
-  Map85_Regs[ 0 ] = 0;
+  Map85_Regs[0] = 0;
   Map85_IRQ_Enable = 0;
   Map85_IRQ_Cnt = 0;
   Map85_IRQ_Latch = 0;
@@ -99,42 +99,42 @@ void Map85_Write( word wAddr, byte byData )
       /* Extra Sound */
 
     case 0xa000:
-      W.PPUBANK[ 0 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[0] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xa010:
-      W.PPUBANK[ 1 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[1] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb000:
-      W.PPUBANK[ 2 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[2] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xb010:
-      W.PPUBANK[ 3 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[3] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc000:
-      W.PPUBANK[ 4 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[4] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xc010:
-      W.PPUBANK[ 5 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[5] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd000:
-      W.PPUBANK[ 6 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[6] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
     case 0xd010:
-      W.PPUBANK[ 7 ] = Map85_VROMPAGE( byData );
+      W.PPUBANK[7] = Map85_VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
@@ -162,13 +162,13 @@ void Map85_Write( word wAddr, byte byData )
       break;
 
     case 0xf000:
-      Map85_Regs[ 0 ] = byData & 0x01;
+      Map85_Regs[0] = byData & 0x01;
       Map85_IRQ_Enable = ( byData & 0x02 ) >> 1;
       Map85_IRQ_Cnt = Map85_IRQ_Latch;
       break;
 
     case 0xf010:
-      Map85_IRQ_Enable = Map85_Regs[ 0 ];
+      Map85_IRQ_Enable = Map85_Regs[0];
       Map85_IRQ_Cnt = Map85_IRQ_Latch;
       break;
   }

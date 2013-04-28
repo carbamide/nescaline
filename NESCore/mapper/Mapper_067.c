@@ -41,14 +41,14 @@ void Map67_Init()
   W.ROMBANK3 = ROMLASTPAGE( 0 );
 
   /* Set PPU Banks */
-  W.PPUBANK[ 0 ] = VROMPAGE( 0 );
-  W.PPUBANK[ 1 ] = VROMPAGE( 1 );
-  W.PPUBANK[ 2 ] = VROMPAGE( 2 );
-  W.PPUBANK[ 3 ] = VROMPAGE( 3 );
-  W.PPUBANK[ 4 ] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 4 );
-  W.PPUBANK[ 5 ] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 3 );
-  W.PPUBANK[ 6 ] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 2 );
-  W.PPUBANK[ 7 ] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 1 );
+  W.PPUBANK[0] = VROMPAGE( 0 );
+  W.PPUBANK[1] = VROMPAGE( 1 );
+  W.PPUBANK[2] = VROMPAGE( 2 );
+  W.PPUBANK[3] = VROMPAGE( 3 );
+  W.PPUBANK[4] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 4 );
+  W.PPUBANK[5] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 3 );
+  W.PPUBANK[6] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 2 );
+  W.PPUBANK[7] = VROMPAGE( ( S.NesHeader.VROMSize << 3 ) - 1 );
   NESCore_Develop_Character_Data();
 
   /* Initialize IRQ Registers */
@@ -66,8 +66,8 @@ void Map67_Write( word wAddr, byte byData )
       byData <<= 1;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      W.PPUBANK[ 0 ] = VROMPAGE( byData + 0 );
-      W.PPUBANK[ 1 ] = VROMPAGE( byData + 1 );
+      W.PPUBANK[0] = VROMPAGE( byData + 0 );
+      W.PPUBANK[1] = VROMPAGE( byData + 1 );
       NESCore_Develop_Character_Data();
       break;
 
@@ -75,8 +75,8 @@ void Map67_Write( word wAddr, byte byData )
       byData <<= 1;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      W.PPUBANK[ 2 ] = VROMPAGE( byData + 0 );
-      W.PPUBANK[ 3 ] = VROMPAGE( byData + 1 );
+      W.PPUBANK[2] = VROMPAGE( byData + 0 );
+      W.PPUBANK[3] = VROMPAGE( byData + 1 );
       NESCore_Develop_Character_Data();
       break;
 
@@ -84,8 +84,8 @@ void Map67_Write( word wAddr, byte byData )
       byData <<= 1;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      W.PPUBANK[ 4 ] = VROMPAGE( byData + 0 );
-      W.PPUBANK[ 5 ] = VROMPAGE( byData + 1 );
+      W.PPUBANK[4] = VROMPAGE( byData + 0 );
+      W.PPUBANK[5] = VROMPAGE( byData + 1 );
       NESCore_Develop_Character_Data();
       break;
 
@@ -93,8 +93,8 @@ void Map67_Write( word wAddr, byte byData )
       byData <<= 1;
       byData %= ( S.NesHeader.VROMSize << 3 );
 
-      W.PPUBANK[ 6 ] = VROMPAGE( byData + 0 );
-      W.PPUBANK[ 7 ] = VROMPAGE( byData + 1 );
+      W.PPUBANK[6] = VROMPAGE( byData + 0 );
+      W.PPUBANK[7] = VROMPAGE( byData + 1 );
       NESCore_Develop_Character_Data();
       break;
 

@@ -51,7 +51,7 @@ void Map255_Init()
   if ( S.NesHeader.VROMSize > 0 ) {
     int nPage ;
 for (nPage = 0; nPage < 8; ++nPage )
-      W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+      W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -101,14 +101,14 @@ void Map255_Write( word wAddr, byte byData )
     W.ROMBANK3 = ROMPAGE((0x80*nBank+byPrg*4+3) % (S.NesHeader.ROMSize<<1));
   }
   
-  W.PPUBANK[ 0 ] = VROMPAGE((0x200*nBank+nChr*8+0) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 1 ] = VROMPAGE((0x200*nBank+nChr*8+1) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 2 ] = VROMPAGE((0x200*nBank+nChr*8+2) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 3 ] = VROMPAGE((0x200*nBank+nChr*8+3) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 4 ] = VROMPAGE((0x200*nBank+nChr*8+4) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 5 ] = VROMPAGE((0x200*nBank+nChr*8+5) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 6 ] = VROMPAGE((0x200*nBank+nChr*8+6) % (S.NesHeader.VROMSize<<3));
-  W.PPUBANK[ 7 ] = VROMPAGE((0x200*nBank+nChr*8+7) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[0] = VROMPAGE((0x200*nBank+nChr*8+0) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[1] = VROMPAGE((0x200*nBank+nChr*8+1) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[2] = VROMPAGE((0x200*nBank+nChr*8+2) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[3] = VROMPAGE((0x200*nBank+nChr*8+3) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[4] = VROMPAGE((0x200*nBank+nChr*8+4) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[5] = VROMPAGE((0x200*nBank+nChr*8+5) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[6] = VROMPAGE((0x200*nBank+nChr*8+6) % (S.NesHeader.VROMSize<<3));
+  W.PPUBANK[7] = VROMPAGE((0x200*nBank+nChr*8+7) % (S.NesHeader.VROMSize<<3));
 }
 
 /*-------------------------------------------------------------------*/

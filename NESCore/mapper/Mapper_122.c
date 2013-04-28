@@ -62,14 +62,14 @@ void Map122_Sram( word wAddr, byte byData )
     byChrBank0 = ( byChrBank0 << 2 ) % ( S.NesHeader.VROMSize << 3 );
     byChrBank1 = ( byChrBank1 << 2 ) % ( S.NesHeader.VROMSize << 3 );
 
-    W.PPUBANK[ 0 ] = VROMPAGE( byChrBank0 + 0 );
-    W.PPUBANK[ 1 ] = VROMPAGE( byChrBank0 + 1 );
-    W.PPUBANK[ 2 ] = VROMPAGE( byChrBank0 + 2 );
-    W.PPUBANK[ 3 ] = VROMPAGE( byChrBank0 + 3 );
-    W.PPUBANK[ 4 ] = VROMPAGE( byChrBank1 + 0 );
-    W.PPUBANK[ 5 ] = VROMPAGE( byChrBank1 + 1 );
-    W.PPUBANK[ 6 ] = VROMPAGE( byChrBank1 + 2 );
-    W.PPUBANK[ 7 ] = VROMPAGE( byChrBank1 + 3 );
+    W.PPUBANK[0] = VROMPAGE( byChrBank0 + 0 );
+    W.PPUBANK[1] = VROMPAGE( byChrBank0 + 1 );
+    W.PPUBANK[2] = VROMPAGE( byChrBank0 + 2 );
+    W.PPUBANK[3] = VROMPAGE( byChrBank0 + 3 );
+    W.PPUBANK[4] = VROMPAGE( byChrBank1 + 0 );
+    W.PPUBANK[5] = VROMPAGE( byChrBank1 + 1 );
+    W.PPUBANK[6] = VROMPAGE( byChrBank1 + 2 );
+    W.PPUBANK[7] = VROMPAGE( byChrBank1 + 3 );
     NESCore_Develop_Character_Data();
   }
 }

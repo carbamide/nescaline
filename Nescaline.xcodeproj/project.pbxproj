@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* NESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NESAppDelegate.m */; };
+		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		29D0BFA6172D99D000E87C4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D0BFA5172D99D000E87C4A /* Default-568h@2x.png */; };
+		29D0BFA8172D99D300E87C4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D0BFA7172D99D300E87C4A /* Default.png */; };
+		29D0BFAA172D99D900E87C4A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D0BFA9172D99D900E87C4A /* Default@2x.png */; };
 		700FBA760EDF0E88007F2024 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 700FBA660EDF0E88007F2024 /* a.png */; };
 		700FBA770EDF0E88007F2024 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 700FBA670EDF0E88007F2024 /* b.png */; };
 		700FBA7B0EDF0E88007F2024 /* controller_pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 700FBA6B0EDF0E88007F2024 /* controller_pt.png */; };
@@ -41,18 +44,20 @@
 		70F696A8124C289500D39392 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F696A7124C289500D39392 /* CoreGraphics.framework */; };
 		70F696AA124C289500D39392 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F696A9124C289500D39392 /* Foundation.framework */; };
 		70F696AC124C289500D39392 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F696AB124C289500D39392 /* UIKit.framework */; };
-		F5A577CB0FEBCDDF00983BDB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A577CA0FEBCDDF00983BDB /* Default.png */; };
 		F5EE71540FEEC3A000FDA0A6 /* controller_ls.png in Resources */ = {isa = PBXBuildFile; fileRef = F5EE71530FEEC3A000FDA0A6 /* controller_ls.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D3623240D0F684500981E51 /* NESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NESAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* NESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NESAppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Nescaline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nescaline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A0AAE50D9B0CCF005BE974 /* NES_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NES_Prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29D0BFA5172D99D000E87C4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		29D0BFA7172D99D300E87C4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		29D0BFA9172D99D900E87C4A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		700FBA660EDF0E88007F2024 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
 		700FBA670EDF0E88007F2024 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 		700FBA6B0EDF0E88007F2024 /* controller_pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controller_pt.png; sourceTree = "<group>"; };
@@ -241,7 +246,6 @@
 		70F696A9124C289500D39392 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		70F696AB124C289500D39392 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F5A577CA0FEBCDDF00983BDB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F5EE71530FEEC3A000FDA0A6 /* controller_ls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controller_ls.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -264,8 +268,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* NESAppDelegate.h */,
-				1D3623250D0F684500981E51 /* NESAppDelegate.m */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				7053B9FF1602A99700E8A4B5 /* NavigationController.h */,
 				7053BA001602A99700E8A4B5 /* NavigationController.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
@@ -301,6 +305,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				29D0BFA9172D99D900E87C4A /* Default@2x.png */,
+				29D0BFA7172D99D300E87C4A /* Default.png */,
+				29D0BFA5172D99D000E87C4A /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -326,7 +333,6 @@
 				70583C2E10D2A47000DA068E /* default */,
 				F573FFD90FEAF8B9001ED26B /* Images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				F5A577CA0FEBCDDF00983BDB /* Default.png */,
 				704412EB0ED9D5F500E54091 /* icon.png */,
 				707F21CE0FF137C5007B9489 /* Icon-Small.png */,
 			);
@@ -614,10 +620,12 @@
 				700FBA820EDF0E88007F2024 /* l.png in Resources */,
 				700FBA830EDF0E88007F2024 /* r.png in Resources */,
 				700FBA850EDF0E88007F2024 /* u.png in Resources */,
-				F5A577CB0FEBCDDF00983BDB /* Default.png in Resources */,
 				F5EE71540FEEC3A000FDA0A6 /* controller_ls.png in Resources */,
 				707F21CF0FF137C5007B9489 /* Icon-Small.png in Resources */,
 				7039774810D97E890022DB57 /* Games.png in Resources */,
+				29D0BFA6172D99D000E87C4A /* Default-568h@2x.png in Resources */,
+				29D0BFA8172D99D300E87C4A /* Default.png in Resources */,
+				29D0BFAA172D99D900E87C4A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* NESAppDelegate.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				704412BE0ED9D3D800E54091 /* GameROMViewController.m in Sources */,
 				704412D90ED9D44300E54091 /* SavedGameViewController.m in Sources */,
@@ -655,6 +663,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonathan Zdziarski (EM755399HC)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -665,8 +676,16 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NES_Prefix.pch;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-g";
 				PRODUCT_NAME = Nescaline;
@@ -682,6 +701,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonathan Zdziarski (EM755399HC)";
 				COMPRESS_PNG_FILES = YES;
@@ -695,8 +717,16 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NES_Prefix.pch;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-g";
 				PRODUCT_NAME = Nescaline;
@@ -730,6 +760,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jonathan Zdziarski";
 				COMPRESS_PNG_FILES = YES;
@@ -743,8 +776,16 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NES_Prefix.pch;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-g";
 				PRODUCT_NAME = Nescaline;

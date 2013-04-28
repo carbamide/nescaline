@@ -64,7 +64,7 @@ void Map32_Init()
   {
     int nPage ;
     for (nPage = 0; nPage < 8; ++nPage )
-        W.PPUBANK[ nPage ] = VROMPAGE( nPage );
+        W.PPUBANK[nPage] = VROMPAGE( nPage );
     NESCore_Develop_Character_Data();
   }
 
@@ -102,7 +102,7 @@ void Map32_Write( word wAddr, byte byData )
     case 0xb000:
       /* Set PPU Banks */
       byData %= ( S.NesHeader.VROMSize << 3 );
-      W.PPUBANK[ wAddr & 0x0007 ] = VROMPAGE( byData );
+      W.PPUBANK[wAddr & 0x0007] = VROMPAGE( byData );
       NESCore_Develop_Character_Data();
       break;
 
